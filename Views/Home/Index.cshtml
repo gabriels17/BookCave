@@ -1,5 +1,23 @@
-﻿@{
+﻿@model List<BookCave.Models.ViewModels.BookListViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
+}
+
+@foreach(var book in Model)
+{
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="@book.Image" alt="Red book">
+        <div class="caption">
+          <h3>@book.Name</h3>
+          <p>This is a very nice book</p>
+          <!--<p><a action="#" class="btn btn-primary" role="button">Add to cart</a></p>-->
+        </div>
+      </div>
+    </div>
+  </div>
 }
 
 <div class="jumbotron">

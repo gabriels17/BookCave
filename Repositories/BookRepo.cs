@@ -1,16 +1,48 @@
 using System.Collections.Generic;
-using BookCave.Data.EntityModels;
+using BookCave.Models.ViewModels;
 
 namespace BookCave.Repositories
 {
     public class BookRepo
     {
-        /*
-        public List<Book> GetAllBooks()
+        public List<BookListViewModel> GetAllBooks()
         {
-            return List<Book>();
+            var books = new List<BookListViewModel>
+            {
+                new BookListViewModel
+                {
+                    Id = 1,
+                    Name = "The Catcher in the Rye",
+                    Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg"
+                },
+
+                new BookListViewModel
+                {
+                    Id = 2,
+                    Name = "Harry Potter and the Philosopher's Stone",
+                    Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg"
+                },
+
+                new BookListViewModel
+                {
+                    Id = 3,
+                    Name = "Discrete Mathematics and Its Applications",
+                    Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg"
+                }
+            };
+
+            return books;
         }
-        */
+        
+
+
+
+
+
+
+
+
+
         /*
         public Book GetBook()
         {
