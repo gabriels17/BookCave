@@ -11,9 +11,15 @@
       <div class="thumbnail">
         <img src="@book.Image" alt="Red book">
         <div class="caption">
-          <h3>@book.Name</h3>
-          <p>This is a very nice book</p>
-          <!--<p><a action="#" class="btn btn-primary" role="button">Add to cart</a></p>-->
+          <h3>@book.Title</h3>
+          <h4>@book.Author</h4>
+          <div class="stars-outer">
+            <div class="stars-inner">
+              <p>@book.Rating</p>
+            </div>
+          </div>
+          <p>@book.Price $</p>
+          <p><a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-primary" role="button">Add to cart</a></p>
         </div>
       </div>
     </div>

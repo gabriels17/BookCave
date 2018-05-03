@@ -12,22 +12,31 @@ namespace BookCave.Repositories
                 new BookListViewModel
                 {
                     Id = 1,
-                    Name = "The Catcher in the Rye",
-                    Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg"
+                    Title = "The Catcher in the Rye",
+                    Author = "J.D. Salinger",
+                    Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg",
+                    Price = 7.99,
+                    Rating = 4.5
                 },
 
                 new BookListViewModel
                 {
                     Id = 2,
-                    Name = "Harry Potter and the Philosopher's Stone",
-                    Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg"
+                    Title = "Harry Potter and the Philosopher's Stone",
+                    Author = "J.K. Rowling",
+                    Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg",
+                    Price = 7.99,
+                    Rating = 4.5
                 },
 
                 new BookListViewModel
                 {
                     Id = 3,
-                    Name = "Discrete Mathematics and Its Applications",
-                    Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg"
+                    Title = "Discrete Mathematics and Its Applications",
+                    Author = "Kenneth Rosen",
+                    Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg",
+                    Price = 7.99,
+                    Rating = 4.5
                 }
             };
 

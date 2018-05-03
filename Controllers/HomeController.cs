@@ -25,10 +25,10 @@ namespace BookCave.Controllers
             return View(books);
         }
 
-        public IActionResult AddToCart(Book book)
+        /*public IActionResult AddToCart(Book book)
         {
             return View("Index");
-        }
+        }*/
 
         public IActionResult Error()
         {
