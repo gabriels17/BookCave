@@ -1,7 +1,10 @@
+using System.Collections.Generic;
+
 namespace BookCave.Data.EntityModels
 {
     public class Book
     {
-        public int MyProperty { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

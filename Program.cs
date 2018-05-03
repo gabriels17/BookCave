@@ -34,7 +34,7 @@ namespace BookCave
             {
                 var initialBooks = new List<Book>()
                 {
-                    new Book { MyProperty = 1 }
+                    new Book { Name = "The Catcher In The Rye" }
                 };
 
                 db.AddRange(initialBooks);
