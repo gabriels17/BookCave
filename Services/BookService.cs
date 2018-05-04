@@ -27,6 +27,7 @@ namespace BookCave.Services
             var result = (from a in books
                         where a.Title.ToLower().Contains(str.ToLower())
                         select a).ToList();
+            
             return result;
         }
     }
