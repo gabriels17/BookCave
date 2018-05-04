@@ -24,10 +24,13 @@ namespace BookCave.Services
         {
             var books = _bookRepo.GetAllBooks();
             
-            var result = (from a in books
+            var byname  = (from a in books
                         where a.Title.ToLower().Contains(str.ToLower())
                         select a).ToList();
-            
+            var byauthor = (from a in books
+                        where a.Author.ToLower().Contains(str.ToLower())
+                        select a).ToList();
+             var result = byname.Concat(byauthor).ToList();        
             return result;
         }
     }
