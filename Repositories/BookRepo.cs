@@ -1,59 +1,36 @@
 using System.Collections.Generic;
+using System.Linq;
+using BookCave.Data;
 using BookCave.Models.ViewModels;
 
 namespace BookCave.Repositories
 {
     public class BookRepo
     {
+        private DataContext _db;
+
+        public BookRepo()
+        {
+            _db = new DataContext();
+        }
+
         public List<BookListViewModel> GetAllBooks()
         {
-            var books = new List<BookListViewModel>
-            {
-                new BookListViewModel
-                {
-                    Id = 1,
-                    Title = "The Catcher in the Rye",
-                    Author = "J.D. Salinger",
-                    Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg",
-                    Price = 7.99,
-                    Rating = 1.5
-                },
-
-                new BookListViewModel
-                {
-                    Id = 2,
-                    Title = "Harry Potter and the Philosopher's Stone",
-                    Author = "J.K. Rowling",
-                    Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg",
-                    Price = 7.99,
-                    Rating = 4.5
-                },
-
-                new BookListViewModel
-                {
-                    Id = 3,
-                    Title = "Discrete Mathematics and Its Applications",
-                    Author = "Kenneth Rosen",
-                    Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg",
-                    Price = 7.99,
-                    Rating = 4
-                }
-            };
+            var books = (from b in _db.Books
+                         select new BookListViewModel
+                         {
+                             Id = b.Id,
+                             Title = b.Title,
+                             Author = b.Author,
+                             Image = b.Image,
+                             Price = b.Price,
+                             Rating = b.Rating
+                         }).ToList();
 
             return books;
         }
         
-
-
-
-
-
-
-
-
-
-        /*
-        public Book GetBook()
+        /*public Book GetBook()
         {
             return Book();
         }

@@ -8,6 +8,11 @@ namespace BookCave.Repositories
     {
         private BookRepo _bookRepo;
 
+        public CartRepo()
+        {
+            _bookRepo = new BookRepo();
+        }
+
         public void AddToCart(int id)
         {
             var cart = new CartViewModel();
