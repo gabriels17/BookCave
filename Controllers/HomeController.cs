@@ -32,7 +32,13 @@ namespace BookCave.Controllers
 
         public IActionResult Browse(string search)
         {
-                var result = _bookService.Search("harry");
+                if(search == null)
+                {
+                    var books = _bookService.GetAllBooks();
+                    return View(books);
+                }
+
+                var result = _bookService.Search(search);
                 return View(result);
         }
 
