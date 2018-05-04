@@ -1,8 +1,11 @@
 ﻿// Write your JavaScript code.
 const starTotal = 5;
 
-for(const rating in ratings) {  
-    const starPercentage = (ratings[rating] / starTotal) * 100;
-    const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
-    document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded; 
-}
+var allStars = $('.thumbnail .stars-outer .stars-inner .ratings');
+
+$.each(allStars, function (key, value) {
+    var starValue = $(value).text();
+    starValue = starValue.replace(",", ".");
+    var starWidth = parseFloat(starValue) * 20;
+    $('.stars-inner')[key].style.width = starWidth + "%";
+});

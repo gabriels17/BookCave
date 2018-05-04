@@ -16,7 +16,7 @@ namespace BookCave.Repositories
                     Author = "J.D. Salinger",
                     Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg",
                     Price = 7.99,
-                    Rating = 4.5
+                    Rating = 1.5
                 },
 
                 new BookListViewModel
@@ -36,7 +36,7 @@ namespace BookCave.Repositories
                     Author = "Kenneth Rosen",
                     Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg",
                     Price = 7.99,
-                    Rating = 4.5
+                    Rating = 4
                 }
             };
 
