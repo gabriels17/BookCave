@@ -37,6 +37,16 @@ namespace BookCave.Repositories
                     Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg",
                     Price = 7.99,
                     Rating = 4.5
+                },
+
+                new BookListViewModel
+                {
+                    Id = 4,
+                    Title = "Harry Potter and the Chamber of Secrets",
+                    Author = "J.K. Rowling",
+                    Image = "https://zeerk.com/mod/uploads/2017/03/book.jpg",
+                    Price = 7.99,
+                    Rating = 4.5
                 }
             };
 
