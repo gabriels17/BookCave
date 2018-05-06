@@ -30,6 +30,18 @@ namespace BookCave.Controllers
             return View("Index");
         }
 
+        public IActionResult Browse(string search)
+        {
+                if(search == null)
+                {
+                    var books = _bookService.GetAllBooks();
+                    return View(books);
+                }
+
+                var result = _bookService.Search(search);
+                return View(result);
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
