@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
 
@@ -17,6 +18,20 @@ namespace BookCave.Services
         {
             var books = _bookRepo.GetAllBooks();
             return books; 
+        }
+
+        public List<BookListViewModel> Search(string str)
+        {
+            var books = _bookRepo.GetAllBooks();
+            
+            var byname  = (from a in books
+                        where a.Title.ToLower().Contains(str.ToLower())
+                        select a).ToList();
+            var byauthor = (from a in books
+                        where a.Author.ToLower().Contains(str.ToLower())
+                        select a).ToList();
+             var result = byname.Concat(byauthor).ToList();        
+            return result;
         }
     }
 }

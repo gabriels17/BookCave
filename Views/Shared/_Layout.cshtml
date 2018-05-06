@@ -34,10 +34,10 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left">
+            <form class="navbar-form navbar-left" asp-controller="Home" asp-action="Browse">
                 <a class="btn btn-warning" asp-controller="Home" asp-action="Browse">Browse</a>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search" Name="search">
                 </div>
                 <button type="submit" class="btn btn-warning">Submit</button>
             </form>
