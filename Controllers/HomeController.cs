@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
 using BookCave.Data.EntityModels;
 using BookCave.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookCave.Controllers
 {
@@ -28,11 +29,6 @@ namespace BookCave.Controllers
         public IActionResult AddToCart(Book book)
         {
             return View("Index");
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

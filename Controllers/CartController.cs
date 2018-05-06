@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
 using BookCave.Models.ViewModels;
 using BookCave.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookCave.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         private CartService _cartService;
