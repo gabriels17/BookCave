@@ -8,6 +8,7 @@ using BookCave.Models;
 using BookCave.Data.EntityModels;
 using BookCave.Services;
 using Microsoft.AspNetCore.Authorization;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Controllers
 {
@@ -41,6 +42,26 @@ namespace BookCave.Controllers
 
                 var result = _bookService.Search(search);
                 return View(result);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult AddBook()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddBook(BookInputModel newBook)
+        {
+            if(ModelState.IsValid)
+            {
+                _bookService.AddToDatabase(newBook);
+                return RedirectToAction("Index");
+            }
+            ViewData["Title"] = "Add Movie";
+            return View();
         }
     }
 }
