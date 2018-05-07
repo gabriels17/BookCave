@@ -23,7 +23,8 @@ namespace BookCave.Controllers
 
         public IActionResult Index()
         {
-            var books = _bookService.GetAllBooks();
+            var books = _bookService.GetHomePage();
+
             return View(books);
         }
 

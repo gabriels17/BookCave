@@ -21,6 +21,11 @@ namespace BookCave.Services
             return books; 
         }
 
+        public HomeViewModel GetHomePage()
+        {
+            var books = new HomeViewModel { NewReleases = _bookRepo.GetNewReleases(), TopRated = _bookRepo.GetTopRated()};
+            return books;
+        }
         public List<BookListViewModel> Search(string str)
         {
             var books = _bookRepo.GetAllBooks();
