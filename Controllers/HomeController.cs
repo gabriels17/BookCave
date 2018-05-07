@@ -31,16 +31,45 @@ namespace BookCave.Controllers
             return View("Index");
         }
 
-        public IActionResult Browse(string search)
+        public IActionResult Browse(string sortOrder, string search,string filterGenre)
         {
-                if(search == null)
-                {
-                    var books = _bookService.GetAllBooks();
-                    return View(books);
-                }
+            ViewBag.SortParm = sortOrder;
+            var books = _bookService.GetAllBooks();
+            
 
-                var result = _bookService.Search(search);
-                return View(result);
+            if(!String.IsNullOrEmpty(search))
+            {
+                books = _bookService.Search(search,books);
+            }
+
+            switch (sortOrder)
+            {
+                case "Az":
+                    books = _bookService.SortByAz(books);
+                    break;
+                case "Za":
+                    books = _bookService.SortByZa(books);
+                    break;
+                case "Rating":
+                    books = _bookService.SortByRating(books);
+                    break;
+                case "PriceHigh":
+                    books = _bookService.SortByPriceHigh(books);
+                    break;
+                case "PriceLow":
+                    books = _bookService.SortByPriceLow(books);
+                    break;
+                case "DateNew":
+                    books = _bookService.SortByReleaseNewest(books);
+                    break;
+                case "DateOld":
+                    books = _bookService.SortByReleaseOldest(books);
+                    break;
+                default:
+                    break;
+            }
+            
+            return View(books);
         }
     }
 }

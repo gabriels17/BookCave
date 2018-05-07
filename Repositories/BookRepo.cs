@@ -24,7 +24,8 @@ namespace BookCave.Repositories
                              Author = b.Author,
                              Image = b.Image,
                              Price = b.Price,
-                             Rating = b.Rating
+                             Rating = b.Rating,
+                             ReleaseDate = b.ReleaseDate
                          }).ToList();
 
             return books;
