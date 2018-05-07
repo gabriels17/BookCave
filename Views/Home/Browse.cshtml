@@ -4,27 +4,6 @@
     ViewData["Title"] = "Browse";
 }
 
-<div class="filter">
-  <div class="dropdown col-md-1 col-md-offset-10">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort by<span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li><a href="#">A-Z</a></li>
-      <li><a href="#">Z-A</a></li>
-      <li><a href="#">Rating</a></li>
-      <li><a href="#">Price</a></li>
-      <li><a href="#">Release date</a></li>
-    </ul>
-  </div>
-  <div class="dropdown col-md-1">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genre<span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li><a href="#">Action</a></li>
-      <li><a href="#">Adventure</a></li>
-      <li><a href="#">SciFi</a></li>
-    </ul>
-  </div>
-</div>
-
 <div class="row">
 @foreach(var book in Model)
 {
@@ -36,11 +15,11 @@
           <h4>@book.Author</h4>
           <div class="stars-outer">
             <div class="stars-inner">
-              <p>@book.Rating</p>
+              <p class="ratings">@book.Rating</p>
             </div>
           </div>
           <p>@book.Price $</p>
-          <p><a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-primary" role="button">Add to cart</a></p>
+          <p><a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-warning" role="button">Add to cart</a></p>
         </div>
       </div>
     </div>
