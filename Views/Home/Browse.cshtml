@@ -4,35 +4,6 @@
     ViewData["Title"] = "Browse";
 }
 
-@using (Html.BeginForm())
-{
-    <p>
-        Find by name: @Html.TextBox("search")  
-        <input type="submit" value="Search" /></p>
-}
-<div class="filter">
-  <div class="dropdown col-md-1 col-md-offset-10">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort by<span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="Az">A-Z</a></li>
-      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="Za">Z-A</a></li>
-      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="Rating">Rating</a></li>
-      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="PriceHigh">Price Highest</a></li>
-      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="PriceLow">Price Lowest</a></li>
-      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="DateNew">Newest</a></li>
-      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="DateOld">Oldest</a></li>
-    </ul>
-  </div>
-  <div class="dropdown col-md-1">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genre<span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li><a href="#">Action</a></li>
-      <li><a href="#">Adventure</a></li>
-      <li><a href="#">SciFi</a></li>
-    </ul>
-  </div>
-</div>
-
 <div class="row">
 @foreach(var book in Model)
 {
