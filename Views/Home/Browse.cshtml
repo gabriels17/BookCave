@@ -4,28 +4,78 @@
     ViewData["Title"] = "Browse";
 }
 
-<div class="row">
-@foreach(var book in Model)
-{
-  <div class="col-xs-6 col-md-3">
-    <div class="thumbnail">
-      <img class="img-resize" src="@book.Image" alt="@book.Title">
-      <div class="caption">
-        <h4 class="book-title">@book.Title</h4>
-        <h5>@book.Author</h5>
-      </div>
-      <div class="rating-price col-xs-5">
-        <div class="stars-outer">
-          <div class="stars-inner">
-            <p class="ratings">@book.Rating</p>
-          </div>
+<div class="col-xs-12 col-md-3">
+  <form class="filter-search">
+      <div class="searcher col-xs-12"><input type="text" class="form-control" placeholder="Search" Name="search"></div>
+
+      <div class="searcher col-xs-6">
+        <div class="dropdown">
+          <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Sort by
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+              <li><input type="radio" name="sortOrder" id="radioAz" value="Az">A-Z</li>
+              <li><input type="radio" name="sortOrder" id="radioZa" value="Za">Z-A</li>
+              <li><input type="radio" name="sortOrder" id="radioRating" value="Rating">Rating</li>
+              <li><input type="radio" name="sortOrder" id="radioPriceHigh" value="PriceHigh">Price Highest</li>
+              <li><input type="radio" name="sortOrder" id="radioPriceLow" value="PriceLow">Price Lowest</li>
+              <li><input type="radio" name="sortOrder" id="radioDateNew" value="DateNew">Newest</li>
+              <li><input type="radio" name="sortOrder" id="radioDateOld" value="DateOld">Oldest</li>
+          </ul>
         </div>
-        <p>@book.Price $</p>
       </div>
-      <div class="rating-price col-xs-5">
-        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-warning book-to-cart" role="button">Add to cart</a>
+
+      <div class="searcher col-xs-6">
+        <div class="dropdown">
+          <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Genre
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+              <li><input type="radio" name="genre" id="filterFantasy" value="Fantasy">Fantasy</li>
+              <li><input type="radio" name="genre" id="filterMystery" value="Mystery">Mystery</li>
+              <li><input type="radio" name="genre" id="filterHorror" value="Horror">Horror</li>
+              <li><input type="radio" name="genre" id="filterScifi" value="Scifi">Scifi</li>
+              <li><input type="radio" name="genre" id="filterRomance" value="Romance">Romance</li>
+          </ul>
+        </div>    
+      </div>
+
+      <div class="searcher col-xs-6">
+        <button type="submit" class="btn btn-warning">Search</button>
+      </div>
+
+      <div class="searcher col-xs-6">
+        <button type="submit" class="btn btn-warning">Reset</button>
+      </div>
+
+  </form>
+</div>
+<div class="col-xs-12 col-md-9">
+  <div class="row">
+  @foreach(var book in Model)
+  {
+    <div class="col-xs-12 col-md-3">
+      <div class="thumbnail">
+        <img class="img-resize" src="@book.Image" alt="@book.Title">
+        <div class="caption">
+          <h4 class="book-title">@book.Title</h4>
+          <h5>@book.Author</h5>
+        </div>
+        <div class="rating-price col-xs-5">
+          <div class="stars-outer">
+            <div class="stars-inner">
+              <p class="ratings">@book.Rating</p>
+            </div>
+          </div>
+          <p>@book.Price $</p>
+        </div>
+        <div class="rating-price col-xs-5">
+          <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-warning book-to-cart" role="button">Add to cart</a>
+        </div>
       </div>
     </div>
+  }
   </div>
-}
 </div>

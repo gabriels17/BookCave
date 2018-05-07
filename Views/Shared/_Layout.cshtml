@@ -41,30 +41,6 @@
                 <a class="btn btn-warning" asp-controller="Home" asp-action="Browse">Browse</a>
                 <div class="form-group">
                     <div class="col-xs-12 col-lg-6"><input type="text" class="form-control" placeholder="Search" Name="search"></div>
-                    <div class="col-xs-12 col-lg-6">
-                        <div class="col-xs-6">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort by<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><input type="radio" name="sortOrder" id="radioAz" value="Az">A-Z</li>
-                                <li><input type="radio" name="sortOrder" id="radioZa" value="Za">Z-A</li>
-                                <li><input type="radio" name="sortOrder" id="radioRating" value="Rating">Rating</li>
-                                <li><input type="radio" name="sortOrder" id="radioPriceHigh" value="PriceHigh">Price Highest</li>
-                                <li><input type="radio" name="sortOrder" id="radioPriceLow" value="PriceLow">Price Lowest</li>
-                                <li><input type="radio" name="sortOrder" id="radioDateNew" value="DateNew">Newest</li>
-                                <li><input type="radio" name="sortOrder" id="radioDateOld" value="DateOld">Oldest</li>
-                            </ul>
-                        </div>
-                        <div class="col-xs-6">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genre<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><input type="radio" name="genre" id="filterFantasy" value="Fantasy">Fantasy</li>
-                                <li><input type="radio" name="genre" id="filterMystery" value="Mystery">Mystery</li>
-                                <li><input type="radio" name="genre" id="filterHorror" value="Horror">Horror</li>
-                                <li><input type="radio" name="genre" id="filterScifi" value="Scifi">Scifi</li>
-                                <li><input type="radio" name="genre" id="filterRomance" value="Romance">Romance</li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
                 <button type="submit" class="btn btn-warning">Search</button>
                 <a asp-action="AddBook" class="btn btn-warning">Add book</a>
