@@ -48,12 +48,6 @@ body
     border-style: solid;
     border-color: black;
 }
-
-.logout-button
-{
-    padding-top: 10px;
-}
-
 ::-webkit-scrollbar 
 {
     width: 8px;
