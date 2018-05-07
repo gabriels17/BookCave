@@ -1,0 +1,31 @@
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using BookCave.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value;
+}
+
+@if(SignInManager.IsSignedIn(User))
+{
+    <form asp-action="LogOut" asp-controller="Account" method="POST">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <button class="btn btn-link navbar navbar-link">@claim</button>
+            </li>
+            <li>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+        <a asp-controller="Account" asp-action="Login" role="button"><span class="glyphicon glyphicon-user"></span> Sign in/Up</a>
+        </li>
+    </ul>
+}

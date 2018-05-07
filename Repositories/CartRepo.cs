@@ -19,7 +19,7 @@ namespace BookCave.Repositories
             cart.BookId = id;
             var books = (from b in _bookRepo.GetAllBooks()
                          where cart.BookId == id
-                         select b).SingleOrDefault();
+                         select b).ToList();
             
         }
 

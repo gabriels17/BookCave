@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
 using BookCave.Data.EntityModels;
 using BookCave.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookCave.Controllers
 {
@@ -31,9 +32,16 @@ namespace BookCave.Controllers
             return View("Index");
         }
 
-        public IActionResult Error()
+        public IActionResult Browse(string search)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                if(search == null)
+                {
+                    var books = _bookService.GetAllBooks();
+                    return View(books);
+                }
+
+                var result = _bookService.Search(search);
+                return View(result);
         }
     }
 }
