@@ -1,27 +1,55 @@
-﻿@model List<BookCave.Models.ViewModels.BookListViewModel>
+﻿@model BookCave.Models.ViewModels.HomeViewModel
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row">
-@foreach(var book in Model)
-{
-    <div class="col-xs-6 col-md-3">
-      <div class="thumbnail">
-        <img src="@book.Image" alt="@book.Title">
-        <div class="caption">
-          <h3>@book.Title</h3>
-          <h4>@book.Author</h4>
-          <div class="stars-outer">
-            <div class="stars-inner">
-              <p class="ratings">@book.Rating</p>
-            </div>
+<h3>New Releases</h3>
+<section class="horizontalscroll">
+ @foreach(var book in Model.NewReleases)
+  {
+        <div class="thumbnail">
+          <img class="img-resize" src="@book.Image" alt="@book.Title">
+          <div class="caption">
+            <h4 class="book-title">@book.Title</h4>
+            <h5>@book.Author</h5>
           </div>
-          <p>@book.Price $</p>
-          <p><a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-warning" role="button">Add to cart</a></p>
+          <div class="rating-price col-xs-5">
+            <div class="stars-outer">
+              <div class="stars-inner">
+                <p class="ratings">@book.Rating</p>
+              </div>
+            </div>
+            <p>@book.Price $</p>
+          </div>
+          <div class="rating-price col-xs-5">
+            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-warning book-to-cart" role="button">Add to cart</a>
+          </div>
         </div>
-      </div>
-    </div>
-}
-</div>
+  }
+</section>
+
+<h3>Top Rated</h3>
+<section class="horizontalscroll">
+ @foreach(var book in Model.TopRated)
+  {
+        <div class="thumbnail">
+          <img class="img-resize" src="@book.Image" alt="@book.Title">
+          <div class="caption">
+            <h4 class="book-title">@book.Title</h4>
+            <h5>@book.Author</h5>
+          </div>
+          <div class="rating-price col-xs-5">
+            <div class="stars-outer">
+              <div class="stars-inner">
+                <p class="ratings">@book.Rating</p>
+              </div>
+            </div>
+            <p>@book.Price $</p>
+          </div>
+          <div class="rating-price col-xs-5">
+            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-warning book-to-cart" role="button">Add to cart</a>
+          </div>
+        </div>
+  }
+</section>

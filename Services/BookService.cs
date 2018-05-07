@@ -18,5 +18,11 @@ namespace BookCave.Services
             var books = _bookRepo.GetAllBooks();
             return books; 
         }
+
+        public HomeViewModel GetHomePage()
+        {
+            var books = new HomeViewModel { NewReleases = _bookRepo.GetNewReleases(), TopRated = _bookRepo.GetTopRated()};
+            return books;
+        }
     }
 }

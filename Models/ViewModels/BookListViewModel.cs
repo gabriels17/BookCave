@@ -1,3 +1,5 @@
+using System;
+
 namespace BookCave.Models.ViewModels
 {
     public class BookListViewModel
@@ -8,5 +10,6 @@ namespace BookCave.Models.ViewModels
         public string Image { get; set; }
         public double Price { get; set; }
         public double Rating { get; set; }
+        public DateTime ReleaseDate { get; set; }
     }
 }
