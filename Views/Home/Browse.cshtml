@@ -14,13 +14,13 @@
   <div class="dropdown col-md-1 col-md-offset-10">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort by<span class="caret"></span></a>
     <ul class="dropdown-menu">
-      <li>@Html.ActionLink("A-Z", "Browse", new { sortOrder = "Az"})</li>
-      <li>@Html.ActionLink("Z-A", "Browse", new { sortOrder = "Za"})</li>
-      <li>@Html.ActionLink("Rating", "Browse", new { sortOrder = "Rating"})</li>
-      <li>@Html.ActionLink("Price Highest", "Browse", new { sortOrder = "PriceHigh"})</li>
-      <li>@Html.ActionLink("Price Lowest", "Browse", new { sortOrder = "PriceLow"})</li>
-      <li>@Html.ActionLink("Newest", "Browse", new { sortOrder = "DateNew"})</li>
-      <li>@Html.ActionLink("Oldest", "Browse", new { sortOrder = "DateOld"})</li>
+      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="Az">A-Z</a></li>
+      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="Za">Z-A</a></li>
+      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="Rating">Rating</a></li>
+      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="PriceHigh">Price Highest</a></li>
+      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="PriceLow">Price Lowest</a></li>
+      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="DateNew">Newest</a></li>
+      <li><a asp-controller="Home" asp-action="Browse" asp-route-sortOrder="DateOld">Oldest</a></li>
     </ul>
   </div>
   <div class="dropdown col-md-1">

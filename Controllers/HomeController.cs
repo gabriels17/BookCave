@@ -31,7 +31,7 @@ namespace BookCave.Controllers
             return View("Index");
         }
 
-        public IActionResult Browse(string sortOrder, string search,string filterGenre)
+        public IActionResult Browse(string sortOrder, string search)
         {
             ViewBag.SortParm = sortOrder;
             var books = _bookService.GetAllBooks();
