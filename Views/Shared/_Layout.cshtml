@@ -39,7 +39,8 @@
                 <a class="btn btn-warning" asp-controller="Home" asp-action="Browse">Browse</a>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search" Name="search">
-                        <div class="dropdown">
+                    <div class="row align-items-end">
+                        <div class="col-lg-5">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort by<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><input type="radio" name="sortOrder" id="radioAz" value="Az">A-Z</li>
@@ -51,7 +52,7 @@
                                 <li><input type="radio" name="sortOrder" id="radioDateOld" value="DateOld">Oldest</li>
                             </ul>
                         </div>
-                        <div class="dropdown">
+                        <div class="col-lg-5">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genre<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><input type="radio" name="genre" id="filterFantasy" value="Fantasy">Fantasy</li>
@@ -60,7 +61,8 @@
                                 <li><input type="radio" name="genre" id="filterScifi" value="Scifi">Scifi</li>
                                 <li><input type="radio" name="genre" id="filterRomance" value="Romance">Romance</li>
                             </ul>
-                        </div>                    
+                        </div>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-warning">Search</button>
             </form>
