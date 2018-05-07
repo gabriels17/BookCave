@@ -32,6 +32,14 @@ namespace BookCave.Services
             return result;
         }
 
+        public List<BookListViewModel> Filter(string str,List<BookListViewModel> Books)
+        {
+            var result = (from a in Books  
+                        where a.Genre.ToLower() == str.ToLower()
+                        select a).ToList();
+            return result;
+        }
+
         public List<BookListViewModel> SortByAz(List<BookListViewModel> books)
         {
             var sorted = (from a in books
