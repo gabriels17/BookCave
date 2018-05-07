@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
 
@@ -37,6 +38,11 @@ namespace BookCave.Services
                         select a);
             var result = byname.Concat(byauthor).ToList();      
             return result;
+        }
+
+        public void AddToDatabase(BookInputModel newBook)
+        {
+            _bookRepo.AddToDatabase(newBook);
         }
     }
 }
