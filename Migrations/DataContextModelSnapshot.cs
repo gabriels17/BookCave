@@ -27,6 +27,8 @@ namespace BookCave.Migrations
 
                     b.Property<string>("Author");
 
+                    b.Property<string>("Description");
+
                     b.Property<string>("Genre");
 
                     b.Property<string>("Image");
@@ -42,6 +44,20 @@ namespace BookCave.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("BookCave.Data.EntityModels.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BookId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Carts");
                 });
 #pragma warning restore 612, 618
         }

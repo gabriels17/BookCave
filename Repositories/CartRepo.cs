@@ -1,25 +1,28 @@
-using BookCave.Models.ViewModels;
+using BookCave.Data.EntityModels;
 using System.Linq;
 using BookCave.Repositories;
+using BookCave.Data;
 
 namespace BookCave.Repositories
 {    
     public class CartRepo
     {
-        private BookRepo _bookRepo;
+        private DataContext _db;
 
         public CartRepo()
         {
-            _bookRepo = new BookRepo();
+            _db = new DataContext();
         }
 
-        public void AddToCart(int id)
+        public void AddToCart(string TheUserId, int TheBookId)
         {
-            var cart = new CartViewModel();
-            cart.BookId = id;
-            var books = (from b in _bookRepo.GetAllBooks()
-                         where cart.BookId == id
-                         select b).ToList();
+            var CartEntityModel = new Cart()
+            {
+                BookId = TheBookId,
+                UserId = TheUserId
+            };
+            _db.AddRange(CartEntityModel);
+            _db.SaveChanges();
             
         }
 

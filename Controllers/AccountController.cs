@@ -8,16 +8,19 @@ using BookCave.Models;
 using Microsoft.AspNetCore.Identity;
 using BookCave.Models.ViewModels;
 using System.Security.Claims;
+using BookCave.Services;
 
 namespace BookCave.Controllers
 {
     public class AccountController : Controller
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private CartService _cartService;
         private readonly UserManager<ApplicationUser> _userManager;
 
         public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
+            _cartService = new CartService();
             _signInManager = signInManager;
             _userManager = userManager;
         }
@@ -90,5 +93,15 @@ namespace BookCave.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> AddToCart(int ID)
+        {
+            var user = await GetCurrentUserAsync();
+            var userId = user.Id;
+            _cartService.AddToCart(userId, ID);
+            return RedirectToAction("Index", "Home");
+        }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
 }
