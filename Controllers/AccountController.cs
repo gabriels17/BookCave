@@ -103,5 +103,9 @@ namespace BookCave.Controllers
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+        public IActionResult Profile()
+        {
+            return View();
+        }
     }
 }

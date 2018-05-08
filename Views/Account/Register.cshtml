@@ -15,8 +15,11 @@
     <div class="form-group">
         <input type="text" asp-for="LastName" class="form-control" placeholder="Last name"/>
     </div>
-    <div class="form-group">
-        <input type="password" asp-for="Password" class="form-control" placeholder="Password"/>
+    <div class="form-group" id="info-dropdown">
+        <input type="password" asp-for="Password" class="form-control"  placeholder="Password"/>
+            <div class="info-dropdown-content">
+                <p>Your password must be longer than 8 characters,<br> contain an uppercase, a symbol and a number.<br> Do not share your password with anyone.</p>
+        </div>
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-warning">Register</button>

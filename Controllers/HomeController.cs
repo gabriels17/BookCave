@@ -28,6 +28,11 @@ namespace BookCave.Controllers
             return View(books);
         }
 
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+
         public IActionResult AddToCart(Book book)
         {
             return View("Index");
@@ -97,6 +102,12 @@ namespace BookCave.Controllers
             }
             ViewData["Title"] = "Add Movie";
             return View();
+        }
+
+        public IActionResult Details(int id)
+        {
+            var idbook = _bookService.GetBookById(id);
+            return View(idbook);
         }
     }
 }
