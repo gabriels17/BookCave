@@ -8,7 +8,7 @@ using BookCave.Models;
 using BookCave.Data.EntityModels;
 using BookCave.Services;
 using Microsoft.AspNetCore.Authorization;
-using BookCave.Models.ViewModels;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Controllers
 {
@@ -23,7 +23,8 @@ namespace BookCave.Controllers
 
         public IActionResult Index()
         {
-            var books = _bookService.GetAllBooks();
+            var books = _bookService.GetHomePage();
+
             return View(books);
         }
 
@@ -32,22 +33,74 @@ namespace BookCave.Controllers
             return View("Index");
         }
 
-        public IActionResult Browse(string search)
+        public IActionResult Browse(string sortOrder, string search, string genre)
         {
-                if(search == null)
-                {
-                    var books = _bookService.GetAllBooks();
-                    return View(books);
-                }
+            ViewBag.SortParm = sortOrder;
+            var books = _bookService.GetAllBooks();
+            
 
-                var result = _bookService.Search(search);
-                return View(result);
+            if(!String.IsNullOrEmpty(search))
+            {
+                books = _bookService.Search(search,books);
+            }
+
+            if(!String.IsNullOrEmpty(genre))
+            {
+                books =_bookService.Filter(genre,books);
+            }
+
+            switch (sortOrder)
+            {
+                case "Az":
+                    books = _bookService.SortByAz(books);
+                    break;
+                case "Za":
+                    books = _bookService.SortByZa(books);
+                    break;
+                case "Rating":
+                    books = _bookService.SortByRating(books);
+                    break;
+                case "PriceHigh":
+                    books = _bookService.SortByPriceHigh(books);
+                    break;
+                case "PriceLow":
+                    books = _bookService.SortByPriceLow(books);
+                    break;
+                case "DateNew":
+                    books = _bookService.SortByReleaseNewest(books);
+                    break;
+                case "DateOld":
+                    books = _bookService.SortByReleaseOldest(books);
+                    break;
+                default:
+                    break;
+            }
+            
+            return View(books);
         }
 
-        public IActionResult BookDetails(int id)
+        [Authorize]
+        [HttpGet]
+        public IActionResult AddBook()
         {
-            //var book = new BookListViewModel() {Id=800, Title="book", Author="goggi", Image="img", Price=10.99, Rating=5.0 };
-           
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddBook(BookInputModel newBook)
+        {
+            if(ModelState.IsValid)
+            {
+                _bookService.AddToDatabase(newBook);
+                return RedirectToAction("Index");
+            }
+            ViewData["Title"] = "Add Movie";
+            return View();
+        }
+
+        public IActionResult Details(int id)
+        {
             var idbook = _bookService.GetBookById(id);
             return View(idbook);
         }

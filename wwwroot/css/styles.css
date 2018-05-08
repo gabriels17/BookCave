@@ -57,3 +57,126 @@ a:hover
     border-top: solid;
     height: 600px;
 }
+
+.stars-outer
+{
+    display: inline-block;
+    position: relative;
+    font-family: FontAwesome;
+}
+   
+.stars-outer::before 
+{
+    content: "\f006 \f006 \f006 \f006 \f006";
+}
+   
+.stars-inner
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+   
+.stars-inner::before
+{
+    content: "\f005 \f005 \f005 \f005 \f005";
+    color: #f8ce0b;
+}
+
+.ratings
+{
+    text-indent: -9999px;
+}
+
+.fieldset
+{
+    width: 50%;
+    height: 450px;
+}
+
+.right-border
+{
+    border-right: 2px;
+    border-style: solid;
+    border-color: black;
+}
+::-webkit-scrollbar 
+{
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track 
+{
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #F0AD4E; 
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover 
+{
+    background: #DE9226; 
+}
+
+.horizontalscroll
+{
+  display: flex;
+  align-items: stretch;
+  background-color: #fff;
+  min-width: 100%;
+  min-height: 300px;
+  overflow-x: auto;
+}
+
+.thumbnail 
+{
+  min-width: 200px;
+  height: 350px;
+  margin: 5px;
+}
+
+.img-resize
+{
+  max-height: 200px;
+}
+
+.book-title
+{
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.name-fix
+{
+    margin-bottom: 0px;
+}
+.filter-search
+{
+    height: 200px;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: 6px 6px 1px 1px grey;
+    border: 1px solid black;
+}
+@media (min-width:979px) {
+    .filter-search {
+      position:fixed;
+      width: 250px;
+    }
+  }
+.searcher
+{
+    padding: 10px;
+}

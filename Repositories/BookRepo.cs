@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using BookCave.Data;
+using BookCave.Data.EntityModels;
+using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 
 namespace BookCave.Repositories
@@ -24,16 +26,19 @@ namespace BookCave.Repositories
                              Author = b.Author,
                              Image = b.Image,
                              Price = b.Price,
-                             Rating = b.Rating
+                             Genre = b.Genre,
+                             Rating = b.Rating,
+                             ReleaseDate = b.ReleaseDate
                          }).ToList();
 
             return books;
         }
 
-        public List<BookDetailViewModel> GetAllBooksDetail()
+        public BookDetailsViewModel GetAllBooksDetails(int id)
         {
             var books = (from b in _db.Books
-                         select new BookDetailViewModel
+                         where b.Id == id
+                         select new BookDetailsViewModel
                          {
                              Id = b.Id,
                              Title = b.Title,
@@ -44,7 +49,43 @@ namespace BookCave.Repositories
                              Genre = b.Genre,
                              ReleaseDate = b.ReleaseDate,
                              Description = b.Description
-                         }).ToList();
+                         }).SingleOrDefault();
+            return(books);
+        }
+
+        public List<BookListViewModel> GetTopRated()
+        {
+            var books = (from b in _db.Books
+                        orderby b.Rating descending
+                        select new BookListViewModel
+                        {
+                            Id = b.Id,
+                            Title = b.Title,
+                            Author = b.Author,
+                            Image = b.Image,
+                            Price = b.Price,
+                            Rating = b.Rating,
+                            ReleaseDate = b.ReleaseDate
+                        }).Take(10).ToList();
+
+            return books;
+        }
+
+        public List<BookListViewModel> GetNewReleases()
+        {
+            var books = (from b in _db.Books
+                        orderby b.ReleaseDate descending
+                        select new BookListViewModel
+                        {
+                            Id = b.Id,
+                            Title = b.Title,
+                            Author = b.Author,
+                            Image = b.Image,
+                            Price = b.Price,
+                            Rating = b.Rating,
+                            ReleaseDate = b.ReleaseDate
+                        }).Take(10).ToList();
+
             return books;
         }
         
@@ -54,9 +95,21 @@ namespace BookCave.Repositories
         }
         */
 
-        public void AddBook()
+        public void AddToDatabase(BookInputModel newBook)
         {
-            return;
+            var BookEntityModel = new Book()
+            {
+                Title = newBook.Title,
+                Author = newBook.Author,
+                Image = newBook.Image,
+                Price = newBook.Price,
+                Genre = newBook.Genre,
+                ReleaseDate = newBook.ReleaseDate,
+                Rating = newBook.Rating,
+                Description = newBook.Description
+            };
+            _db.AddRange(BookEntityModel);
+            _db.SaveChanges();
         }
 
         public void UpdateBook()
