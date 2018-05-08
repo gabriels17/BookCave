@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
 using Microsoft.AspNetCore.Identity;
 using BookCave.Models.ViewModels;
+using BookCave.Services;
 using System.Security.Claims;
 
 namespace BookCave.Controllers
@@ -15,7 +16,8 @@ namespace BookCave.Controllers
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-
+        private AccountService _accountService;
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
@@ -91,9 +93,11 @@ namespace BookCave.Controllers
             return View();
         }
 
-        public IActionResult Profile()
+        public async Task<IActionResult> Profile()
         {
-            return View();
+            var user = await GetCurrentUserAsync();
+            var account = new ProfileViewModel {Name = user.UserName, Email = user.Email};
+            return View(account);
         }
     }
 }
