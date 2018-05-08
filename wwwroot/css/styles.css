@@ -35,7 +35,6 @@ a:hover
 
 #bookPricing
 {
-    width: 300px;
     clear: both;
 }
 
@@ -195,4 +194,10 @@ a:hover
 #info-dropdown:hover .info-dropdown-content
 {
     display: block;
+}
+
+.edit-button
+{
+    margin-right: 2px;
+    float: right;
 }

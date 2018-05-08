@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using BookCave.Data;
 using BookCave.Data.EntityModels;
@@ -34,9 +35,9 @@ namespace BookCave.Repositories
             return books;
         }
 
-        public BookDetailsViewModel GetAllBooksDetails(int id)
+        public BookDetailsViewModel GetBookById(int id)
         {
-            var books = (from b in _db.Books
+            var book = (from b in _db.Books
                          where b.Id == id
                          select new BookDetailsViewModel
                          {
@@ -50,7 +51,7 @@ namespace BookCave.Repositories
                              ReleaseDate = b.ReleaseDate,
                              Description = b.Description
                          }).SingleOrDefault();
-            return(books);
+            return(book);
         }
 
         public List<BookListViewModel> GetTopRated()
@@ -95,7 +96,7 @@ namespace BookCave.Repositories
         }
         */
 
-        public void AddToDatabase(BookInputModel newBook)
+        public void AddBook(BookInputModel newBook)
         {
             var BookEntityModel = new Book()
             {
@@ -112,9 +113,31 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
-        public void UpdateBook()
+        public void DeleteBook(int id)
         {
-            return;
+            var book = (from b in _db.Books
+                        where id == b.Id
+                        select b).SingleOrDefault();
+            _db.Remove(book);
+            _db.SaveChanges();
+        }
+
+        public void UpdateBook(BookInputModel updatedBook)
+        {
+            var book = (from b in _db.Books
+                        where b.Id == updatedBook.Id
+                        select b).SingleOrDefault();
+                        
+            book.Title = updatedBook.Title;
+            book.Author = updatedBook.Author;
+            book.Image = updatedBook.Image;
+            book.Genre = updatedBook.Genre;
+            book.Rating = updatedBook.Rating;
+            book.Price = updatedBook.Price;
+            book.ReleaseDate = updatedBook.ReleaseDate;
+            book.Description = updatedBook.Description;
+
+            _db.SaveChanges();
         }
     }
 }

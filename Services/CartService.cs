@@ -12,9 +12,9 @@ namespace BookCave.Services
             _cartRepo = new CartRepo();
         }
 
-        public void AddToCart(int id)
+        public void AddToCart(int id, string userId)
         {
-            _cartRepo.AddToCart(id);
+            _cartRepo.AddToCart(id, userId);
         }
     }
 }
