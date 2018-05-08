@@ -133,5 +133,12 @@ namespace BookCave.Controllers
             _bookService.DeleteBook(id);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        [Authorize]
+        public void AddReview()
+        {
+
+        }
     }
 }

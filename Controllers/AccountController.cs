@@ -125,5 +125,10 @@ namespace BookCave.Controllers
             var account = new ProfileViewModel {Name = user.UserName, Email = user.Email};
             return View(account);
         }
+
+        public void AddReview()
+        {
+            
+        }
     }
 }

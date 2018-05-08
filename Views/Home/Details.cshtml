@@ -35,8 +35,10 @@
     <br>
     <div id="reviewSection">
         <br>
-        <textarea name="reviewArea" id="" cols="30" placeholder="Write a review!" rows="5"></textarea>
-        <br>
-        <button class="btn btn-warning">Submit review</button>
+        <form asp-action="AddReview">
+            <textarea name="reviewArea" cols="30" placeholder="Write a review!" rows="5"></textarea>
+            <br>
+            <button class="btn btn-warning">Submit review</button>
+        </form>
     </div>
 </div>
