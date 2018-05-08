@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using BookCave.Models.ViewModels;
 using System.Security.Claims;
 using BookCave.Services;
+using BookCave.Service;
 
 namespace BookCave.Controllers
 {
@@ -16,13 +17,16 @@ namespace BookCave.Controllers
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private CartService _cartService;
+
+        private readonly IAccountService _accountService;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IAccountService accountService)
         {
             _cartService = new CartService();
             _signInManager = signInManager;
             _userManager = userManager;
+            _accountService = accountService;
         }
 
         [HttpGet]
@@ -37,8 +41,13 @@ namespace BookCave.Controllers
         {
             if(!ModelState.IsValid)
             {
+                ViewData["ErrorMessage"] = "Error";
                 return View();
             }
+
+            _accountService.ProcessRegister(registerModel);
+
+
 
             var user = new ApplicationUser
             {
@@ -54,8 +63,11 @@ namespace BookCave.Controllers
 
                 return RedirectToAction("Index", "Home");
             }
-
-            return View();
+            else
+            {
+                ViewData["ErrorMessage"] = "Failed, please try again";
+                return View();
+            }
         }
 
         [HttpGet]
@@ -70,15 +82,22 @@ namespace BookCave.Controllers
         {
             if(!ModelState.IsValid)
             {
+                ViewData["ErrorMessages"] = "Error";
                 return View();
             }
+
+            _accountService.ProcessLogin(loginModel);
 
             var result = await _signInManager.PasswordSignInAsync(loginModel.Email, loginModel.Password, loginModel.RememberMe, false);
             if(result.Succeeded)
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            else
+            {
+                ViewData["ErrorMessage"] = "Failed, please try again";
+                return View();
+            }
         }
 
         [HttpPost]

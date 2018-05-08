@@ -7,10 +7,12 @@
 <h1>Login</h1>
 <form asp-action="Login" asp-controller="Account" class="form-horizontal">
     <div class="form-group">
-        <input type="email" asp-for="Email" class="form-control" placeholder="Enter email address"/>
+        <input autofocus="autofocus" type="email" asp-for="Email" class="form-control" placeholder="Enter email address"/>
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <div class="form-group">
         <input type="password" asp-for="Password" class="form-control" placeholder="Enter password"/>
+        <span asp-validation-for="Password" class="text-danger"></span>
     </div>
     <div class="form-group">
         <div class="checkbox">
@@ -21,6 +23,8 @@
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-warning">Login</button>
+        
     </div>
 </form>
+<div class="text-danger">@ViewData["ErrorMessage"]</div>
 <a asp-controller="Account" asp-action="Register">"Not already a user? Register now for free!"</a>
