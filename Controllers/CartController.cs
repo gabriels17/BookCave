@@ -29,10 +29,9 @@ namespace BookCave.Controllers
             return View();
         }
 
-        public void AddToCart(int id)
+        public void AddToCart()
         {
-            var userId = _userManager.GetUserId(User);
-            _cartService.AddToCart(id, userId);
+            //_cartService.AddToCart();
         }
     }
 }

@@ -11,8 +11,8 @@ using System;
 namespace BookCave.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20180504121234_initalMigration")]
-    partial class initalMigration
+    [Migration("20180508142604_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,8 @@ namespace BookCave.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Author");
+
+                    b.Property<string>("Description");
 
                     b.Property<string>("Genre");
 
@@ -43,6 +45,20 @@ namespace BookCave.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("BookCave.Data.EntityModels.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BookId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Carts");
                 });
 #pragma warning restore 612, 618
         }

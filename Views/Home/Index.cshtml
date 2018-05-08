@@ -9,7 +9,7 @@
  @foreach(var book in Model.NewReleases)
   {
         <div class="thumbnail">
-          <a asp-controller="Home" asp-action="Details" asp-route-id="@book.Id"><img class="img-resize" src="@book.Image" alt="@book.Title"></a>
+          <a asp-controller="Home" asp-action="Details" asp-route-id="@book.Id"><img class="img-resize" src="@book.Image" alt="@book.Id"></a>
           <div class="caption">
             <a asp-controller="Home" asp-action="Details" asp-route-id="@book.Id"><h4 class="book-title">@book.Title</h4></a>
             <h5>@book.Author</h5>
@@ -23,7 +23,7 @@
             <p>@book.Price $</p>
           </div>
           <div class="rating-price col-xs-5">
-            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-warning book-to-cart" role="button">Add to cart</a>
+            <a class="btn btn-warning book-to-cart" role="button">Add to cart</a>
           </div>
         </div>
   }
@@ -48,7 +48,7 @@
             <p>@book.Price $</p>
           </div>
           <div class="rating-price col-xs-5">
-            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-warning book-to-cart" role="button">Add to cart</a>
+            <a class="btn btn-warning book-to-cart" role="button">Add to cart</a>
           </div>
         </div>
   }

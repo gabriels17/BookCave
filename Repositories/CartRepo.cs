@@ -1,8 +1,7 @@
-using BookCave.Models.ViewModels;
+using BookCave.Data.EntityModels;
 using System.Linq;
 using BookCave.Repositories;
 using System.Collections.Generic;
-using BookCave.Data.EntityModels;
 using BookCave.Data;
 
 namespace BookCave.Repositories
@@ -27,6 +26,17 @@ namespace BookCave.Repositories
                          where cart.BookId == id
                          select b).ToList();
             _db.Add(cart);
+            _db.SaveChanges();
+        }
+
+        public void AddToCart(string TheUserId, int TheBookId)
+        {
+            var CartEntityModel = new Cart()
+            {
+                BookId = TheBookId,
+                UserId = TheUserId
+            };
+            _db.Add(CartEntityModel);
             _db.SaveChanges();
         }
 
