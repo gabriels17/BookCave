@@ -1,6 +1,61 @@
 body
 {
-    background-color: #fffff7;
+    background-color: #fffce4;
+}
+
+a
+{
+    color: black;
+    text-decoration: none;
+}
+
+a:hover
+{
+    color: rgb(92, 92, 92);
+    text-decoration: none;
+}
+
+#bookDetails
+{
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    
+}
+
+#imageDetails
+{
+    float: left;
+}
+
+#bookInfo
+{
+    /* color: blue; */
+    margin-left: 330px;
+}
+
+#bookPricing
+{
+    width: 300px;
+    clear: both;
+}
+
+#addToCartButton
+{
+    text-align: right;
+    clear: both;
+}
+
+#detailsParagraph
+{
+    margin-top: 50px;
+    margin-right: 200px;
+    /* color:  red; */
+}
+
+#reviewSection
+{
+    border-top: solid;
+    height: 600px;
 }
 
 .stars-outer

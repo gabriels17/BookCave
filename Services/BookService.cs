@@ -39,6 +39,15 @@ namespace BookCave.Services
             return result;
         }
 
+        public BookDetailsViewModel GetBookById(int id)
+        {
+            var allbooks = _bookRepo.GetAllBooksDetails(id);
+            // var idbook = (from b in allbooks
+            // where b.Id == id
+            // select b).SingleOrDefault();
+
+            return allbooks; 
+        }
         public void AddToDatabase(BookInputModel newBook)
         {
             _bookRepo.AddToDatabase(newBook);

@@ -103,5 +103,11 @@ namespace BookCave.Controllers
             ViewData["Title"] = "Add Movie";
             return View();
         }
+
+        public IActionResult Details(int id)
+        {
+            var idbook = _bookService.GetBookById(id);
+            return View(idbook);
+        }
     }
 }
