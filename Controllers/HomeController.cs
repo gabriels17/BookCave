@@ -8,6 +8,7 @@ using BookCave.Models;
 using BookCave.Data.EntityModels;
 using BookCave.Services;
 using Microsoft.AspNetCore.Authorization;
+using BookCave.Models.ViewModels;
 
 namespace BookCave.Controllers
 {
@@ -41,6 +42,14 @@ namespace BookCave.Controllers
 
                 var result = _bookService.Search(search);
                 return View(result);
+        }
+
+        public IActionResult BookDetails(int id)
+        {
+            //var book = new BookListViewModel() {Id=800, Title="book", Author="goggi", Image="img", Price=10.99, Rating=5.0 };
+           
+            var idbook = _bookService.GetBookById(id);
+            return View(idbook);
         }
     }
 }

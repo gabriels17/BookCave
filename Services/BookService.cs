@@ -33,5 +33,15 @@ namespace BookCave.Services
             var result = byname.Concat(byauthor).ToList();      
             return result;
         }
+
+        public BookDetailViewModel GetBookById(int id)
+        {
+            var allbooks = _bookRepo.GetAllBooksDetail();
+            var idbook = (from b in allbooks
+            where b.Id == id
+            select b).SingleOrDefault();
+
+            return idbook; 
+        }
     }
 }

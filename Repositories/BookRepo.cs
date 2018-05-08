@@ -29,6 +29,24 @@ namespace BookCave.Repositories
 
             return books;
         }
+
+        public List<BookDetailViewModel> GetAllBooksDetail()
+        {
+            var books = (from b in _db.Books
+                         select new BookDetailViewModel
+                         {
+                             Id = b.Id,
+                             Title = b.Title,
+                             Author = b.Author,
+                             Image = b.Image,
+                             Price = b.Price,
+                             Rating = b.Rating,
+                             Genre = b.Genre,
+                             ReleaseDate = b.ReleaseDate,
+                             Description = b.Description
+                         }).ToList();
+            return books;
+        }
         
         /*public Book GetBook()
         {
