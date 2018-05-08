@@ -62,8 +62,17 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; 2018 - BookCave</p>
+        <footer class="footer">
+            <div class="col-xs-3 col-xs-offset-1">
+                <p><span class="glyphicon glyphicon-envelope"></span>: Email@email.com</p>
+                <p><span class="glyphicon glyphicon-phone"></span>: 777-7777</p>
+                <p><span class="glyphicon glyphicon-map-marker"></span>: Contry; City; Address123</p>
+            </div>
+            <div class="col-xs-3 col-xs-offset-4">
+                <p><span class="glyphicon glyphicon-info-sign"></span>: <a asp-controller="Home" asp-action="AboutUs">About us</a></p>
+                <p>&copy; 2018 - BookCave</p>
+            </div>
+            
         </footer>
     </div>
 
@@ -71,6 +80,7 @@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
@@ -86,6 +96,7 @@
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </environment>
 
     @RenderSection("Scripts", required: false)

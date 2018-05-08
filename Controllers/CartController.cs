@@ -26,9 +26,9 @@ namespace BookCave.Controllers
             return View();
         }
 
-        public void AddToCart(int id)
+        public void AddToCart()
         {
-            _cartService.AddToCart(id);
+            //_cartService.AddToCart();
         }
 
 
