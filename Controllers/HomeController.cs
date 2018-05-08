@@ -28,6 +28,11 @@ namespace BookCave.Controllers
             return View(books);
         }
 
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+
         public IActionResult AddToCart(Book book)
         {
             return View("Index");
