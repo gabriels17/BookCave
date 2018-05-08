@@ -6,15 +6,15 @@
 
 <div>
     <table>
-        <tr>
-            <th>Current cart</th>
-            <th>            </th>
-            <th>            </th>
-        </tr>
-        <tr>
-            <td>@Model.</td>
-            <td></td>
-            <td></td>                        
-        </tr>
+        <tr></tr>
     </table>
-</div>
+    <a id="btn_add" href="@Url.Action("Add", "AddToCart")" class="btn btn-info btn-lg" style="margin-left:60px">  
+    <span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart  
+    </a>  
+  
+    <a id="btn_add" href="@Url.Action("Index", "Home")" class="btn btn-info btn-lg" style="margin-left:60px">  
+    <span class="glyphicon glyphicon-eye-open"></span> Continue shopping  
+    </a>  
+    <br />  
+    <br />  
+</div>  

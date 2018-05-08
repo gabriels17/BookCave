@@ -1,10 +1,17 @@
 using System;
 using BookCave.Models.ViewModels;
+using BookCave.Models;
+using BookCave.Repositories;
 
-namespace BookCave.Service
+namespace BookCave.Services
 {
     public class AccountService : IAccountService
     {
+        private AccountRepo _accountRepo;
+        public AccountService()
+        {
+            _accountRepo = new AccountRepo();
+        }
         public void ProcessLogin(LoginViewModel Login)
         {
             if(string.IsNullOrEmpty(Login.Email))
@@ -39,6 +46,12 @@ namespace BookCave.Service
             {
                 throw new Exception("Last name is missing!");
             }
+
+        }
+        public ProfileViewModel GetProfile(ApplicationUser user)
+        {
+            var account = new ProfileViewModel {Name = user.UserName, Email = user.Email};
+            return account;
         }
     }
 }

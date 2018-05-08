@@ -41,16 +41,12 @@ namespace BookCave.Services
 
         public BookDetailsViewModel GetBookById(int id)
         {
-            var allbooks = _bookRepo.GetAllBooksDetails(id);
-            // var idbook = (from b in allbooks
-            // where b.Id == id
-            // select b).SingleOrDefault();
-
-            return allbooks; 
+            var book = _bookRepo.GetBookById(id);
+            return book; 
         }
-        public void AddToDatabase(BookInputModel newBook)
+        public void AddBook(BookInputModel newBook)
         {
-            _bookRepo.AddToDatabase(newBook);
+            _bookRepo.AddBook(newBook);
         }
         public List<BookListViewModel> Filter(string str,List<BookListViewModel> Books)
         {
@@ -121,6 +117,16 @@ namespace BookCave.Services
                         select a).ToList();
 
             return sorted;
+        }
+
+        public void DeleteBook(int id)
+        {
+            _bookRepo.DeleteBook(id);
+        }
+
+        public void UpdateBook(BookInputModel book)
+        {
+            _bookRepo.UpdateBook(book);
         }
     }
 }

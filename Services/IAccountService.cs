@@ -1,6 +1,6 @@
 using BookCave.Models.ViewModels;
 
-namespace BookCave.Service
+namespace BookCave.Services
 {
     public interface IAccountService
     {

@@ -97,7 +97,7 @@ namespace BookCave.Controllers
         {
             if(ModelState.IsValid)
             {
-                _bookService.AddToDatabase(newBook);
+                _bookService.AddBook(newBook);
                 return RedirectToAction("Index");
             }
             ViewData["Title"] = "Add Movie";
@@ -108,6 +108,30 @@ namespace BookCave.Controllers
         {
             var idbook = _bookService.GetBookById(id);
             return View(idbook);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            var bookToEdit = _bookService.GetBookById(id);
+            return View(bookToEdit);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Edit(BookInputModel book)
+        {
+            _bookService.UpdateBook(book);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Delete(int id)
+        {
+            _bookService.DeleteBook(id);
+            return RedirectToAction("Index");
         }
     }
 }
