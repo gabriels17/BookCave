@@ -2,6 +2,7 @@ using System;
 using BookCave.Models.ViewModels;
 using BookCave.Models;
 using BookCave.Repositories;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Services
 {
@@ -25,7 +26,7 @@ namespace BookCave.Services
             }
         }
 
-        public void ProcessProfile(ProfileViewModel profile)
+        public void ProcessProfile(ProfileInputModel profile)
         {
             if(string.IsNullOrEmpty(profile.FirstName))
             {

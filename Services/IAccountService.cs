@@ -1,3 +1,4 @@
+using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 
 namespace BookCave.Services
@@ -7,6 +8,6 @@ namespace BookCave.Services
         void ProcessLogin(LoginViewModel Login);
         void ProcessRegister(RegisterViewModel Register);
 
-        void ProcessProfile(ProfileViewModel profile);
+        void ProcessProfile(ProfileInputModel profile);
     }
 }

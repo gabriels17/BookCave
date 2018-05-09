@@ -4,41 +4,33 @@
     ViewData["Title"] = "BookDetails";
 }
 
-<div id="bookDetails">
-    <div id="imageDetails">
+<div class="col-xs-12" id="bookDetails">
+    <div class="col-xs-4" id="imageDetails">
         <img src="@Model.Image" alt="Book Image" height="400px" width="300px">
     </div>
-    <div id="bookInfo">
+    <div class="col-xs-8" id="bookInfo">
         <h3>@Model.Title</h3>
         <h4>@Model.Author</h4>
         <h5>Genre: @Model.Genre</h5>
         <h5>Release date: @Model.ReleaseDate</h5>
         <p id="detailsParagraph">@Model.Description</p>
     </div>
-    <div id="bookPricing">
+    <div class="col-xs-12" id="bookPricing">
             <div class="stars-outer">
                 <div class="stars-inner">
                     <p class="ratings">@Model.Rating</p>
                 </div>
             </div>
             <p>@Model.Price $</p>
-        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-warning" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</a>
-        <div class="details-buttons">
-            <form asp-action="Delete" asp-route-id="@Model.Id">
-                <button type="submit" class="btn btn-warning edit-button">
-                <span class="glyphicon glyphicon-pencil"></span> Delete book</button>
-            </form>
-            <a asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-warning edit-button">
-            <span class="glyphicon glyphicon-pencil"></span> Edit book</a>
+    </div>
+        <div class="col-xs-4">
+            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-warning" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</a>
         </div>
-    </div>
-    <br>
-    <div id="reviewSection">
-        <br>
-        <form asp-action="AddReview">
-            <textarea name="reviewArea" cols="30" placeholder="Write a review!" rows="5"></textarea>
-            <br>
-            <button class="btn btn-warning">Submit review</button>
-        </form>
-    </div>
+        <div class="col-xs-4 col-xs-offset-4 row">
+            <a asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-warning">
+            <span class="glyphicon glyphicon-pencil"></span> Edit book</a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-warning">
+            <span class="glyphicon glyphicon-trash"></span> Delete book</a>
+        </div>
+    <div class="col-xs-12" id="reviewSection"></div>
 </div>
