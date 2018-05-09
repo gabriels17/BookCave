@@ -6,5 +6,7 @@ namespace BookCave.Services
     {
         void ProcessLogin(LoginViewModel Login);
         void ProcessRegister(RegisterViewModel Register);
+
+        void ProcessProfile(ProfileViewModel profile);
     }
 }

@@ -25,6 +25,20 @@ namespace BookCave.Services
             }
         }
 
+        public void ProcessProfile(ProfileViewModel profile)
+        {
+            if(string.IsNullOrEmpty(profile.FirstName))
+            {
+                throw new Exception("First name is missing!");
+            }
+
+            if(string.IsNullOrEmpty(profile.LastName))
+            {
+                throw new Exception("Last name is missing!");
+            }
+
+        }
+
         public void ProcessRegister(RegisterViewModel Register)
         {
             if(string.IsNullOrEmpty(Register.Email))
