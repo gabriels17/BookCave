@@ -10,6 +10,7 @@ using BookCave.Models.ViewModels;
 using BookCave.Services;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Controllers
 {
@@ -50,7 +51,10 @@ namespace BookCave.Controllers
 
             var user = new ApplicationUser
             {
-                UserName = registerModel.Email, Email = registerModel.Email
+                FirstName = registerModel.FirstName,
+                LastName = registerModel.LastName,
+                UserName = registerModel.Email, 
+                Email = registerModel.Email
             };
 
             var result = await _userManager.CreateAsync(user, registerModel.Password);
@@ -127,10 +131,28 @@ namespace BookCave.Controllers
             var user = await _userManager.GetUserAsync(User);
             var profile = new ProfileViewModel 
             {
+                Id = user.Id,
                 FirstName = user.FirstName, 
                 LastName = user.LastName, 
-                FavoriteBook = user.FavoriteBook, 
-                Email = user.Email, 
+                FavoriteBook = user.FavoriteBook,
+                Email = user.Email,
+                Image = user.Image
+            };
+
+            return View(profile);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> EditProfile()
+        {
+            // Get User Data
+            var user = await _userManager.GetUserAsync(User);
+            var profile = new ProfileInputModel 
+            {
+                Id = user.Id,
+                FirstName = user.FirstName, 
+                LastName = user.LastName, 
+                FavoriteBook = user.FavoriteBook,
                 Image = user.Image
             };
 
@@ -139,8 +161,14 @@ namespace BookCave.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> MyProfile(ProfileViewModel model)
+        public async Task<IActionResult> EditProfile(ProfileInputModel model)
         {
+            if(!ModelState.IsValid)
+            {
+                ViewData["ErrorMessages"] = "Error";
+                return View();
+            }
+            _accountService.ProcessProfile(model);
             var user = await _userManager.GetUserAsync(User);
             
             //Update Properties

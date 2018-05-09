@@ -107,6 +107,13 @@ a:hover
   min-height: 200px;
 }
 
+.img-resize-profile
+{
+  margin-top: 25px;
+  max-height: 250px;
+  max-width: 250px;
+}
+
 .book-title
 {
   height: 20px;
