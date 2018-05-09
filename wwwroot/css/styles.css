@@ -12,7 +12,7 @@ a
 a:hover
 {
     color: rgb(92, 92, 92);
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 .stars-outer
@@ -60,6 +60,7 @@ a:hover
     border-style: solid;
     border-color: black;
 }
+
 ::-webkit-scrollbar 
 {
     width: 8px;
@@ -73,7 +74,8 @@ a:hover
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb
+{
     background: #F0AD4E; 
     border-radius: 5px;
 }
@@ -121,10 +123,12 @@ a:hover
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .name-fix
 {
     margin-bottom: 0px;
 }
+
 .filter-search
 {
     height: 200px;
@@ -135,12 +139,16 @@ a:hover
     box-shadow: 6px 6px 1px 1px grey;
     border: 1px solid black;
 }
-@media (min-width:979px) {
-    .filter-search {
+
+@media (min-width:979px)
+{
+    .filter-search
+    {
       position:fixed;
       width: 250px;
     }
   }
+
 .searcher
 {
     padding: 10px;
@@ -174,9 +182,4 @@ a:hover
 .footer a
 {
     color: rgb(157, 157, 157);
-}
-
-a:hover
-{
-    text-decoration: underline;
 }
