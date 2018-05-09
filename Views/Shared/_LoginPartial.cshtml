@@ -11,7 +11,7 @@
 @if(SignInManager.IsSignedIn(User))
 {
     <li>
-        <button class="btn btn-link navbar navbar-link name-fix">@claim</button>
+        <a class="btn btn-link navbar navbar-link name-fix" asp-controller="Account" asp-action="MyProfile">@claim</a>
     </li>
     <li>
         <form asp-action="LogOut" asp-controller="Account" method="POST">

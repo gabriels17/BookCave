@@ -48,10 +48,5 @@ namespace BookCave.Services
             }
 
         }
-        public ProfileViewModel GetProfile(ApplicationUser user)
-        {
-            var account = new ProfileViewModel {Name = user.UserName, Email = user.Email};
-            return account;
-        }
     }
 }
