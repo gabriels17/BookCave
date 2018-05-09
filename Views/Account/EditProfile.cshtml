@@ -13,18 +13,18 @@
                 <img class="img-resize-profile" src="@Model.Image" alt="@Model.Id">
             </object>
         </div>
-        <div class="container">
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label asp-for="FirstName">First name: </label>
-                    <input type="text" autofocus="autofocus" class="form-control" asp-for="FirstName" placeholder="Enter your first name..." value="@Model.FirstName" />
-                </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label asp-for="FirstName">First name: </label>
+                <input type="text" autofocus="autofocus" class="form-control" asp-for="FirstName" placeholder="Enter your first name..." value="@Model.FirstName" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label asp-for="LastName">Last name: </label>
-                    <input type="text" class="form-control" asp-for="LastName" placeholder="Enter your Last name..." value="@Model.LastName" />
-                </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label asp-for="LastName">Last name: </label>
+                <input type="text" class="form-control" asp-for="LastName" placeholder="Enter your Last name..." value="@Model.LastName" />
+                <span asp-validation-for="LastName" class="text-danger" ></span>
             </div>
             <div class="col-xs-6">
                 <div class="form-group">

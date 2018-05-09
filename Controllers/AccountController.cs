@@ -163,6 +163,12 @@ namespace BookCave.Controllers
         [HttpPost]
         public async Task<IActionResult> EditProfile(ProfileInputModel model)
         {
+            if(!ModelState.IsValid)
+            {
+                ViewData["ErrorMessages"] = "Error";
+                return View();
+            }
+            _accountService.ProcessProfile(model);
             var user = await _userManager.GetUserAsync(User);
             
             //Update Properties
