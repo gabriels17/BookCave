@@ -8,6 +8,7 @@ using BookCave.Models;
 using BookCave.Models.ViewModels;
 using BookCave.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace BookCave.Controllers
 {
@@ -15,10 +16,12 @@ namespace BookCave.Controllers
     public class CartController : Controller
     {
         private CartService _cartService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CartController()
+        public CartController(UserManager<ApplicationUser> userManager)
         {
             _cartService = new CartService();
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -30,36 +33,5 @@ namespace BookCave.Controllers
         {
             //_cartService.AddToCart();
         }
-
-
-
-
-
-
-        /*
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-        */
     }
 }

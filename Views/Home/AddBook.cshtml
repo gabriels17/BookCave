@@ -9,27 +9,33 @@
   <div class="form-group col-md-6">
     <label asp-for="Title">Title: </label>
     <input type="text" class="form-control" asp-for="Title" placeholder="Title">
+    <span asp-validation-for="Title" class="text-danger" ></span>
   </div>
   <div class="form-group col-md-6">
     <label asp-for="Author">Author: </label>
     <input type="text" class="form-control" asp-for="Author" placeholder="Author">
+    <span asp-validation-for="Author" class="text-danger" ></span>
   </div>
   <div class="form-group col-md-6">
     <label asp-for="Image">Image Source: </label>
     <input type="text" class="form-control" asp-for="Image" placeholder="Image">
+    <span asp-validation-for="Image" class="text-danger" ></span>
   </div>
   <div class="form-group col-md-6">
     <label asp-for="Genre">Genre: </label>
     <select asp-for="Genre" multiple class="form-control">
-        <option value="Action" default>Action</option>
+        <option value="Scifi" default>Scifi</option>
         <option value="Fantasy">Fantasy</option>
         <option value="Romance">Romance</option>
         <option value="Mystery">Mystery</option>
+        <option value="Horror">Horror</option>
     </select>
+    <span asp-validation-for="Genre" class="text-danger" ></span>
   </div>
   <div class="form-group col-md-4">
     <label asp-for="ReleaseDate">Release date: </label>
     <input type="date" class="form-control" asp-for="ReleaseDate" placeholder="Release Date">
+    <span asp-validation-for="ReleaseDate" class="text-danger" ></span>
   </div>
   <div class="form-group col-md-4">
     <label asp-for="Rating">Rating: </label>
@@ -38,10 +44,13 @@
   <div class="form-group col-md-4">
     <label asp-for="Price">Price: </label>
     <input type="double" class="form-control" asp-for="Price" placeholder="Price">
+    <span asp-validation-for="Price" class="text-danger" ></span>
   </div>
   <div class="form-group col-md-12">
     <label asp-for="Description">Description: </label>
     <textarea class="form-control" rows="5" asp-for="Description" placeholder="Description"></textarea>
+    <span asp-validation-for="Description" class="text-danger" ></span>
   </div>
   <button type="submit" class="btn btn-warning">Submit Book!</button>
-</form>
+  <div class="text-danger">@ViewData["ErrorMessage"]</div>
+  </form>

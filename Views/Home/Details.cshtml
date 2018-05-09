@@ -16,11 +16,29 @@
         <p id="detailsParagraph">@Model.Description</p>
     </div>
     <div id="bookPricing">
-        <p>$@Model.Price</p>
-        <p>Rating: @Model.Rating</p>
-        <p><a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-warning" id="addToCartButton" role="button">Add to cart</a></p>
+            <div class="stars-outer">
+                <div class="stars-inner">
+                    <p class="ratings">@Model.Rating</p>
+                </div>
+            </div>
+            <p>@Model.Price $</p>
+        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-warning" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</a>
+        <div class="details-buttons">
+            <form asp-action="Delete" asp-route-id="@Model.Id">
+                <button type="submit" class="btn btn-warning edit-button">
+                <span class="glyphicon glyphicon-pencil"></span> Delete book</button>
+            </form>
+            <a asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-warning edit-button">
+            <span class="glyphicon glyphicon-pencil"></span> Edit book</a>
+        </div>
     </div>
+    <br>
     <div id="reviewSection">
-        <textarea name="reviewArea" id="" cols="30" placeholder="Write a review!" rows="5"></textarea>
+        <br>
+        <form asp-action="AddReview">
+            <textarea name="reviewArea" cols="30" placeholder="Write a review!" rows="5"></textarea>
+            <br>
+            <button class="btn btn-warning">Submit review</button>
+        </form>
     </div>
 </div>

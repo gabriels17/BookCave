@@ -47,12 +47,7 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><span class="glyphicon glyphicon-book"></span> Book Number 1</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-book"></span> Book Number 2</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-book"></span> Book Number 3</a></li>
-                </ul>
+                <a asp-controller="Cart" asp-action="Index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart</a>
                 </li>
                 @await Html.PartialAsync("_LoginPartial")
             </ul>
@@ -69,7 +64,7 @@
                 <p><span class="glyphicon glyphicon-map-marker"></span>: Contry; City; Address123</p>
             </div>
             <div class="col-xs-3 col-xs-offset-4">
-                <p><span class="glyphicon glyphicon-info-sign"></span>: <a>About us</a></p>
+                <p><span class="glyphicon glyphicon-info-sign"></span>: <a asp-controller="Home" asp-action="AboutUs">About us</a></p>
                 <p>&copy; 2018 - BookCave</p>
             </div>
             
@@ -98,6 +93,8 @@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </environment>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

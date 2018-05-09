@@ -7,21 +7,26 @@
 <h1>Register</h1>
 <form asp-action="Register" asp-controller="Account" class="form-horizontal">
     <div class="form-group">
-        <input type="email" asp-for="Email" class="form-control" placeholder="Enter email address"/>
+        <input autofocus="autofocus" type="email" asp-for="Email" class="form-control" placeholder="Enter email address"/>
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <div class="form-group">
         <input type="text" asp-for="FirstName" class="form-control" placeholder="First name"/>
+        <span asp-validation-for="FirstName" class="text-danger"></span>
     </div>
     <div class="form-group">
         <input type="text" asp-for="LastName" class="form-control" placeholder="Last name"/>
+        <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
     <div class="form-group" id="info-dropdown">
         <input type="password" asp-for="Password" class="form-control"  placeholder="Password"/>
+        <span asp-validation-for="Password" class="text-danger"></span>
             <div class="info-dropdown-content">
                 <p>Your password must be longer than 8 characters,<br> contain an uppercase, a symbol and a number.<br> Do not share your password with anyone.</p>
         </div>
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-warning">Register</button>
+        <div class="text-danger">@ViewData["ErrorMessage"]</div>
     </div>
 </form>

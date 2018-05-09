@@ -1,12 +1,13 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
 
-namespace BookCave.Services
+namespace BookCave.Services 
 {
-    public class BookService
+    public class BookService : IBookService
     {
         private BookRepo _bookRepo;
 
@@ -41,16 +42,12 @@ namespace BookCave.Services
 
         public BookDetailsViewModel GetBookById(int id)
         {
-            var allbooks = _bookRepo.GetAllBooksDetails(id);
-            // var idbook = (from b in allbooks
-            // where b.Id == id
-            // select b).SingleOrDefault();
-
-            return allbooks; 
+            var book = _bookRepo.GetBookById(id);
+            return book; 
         }
-        public void AddToDatabase(BookInputModel newBook)
+        public void AddBook(BookInputModel newBook)
         {
-            _bookRepo.AddToDatabase(newBook);
+            _bookRepo.AddBook(newBook);
         }
         public List<BookListViewModel> Filter(string str,List<BookListViewModel> Books)
         {
@@ -121,6 +118,65 @@ namespace BookCave.Services
                         select a).ToList();
 
             return sorted;
+        }
+
+        public void DeleteBook(int id)
+        {
+            _bookRepo.DeleteBook(id);
+        }
+
+        public void UpdateBook(BookInputModel book)
+        {
+            _bookRepo.UpdateBook(book);
+        }
+
+        public void ProcessBook(BookInputModel book)
+        {
+
+            if(string.IsNullOrEmpty(book.Title))
+            {
+                throw new Exception("Title is missing!");
+            }
+
+            if(string.IsNullOrEmpty(book.Author))
+            {
+                throw new Exception("Author is missing!");
+            }
+
+            if(string.IsNullOrEmpty(book.Genre))
+            {
+                throw new Exception("Genre is missing!");
+            }
+
+            if(book.Price <= 0)
+            {
+                throw new Exception("Prixe is invalid!");
+            }
+
+            if(book.ReleaseDate.Year <= 0)
+            {
+                throw new Exception("Release date year is invalid");
+            }
+
+            if(book.ReleaseDate.Month <= 0)
+            {
+                throw new Exception("Release date month is invalid");
+            }
+
+            if(book.ReleaseDate.Day <= 0)
+            {
+                throw new Exception("Release date day is invalid");
+            }
+
+            if(string.IsNullOrEmpty(book.Image))
+            {
+                throw new Exception("Image is missing");
+            }
+
+            if(string.IsNullOrEmpty(book.Description))
+            {
+                throw new Exception("Description is missing!");
+            }
         }
     }
 }
