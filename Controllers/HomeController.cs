@@ -98,9 +98,9 @@ namespace BookCave.Controllers
         [HttpPost]
         public IActionResult AddBook(BookInputModel newBook)
         {
-            if(!ModelState.IsValid || newBook.Price <= 0 )
+            if(!ModelState.IsValid)
             {
-                ViewData["ErrorMessage"] = "Something went wrong please check if all fields are valid";
+                ViewData["ErrorMessage"] = "Error";
                 return View();
             }
             _bookServiceError.ProcessBook(newBook);
@@ -119,7 +119,9 @@ namespace BookCave.Controllers
         [Authorize]
         public IActionResult Edit(int id)
         {
+            
             var bookToEdit = _bookService.GetBookById(id);
+            ViewData["Name"] = bookToEdit.Title;
             return View(bookToEdit);
         }
 
@@ -127,6 +129,13 @@ namespace BookCave.Controllers
         [Authorize]
         public IActionResult Edit(BookInputModel book)
         {
+            ViewData["Name"] = book.Title;
+            if(!ModelState.IsValid)
+            {
+                ViewData["ErrorMessage"] = "Error";
+                return View();
+            }
+            _bookServiceError.ProcessBook(book);
             _bookService.UpdateBook(book);
             return RedirectToAction("Index");
         }
