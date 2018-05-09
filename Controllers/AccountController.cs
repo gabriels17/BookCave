@@ -19,7 +19,6 @@ namespace BookCave.Controllers
 
         private readonly IAccountService _accountService;
         private readonly UserManager<ApplicationUser> _userManager;
-         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IAccountService accountService)
         {
             _cartService = new CartService();
@@ -114,14 +113,14 @@ namespace BookCave.Controllers
 
         public async Task<IActionResult> AddToCart(int ID)
         {
-            var user = await GetCurrentUserAsync();
+            var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
             _cartService.AddToCart(userId, ID);
             return RedirectToAction("Index", "Home");
         }
         public async Task<IActionResult> Profile()
         {
-            var user = await GetCurrentUserAsync();
+            var user = await _userManager.GetUserAsync(User);
             var account = new ProfileViewModel {Name = user.UserName, Email = user.Email};
             return View(account);
         }

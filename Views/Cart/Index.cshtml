@@ -1,20 +1,40 @@
-@model BookCave.Models.ViewModels.CartViewModel
-
+@model List<BookCave.Models.ViewModels.CartViewModel>
 @{
     ViewData["Title"] = "Cart";
 }
 
-<div>
-    <table>
-        <tr></tr>
-    </table>
-    <a id="btn_add" href="@Url.Action("Add", "AddToCart")" class="btn btn-info btn-lg" style="margin-left:60px">  
-    <span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart  
-    </a>  
-  
-    <a id="btn_add" href="@Url.Action("Index", "Home")" class="btn btn-info btn-lg" style="margin-left:60px">  
-    <span class="glyphicon glyphicon-eye-open"></span> Continue shopping  
-    </a>  
-    <br />  
-    <br />  
-</div>  
+<h2>So long and thanks for all the fish!</h2>
+<h3>Your cart</h3>
+<div class="vertical-menu">
+  <a href="#" class="active">Home</a>
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  <a href="#">Link 4</a>
+</div>
+
+
+<style>
+.vertical-menu {
+    width: 200px; /* Set a width if you like */
+    height: 150px;
+    overflow-y: auto;
+}
+
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50; /* Add a green color to the "active/current" link */
+    color: white;
+}
+</style>

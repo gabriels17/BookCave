@@ -3,6 +3,7 @@ using System.Linq;
 using BookCave.Repositories;
 using System.Collections.Generic;
 using BookCave.Data;
+using BookCave.Models.ViewModels;
 
 namespace BookCave.Repositories
 {    
@@ -16,19 +17,6 @@ namespace BookCave.Repositories
             _bookRepo = new BookRepo();
             _db = new DataContext();
         }
-
-        public void AddToCart(int id, string userId)
-        {
-            var cart = new Cart();
-            cart.BookId = id;
-            cart.UserId = userId;
-            var books = (from b in _bookRepo.GetAllBooks()
-                         where cart.BookId == id
-                         select b).ToList();
-            _db.Add(cart);
-            _db.SaveChanges();
-        }
-
         public void AddToCart(string TheUserId, int TheBookId)
         {
             var CartEntityModel = new Cart()
@@ -40,21 +28,23 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
-
-
-
-
-
-
-
-
-
-        /*
-        public List<BookViewModel> GetBooks()
+        public  List<CartViewModel> GetCart (string TheUserId)
         {
-            return List<BookViewModel();
+            var cart = ((from c in _db.Carts
+                        join b in _db.Books on c.BookId equals b.Id
+                        where c.UserId == TheUserId
+                         select new CartViewModel
+                         {
+                             Id = b.Id,
+                             Title = b.Title,
+                             Author = b.Author,
+                             Image = b.Image,
+                             Price = b.Price,
+                             Genre = b.Genre,
+                             Rating = b.Rating,
+                         }).ToList());
+            return cart;
         }
-        */
         public void AddOrder()
         {
             return;
