@@ -64,7 +64,7 @@ namespace BookCave.Controllers
             }
             else
             {
-                ViewData["ErrorMessage"] = "Failed, please try again";
+                ViewData["ErrorMessage"] = "The information you entered was not valid, please try again";
                 return View();
             }
         }
@@ -94,7 +94,7 @@ namespace BookCave.Controllers
             }
             else
             {
-                ViewData["ErrorMessage"] = "Failed, please try again";
+                ViewData["ErrorMessage"] = "Email or password is incorrect";
                 return View();
             }
         }

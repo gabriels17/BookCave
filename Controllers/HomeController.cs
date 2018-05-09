@@ -14,10 +14,13 @@ namespace BookCave.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IBookService _bookServiceError;
+
         private BookService _bookService;
 
-        public HomeController()
+        public HomeController(IBookService bookService)
         {
+            _bookServiceError = bookService;
             _bookService = new BookService();
         }
 
@@ -95,13 +98,15 @@ namespace BookCave.Controllers
         [HttpPost]
         public IActionResult AddBook(BookInputModel newBook)
         {
-            if(ModelState.IsValid)
+            if(!ModelState.IsValid || newBook.Price <= 0 )
             {
-                _bookService.AddBook(newBook);
-                return RedirectToAction("Index");
+                ViewData["ErrorMessage"] = "Something went wrong please check if all fields are valid";
+                return View();
             }
-            ViewData["Title"] = "Add Movie";
-            return View();
+            _bookServiceError.ProcessBook(newBook);
+            _bookService.AddBook(newBook);
+                return RedirectToAction("Index");
+            
         }
 
         public IActionResult Details(int id)
