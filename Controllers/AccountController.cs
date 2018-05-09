@@ -139,7 +139,7 @@ namespace BookCave.Controllers
                 Image = user.Image
             };
 
-            if (profile.Image == null)
+            if (string.IsNullOrEmpty(profile.Image))
             {
                 profile.Image = "https://cdn.pixabay.com/photo/2013/07/12/19/15/gangster-154425_960_720.png";
             }
@@ -161,7 +161,7 @@ namespace BookCave.Controllers
                 Image = user.Image
             };
 
-            if (profile.Image == null)
+            if (string.IsNullOrEmpty(profile.Image))
             {
                 profile.Image = "https://cdn.pixabay.com/photo/2013/07/12/19/15/gangster-154425_960_720.png";
             }
