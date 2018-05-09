@@ -9,6 +9,7 @@ using BookCave.Data.EntityModels;
 using BookCave.Services;
 using Microsoft.AspNetCore.Authorization;
 using BookCave.Models.InputModels;
+using BookCave.Models.ViewModels;
 
 namespace BookCave.Controllers
 {
@@ -153,6 +154,11 @@ namespace BookCave.Controllers
         public void AddReview()
         {
 
+        }
+
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
