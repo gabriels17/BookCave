@@ -156,7 +156,7 @@ a:hover
 
 .info-dropdown-content
 {
-    display: none;
+    visibility: hidden;
     position: relative;
     background-color: #f9f9f9;
     border-radius: 25px;
@@ -167,7 +167,7 @@ a:hover
 
 #info-dropdown:hover .info-dropdown-content
 {
-    display: block;
+    visibility:  visible;
 }
 
 .footer

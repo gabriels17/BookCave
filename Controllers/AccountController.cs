@@ -98,7 +98,7 @@ namespace BookCave.Controllers
             }
             else
             {
-                ViewData["ErrorMessage"] = "Email or password is incorrect";
+                ViewData["ErrorMessage"] = "Email address or password is incorrect";
                 return View();
             }
         }
