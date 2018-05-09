@@ -171,9 +171,17 @@ namespace BookCave.Controllers
             user.FavoriteBook = model.FavoriteBook;
             user.Image = model.Image;
 
-            await _userManager.UpdateAsync(user);
+            var result = await _userManager.UpdateAsync(user);
 
-            return View(model);
+            if(result.Succeeded)
+            {
+                return RedirectToAction("MyProfile", "Account");
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "Failed to save changes, please try again";
+                return View(model);
+            }
         }
 
         public void AddReview()

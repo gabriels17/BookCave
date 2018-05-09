@@ -9,36 +9,40 @@
 <form asp-action="EditProfile" asp-controller="Account" class="form-horizontal" method="POST">
     <div class="container">
         <div class="col-md-3">
-            <img class="img-resize-profile" src="@Model.Image" alt="@Model.Id">
+            <object class="img-resize-profile" data="https://cdn.pixabay.com/photo/2013/07/12/19/15/gangster-154425_960_720.png" type="image/png">
+                <img class="img-resize-profile" src="@Model.Image" alt="@Model.Id">
+            </object>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="FirstName">First name: </label>
-                <input type="text" autofocus="autofocus" class="form-control" asp-for="FirstName" placeholder="Enter your first name..." value="@Model.FirstName" />
+        <div class="container">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label asp-for="FirstName">First name: </label>
+                    <input type="text" autofocus="autofocus" class="form-control" asp-for="FirstName" placeholder="Enter your first name..." value="@Model.FirstName" />
+                </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="LastName">Last name: </label>
-                <input type="text" class="form-control" asp-for="LastName" placeholder="Enter your Last name..." value="@Model.LastName" />
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label asp-for="LastName">Last name: </label>
+                    <input type="text" class="form-control" asp-for="LastName" placeholder="Enter your Last name..." value="@Model.LastName" />
+                </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="FavoriteBook">Favorite book: </label>
-                <input type="text" class="form-control" asp-for="FavoriteBook" placeholder="Enter your favorite book..." value="@Model.FavoriteBook" />
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label asp-for="FavoriteBook">Favorite book: </label>
+                    <input type="text" class="form-control" asp-for="FavoriteBook" placeholder="Enter your favorite book..." value="@Model.FavoriteBook" />
+                </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="Image">Image source: </label>
-                <input type="text" class="form-control" asp-for="Image" placeholder="Enter image source..." value="@Model.Image" />
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label asp-for="Image">Image source: </label>
+                    <input type="text" class="form-control" asp-for="Image" placeholder="Enter image source..." value="@Model.Image" />
+                </div>
             </div>
-        </div>
-        <div class="col-md-3 col-xs-offset-7">
-            <div class="form-group">
-                <a class="btn btn-warning" asp-controller="Account" asp-action="MyProfile">Cancel</a>
-                <input type="submit" class="btn btn-warning" value="Save Changes" />
+            <div class="col-xs-3 col-xs-offset-7">
+                <div class="form-group">
+                    <a class="btn btn-warning" asp-controller="Account" asp-action="MyProfile">Cancel</a>
+                    <input type="submit" class="btn btn-warning" value="Save Changes" />
+                </div>
             </div>
         </div>
     </div>
