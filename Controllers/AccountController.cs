@@ -18,15 +18,19 @@ namespace BookCave.Controllers
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private CartService _cartService;
-
+        private ReviewService _reviewService;
         private readonly IAccountService _accountService;
         private readonly UserManager<ApplicationUser> _userManager;
-        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IAccountService accountService)
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IAccountService accountService, RoleManager<IdentityRole> roleManager)
         {
             _cartService = new CartService();
+            _reviewService = new ReviewService();
             _signInManager = signInManager;
             _userManager = userManager;
             _accountService = accountService;
+            _roleManager = roleManager;
         }
 
         [HttpGet]
@@ -116,6 +120,7 @@ namespace BookCave.Controllers
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> AddToCart(int ID)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -129,6 +134,7 @@ namespace BookCave.Controllers
         {
             // Get User Data
             var user = await _userManager.GetUserAsync(User);
+            var reviews = _reviewService.GetReviews(user.Id);
             var profile = new ProfileViewModel 
             {
                 Id = user.Id,
@@ -142,7 +148,8 @@ namespace BookCave.Controllers
                 City = user.City,
                 State = user.State,
                 Postcode = user.Postcode,
-                Country = user.Country
+                Country = user.Country,
+                Reviews = reviews
             };
 
             if (string.IsNullOrEmpty(profile.Image))
@@ -163,6 +170,7 @@ namespace BookCave.Controllers
                 Id = user.Id,
                 FirstName = user.FirstName, 
                 LastName = user.LastName, 
+                Email = user.Email,
                 FavoriteBook = user.FavoriteBook,
                 Image = user.Image,
                 FullName = user.FullName,
@@ -213,36 +221,35 @@ namespace BookCave.Controllers
             }
         }
 
-        // private async Task createRolesandUsers()
-        // {  
-        //     if (!await _roleManager.RoleExistsAsync("Admin"))
-        //     {
-        //         var role = new IdentityRole();
-        //         role.Name = "Admin";
-        //         await _roleManager.CreateAsync(role);
+        private async Task createRolesandUsers()
+        {  
+            if (!await _roleManager.RoleExistsAsync("Admin"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Admin";
+                await _roleManager.CreateAsync(role);
 
-        //         var user = new ApplicationUser();
-        //         user.UserName = "admin";
-        //         user.Email = "admin@bookcave.com";
-        //         string userPWD = "admin";
+                var user = new ApplicationUser();
+                user.UserName = "admin";
+                user.Email = "admin@bookcave.com";
+                string userPWD = "admin";
 
-        //         IdentityResult newUser = await _userManager.CreateAsync(user, userPWD);
+                IdentityResult newUser = await _userManager.CreateAsync(user, userPWD);
 
-        //         //Add default User to Role Admin
-        //         if (newUser.Succeeded)
-        //         {
-        //             var result1 = await _userManager.AddToRoleAsync(user, "admin");
-        //         }
-        //     }
+                //Add default User to Role Admin
+                if (newUser.Succeeded)
+                {
+                    var result1 = await _userManager.AddToRoleAsync(user, "Admin");
+                }
+            }
 
-        //     // Creating Customer role     
-        //     x = await _roleManager.RoleExistsAsync("Customer");
-        //     if (!x)
-        //     {
-        //         var role = new IdentityRole();
-        //         role.Name = "Employee";
-        //         await _roleManager.CreateAsync(role);
-        //     }
-        // }
+            // Creating Customer role     
+            if (!await _roleManager.RoleExistsAsync("Customer"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Customer";
+                await _roleManager.CreateAsync(role);
+            }
+        }
     }
 }

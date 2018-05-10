@@ -10,6 +10,7 @@ namespace BookCave.Models.InputModels
         public string FirstName { get; set; }
         [Required(ErrorMessage ="Last name is required!")]
         public string LastName { get; set; }
+        public string Email { get; set; }
         public string FavoriteBook { get; set; }
         public string Image { get; set; }
         [Required]

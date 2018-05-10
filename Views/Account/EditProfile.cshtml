@@ -21,6 +21,10 @@
             <span asp-validation-for="LastName" class="text-danger" ></span>
         </div>
         <div class="form-group col-md-12">
+            <label asp-for="Email">Email: </label>
+            <p id="Email">@Model.Email</p>
+        </div>
+        <div class="form-group col-md-12">
             <label asp-for="FavoriteBook">Favorite book: </label>
             <input type="text" class="form-control" asp-for="FavoriteBook" placeholder="Enter your favorite book..." value="@Model.FavoriteBook" />
         </div>
@@ -54,7 +58,7 @@
                         </div>
                         <div class="form-group col-md-8">
                             <label asp-for="State">County/State: </label>
-                            <input type="text" class="form-control" asp-for="State" placeholder="Enter your country/state..." value="@Model.State" />
+                            <input type="text" class="form-control" asp-for="State" placeholder="Enter your county/state..." value="@Model.State" />
                             <span asp-validation-for="State" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-8">

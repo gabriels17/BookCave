@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using BookCave.Models.InputViewModels;
 
 namespace BookCave.Controllers
 {
@@ -122,28 +123,48 @@ namespace BookCave.Controllers
         {
             var idbook = _bookService.GetBookById(id);
             var reviews = _bookService.GetReviews(id);
-            var detail = new DetailsViewModel();
+            var detail = new DetailsInputViewModel();
+
+            var username = _userManager.Users;
+            _bookService.ChangeUserIdToName(reviews, username);
+
             detail.Book = idbook;
             detail.Reviews = reviews;
             return View(detail);
         }
 
+        private string GetUsernameByUserId(string userid)
+        {
+            var userstring = "Name not found";
+            var usernames = _userManager.Users;
+            foreach(var us in usernames)
+            {
+                if(us.Id == userid)
+                {
+                    userstring = us.FirstName;
+                    return(userstring);
+                }
+            }
+            return(userstring);
+        }
+
+
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Details(ReviewInputModel review)
+        public async Task<IActionResult> Details(int BookId, DetailsInputViewModel model)
         {
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessage"] = "Error";
-                return View();
+                return RedirectToAction("Details", "Home");
             }
-
+            var review = model.Input;
+            review.BookId = BookId;
             _reviewService.ProcessReview(review);
-
             var user = await _userManager.GetUserAsync(User);
             review.UserId = user.Id;
             _bookService.AddReview(review);
-            return View();
+           return RedirectToAction("Details", "Home");
         }
 
         [HttpGet]
@@ -178,16 +199,22 @@ namespace BookCave.Controllers
             return RedirectToAction("Index");
         }
 
-        // [HttpPost]
-        // [Authorize]
-        // public void AddReview()
-        // {
-
-        // }
-
-        public IActionResult Error()
+        public IActionResult GoToRandomBook()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            Random rnd = new Random();
+            var allBooks = _bookService.GetAllBooks();
+            int randomId = rnd.Next(allBooks.Count());
+            do
+            {
+                if(_bookService.GetBookById(randomId) != null)
+                {
+                    var book = _bookService.GetBookById(randomId);
+                    return View("Details", book);
+                }
+                randomId = rnd.Next(allBooks.Count());
+            }
+            while(_bookService.GetBookById(randomId) == null);
+            return View("Error");
         }
     }
 }

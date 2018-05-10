@@ -258,6 +258,24 @@ a:hover
     border-bottom-color: transparent;
 }
 
+.tab-title
+{
+    margin: 0;
+    color: #a94442;
+    border-bottom-style: solid;
+    border-width: 2px;
+}
+
+#ShippingInfo
+{
+    margin: 10px;
+}
+
+#bookname
+{
+    margin: 0;
+}
+
 #btn-Profile
 {
     margin-bottom: 10px;
@@ -341,4 +359,9 @@ li {
 }
 .ratingSelector input + label:hover ~ label {
     color: #ddd !important;
+}
+
+#submit-review
+{
+    margin-top: 5px;
 }

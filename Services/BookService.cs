@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BookCave.Models;
 using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
@@ -50,6 +51,21 @@ namespace BookCave.Services
         {
             var reviews = _bookRepo.GetReviews(id);
             return(reviews);
+        }
+
+        public void ChangeUserIdToName(List<ReviewViewModel> reviews, IQueryable<ApplicationUser> username)
+        {
+            foreach(var r in reviews)
+            {
+                foreach(var u in username)
+                {
+                    if(r.UserId == u.Id)
+                    {
+                        r.UserId = u.FirstName;
+                    } 
+                }
+            }
+            // return(reviews);
         }
 
         public void AddReview(ReviewInputModel review)
