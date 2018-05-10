@@ -6,10 +6,10 @@
 
 <div id="bookDetails">
     <div id="imageDetails">
-        <img src="@Model.Image" alt="Book Image" height="400px" width="300px">
+        <img class="details-book-image" src="@Model.Image" alt="@Model.Id" height="400px" width="300px">
     </div>
     <div id="bookInfo">
-        <h3>@Model.Title</h3>
+        <h3 class="details-book-title">@Model.Title</h3>
         <h4>@Model.Author</h4>
         <h5>Genre: @Model.Genre</h5>
         <h5>Release date: @Model.ReleaseDate</h5>
@@ -24,10 +24,8 @@
             <p>@Model.Price $</p>
         <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-warning" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</a>
         <div class="details-buttons">
-            <form asp-action="Delete" asp-route-id="@Model.Id">
-                <button type="submit" class="btn btn-warning edit-button">
-                <span class="glyphicon glyphicon-pencil"></span> Delete book</button>
-            </form>
+            <button type="submit" class="btn btn-warning edit-button" id="delete">
+            <span class="glyphicon glyphicon-pencil"></span> Delete book</button>
             <a asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-warning edit-button">
             <span class="glyphicon glyphicon-pencil"></span> Edit book</a>
         </div>

@@ -12,7 +12,7 @@ namespace BookCave.Models.InputModels
         public string Author { get; set; }
         [Required(ErrorMessage ="Image is required!")]
         public string Image { get; set; }
-        [Required(ErrorMessage ="Price is required!")]
+        [Range(1, 500, ErrorMessage ="Price is required!")]
         public double Price { get; set; }
          [Required(ErrorMessage ="Genre is required!")]
         public string Genre { get; set; }

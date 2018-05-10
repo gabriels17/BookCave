@@ -11,8 +11,8 @@ using System;
 namespace BookCave.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20180509130154_AddReviews")]
-    partial class AddReviews
+    [Migration("20180509233244_ChangeReview2")]
+    partial class ChangeReview2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,6 +54,8 @@ namespace BookCave.Migrations
 
                     b.Property<int>("BookId");
 
+                    b.Property<int>("Quantity");
+
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
@@ -72,7 +74,7 @@ namespace BookCave.Migrations
 
                     b.Property<double>("Rating");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 

@@ -5,19 +5,45 @@
 
 <h2>So long and thanks for all the fish!</h2>
 <h3>Your cart</h3>
-<div class="vertical-menu">
-  <a href="#" class="active">Home</a>
-  <a href="#">Link 1</a>
-  <a href="#">Link 2</a>
-  <a href="#">Link 3</a>
-  <a href="#">Link 4</a>
+<div class="col-xs-12 col-md-6">
+    <div class="vertical-menu">
+        @foreach(var book in Model)
+        {
+            <div class="cart-item col-xs-12">
+                <div class="col-xs-3">
+                <img class="cart-image" src="@book.Image" alt="@book.Id">
+                </div>
+                <div class="col-xs-5">
+                    <h4 class="book-title">@book.Title</h4>
+                    <h5>@book.Author</h5>
+                </div>
+                <div class="cart-price col-xs-4">
+                    <div class="cart-price-aligner">
+                        <input type="text" class="col-xs-12 form-control book-quantity" value="@book.Quantity" readonly>
+                        <button class="btn col-xs-5 add-quantity">+</button>
+                        <button class="btn col-xs-5 col-xs-offset-2 subtract-quantity">-</button>
+                        <p class="col-xs-offset-6 col-xs-6 the-price">@book.Price</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="col-xs-12 col-md-6">
+    <div class="vertical-menu">
+        <a href="#" class="active">Home</a>
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+        <a href="#">Link 4</a>
+    </div>
 </div>
 
 
 <style>
 .vertical-menu {
-    width: 200px; /* Set a width if you like */
-    height: 150px;
+    width: 100%; /* Set a width if you like */
+    height: 600px;
     overflow-y: auto;
 }
 

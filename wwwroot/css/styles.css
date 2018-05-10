@@ -146,6 +146,7 @@ a:hover
 .img-resize
 {
   max-height: 200px;
+  min-height: 200px;
 }
 
 .book-title
@@ -200,4 +201,34 @@ a:hover
 {
     margin-right: 2px;
     float: right;
+}
+
+.cart-image
+{
+    max-width: 100px;
+    min-height: 150px;
+    max-height: 150px;
+}
+.cart-item
+{
+    background-color: grey;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.cart-price
+{
+    display: flex;
+
+}
+.cart-price-aligner
+{
+    align-self: flex-end;
+}
+.add-quantity
+{
+    margin-bottom: 40%;
+}
+.the-price
+{
+    margin-bottom: 0px;
 }

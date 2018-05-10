@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using BookCave.Models.ViewModels;
 using BookCave.Services;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookCave.Controllers
 {
@@ -118,11 +119,39 @@ namespace BookCave.Controllers
             _cartService.AddToCart(userId, ID);
             return RedirectToAction("Index", "Home");
         }
-        public async Task<IActionResult> Profile()
+
+        [Authorize]
+        public async Task<IActionResult> MyProfile()
+        {
+            // Get User Data
+            var user = await _userManager.GetUserAsync(User);
+            var profile = new ProfileViewModel 
+            {
+                FirstName = user.FirstName, 
+                LastName = user.LastName, 
+                FavoriteBook = user.FavoriteBook, 
+                Email = user.Email, 
+                Image = user.Image
+            };
+
+            return View(profile);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> MyProfile(ProfileViewModel model)
         {
             var user = await _userManager.GetUserAsync(User);
-            var account = new ProfileViewModel {Name = user.UserName, Email = user.Email};
-            return View(account);
+            
+            //Update Properties
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.FavoriteBook = model.FavoriteBook;
+            user.Image = model.Image;
+
+            await _userManager.UpdateAsync(user);
+
+            return View(model);
         }
 
         public void AddReview()

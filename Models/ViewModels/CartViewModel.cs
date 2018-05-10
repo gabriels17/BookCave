@@ -9,5 +9,6 @@ namespace BookCave.Models.ViewModels
         public double Price { get; set; }
         public double Rating { get; set; }
         public string Genre { get; internal set; }
+        public int Quantity { get; set; }
     }
 }

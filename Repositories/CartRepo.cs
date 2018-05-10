@@ -19,12 +19,23 @@ namespace BookCave.Repositories
         }
         public void AddToCart(string TheUserId, int TheBookId)
         {
-            var CartEntityModel = new Cart()
+            var checker = (from c in _db.Carts
+                            where c.BookId == TheBookId && c.UserId == TheUserId
+                            select c).SingleOrDefault();
+            if(checker == null)
             {
-                BookId = TheBookId,
-                UserId = TheUserId
-            };
-            _db.Add(CartEntityModel);
+                var CartEntityModel = new Cart()
+                {
+                    BookId = TheBookId,
+                    UserId = TheUserId,
+                    Quantity = 1
+                };
+                _db.Add(CartEntityModel);
+            }
+            else
+            {
+                checker.Quantity = checker.Quantity + 1;
+            }
             _db.SaveChanges();
         }
 
@@ -42,6 +53,7 @@ namespace BookCave.Repositories
                              Price = b.Price,
                              Genre = b.Genre,
                              Rating = b.Rating,
+                             Quantity = c.Quantity
                          }).ToList());
             return cart;
         }
