@@ -29,6 +29,7 @@ namespace BookCave
             services.AddDbContext<AuthenticationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AuthenticationConnection")));
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IBookService, BookService>();
+            services.AddTransient<IReviewService, ReviewService>();
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<AuthenticationDbContext>()
                 .AddDefaultTokenProviders();
