@@ -239,7 +239,7 @@ namespace BookCave.Controllers
                 //Add default User to Role Admin
                 if (newUser.Succeeded)
                 {
-                    var result1 = await _userManager.AddToRoleAsync(user, "admin");
+                    var result1 = await _userManager.AddToRoleAsync(user, "Admin");
                 }
             }
 
