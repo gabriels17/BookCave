@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using BookCave.Models.InputViewModels;
 
 namespace BookCave.Controllers
 {
@@ -122,7 +123,7 @@ namespace BookCave.Controllers
         {
             var idbook = _bookService.GetBookById(id);
             var reviews = _bookService.GetReviews(id);
-            var detail = new DetailsViewModel();
+            var detail = new DetailsInputViewModel();
             detail.Book = idbook;
             detail.Reviews = reviews;
             return View(detail);

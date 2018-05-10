@@ -1,4 +1,4 @@
-@model BookCave.Models.ViewModels.DetailsViewModel
+@model BookCave.Models.InputViewModels.DetailsInputViewModel
 
 @{
     ViewData["Title"] = "BookDetails";
@@ -36,6 +36,7 @@
         <legend>
             Reviews
         </legend>
+        
         @foreach(var review in Model.Reviews)
         {
 
