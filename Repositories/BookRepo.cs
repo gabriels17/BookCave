@@ -161,7 +161,7 @@ namespace BookCave.Repositories
             {
                 Comment = newreview.Comment,
                 UserId = newreview.UserId,
-                // Rating = newreview.Rating,
+                Rating = newreview.Rating,
                 BookId = newreview.BookId
             };
             _db.Add(ReviewEntityModel);
