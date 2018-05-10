@@ -10,17 +10,21 @@ using BookCave.Services;
 using Microsoft.AspNetCore.Authorization;
 using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace BookCave.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IBookService _bookServiceError;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         private BookService _bookService;
 
-        public HomeController(IBookService bookService)
+        public HomeController(IBookService bookService, UserManager<ApplicationUser> userManager)
         {
+
+            _userManager = userManager;
             _bookServiceError = bookService;
             _bookService = new BookService();
         }
@@ -116,6 +120,30 @@ namespace BookCave.Controllers
             return View(idbook);
         }
 
+        public IActionResult GetReview(int id)
+        {
+            var reviews = _bookService.GetReviews(id);
+            return View(reviews);
+            
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult AddReview()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> AddReview(ReviewInputModel review)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            review.UserId = user.Id;
+            _bookService.AddReview(review);
+            return RedirectToAction("Index");
+        }
+
         [HttpGet]
         [Authorize]
         public IActionResult Edit(int id)
@@ -149,12 +177,12 @@ namespace BookCave.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        [Authorize]
-        public void AddReview()
-        {
+        // [HttpPost]
+        // [Authorize]
+        // public void AddReview()
+        // {
 
-        }
+        // }
 
         public IActionResult Error()
         {
