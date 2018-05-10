@@ -1,0 +1,14 @@
+@model BookCave.Models.InputModels.ReviewInputModel
+
+
+@{
+    ViewData["Title"] = "Add review";
+}
+
+<div>
+    <form asp-controller="Home" asp-action="AddReview">
+        <textarea asp-for="@Model.Comment" cols="30" rows="10"></textarea>
+        <button type="submit" class="btn btn-warning">
+        <span class="glyphicon glyphicon-ok"></span> Write a review</button>
+    </form>
+</div>
