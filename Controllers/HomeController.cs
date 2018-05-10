@@ -117,29 +117,20 @@ namespace BookCave.Controllers
             
         }
 
+        [HttpGet]
         public IActionResult Details(int id)
         {
             var idbook = _bookService.GetBookById(id);
-            return View(idbook);
-        }
-
-        public IActionResult GetReview(int id)
-        {
             var reviews = _bookService.GetReviews(id);
-            return View(reviews);
-            
-        }
-
-        [HttpGet]
-        [Authorize]
-        public IActionResult AddReview()
-        {
-            return View();
+            var detail = new DetailsViewModel();
+            detail.Book = idbook;
+            detail.Reviews = reviews;
+            return View(detail);
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> AddReview(ReviewInputModel review)
+        public async Task<IActionResult> Details(ReviewInputModel review)
         {
             if(!ModelState.IsValid)
             {
@@ -152,7 +143,7 @@ namespace BookCave.Controllers
             var user = await _userManager.GetUserAsync(User);
             review.UserId = user.Id;
             _bookService.AddReview(review);
-            return RedirectToAction("Index");
+            return View();
         }
 
         [HttpGet]
