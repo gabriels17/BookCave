@@ -258,12 +258,17 @@ a:hover
     border-bottom-color: transparent;
 }
 
-#reviewTitle
+.tab-title
 {
     margin: 0;
     color: #a94442;
     border-bottom-style: solid;
-    border-width: 2px; 
+    border-width: 2px;
+}
+
+#ShippingInfo
+{
+    margin: 10px;
 }
 
 #bookname
