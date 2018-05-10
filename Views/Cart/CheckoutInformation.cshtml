@@ -1,0 +1,64 @@
+@model BookCave.Models.InputModels.CheckoutInputModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<div class="col-xs-12 col-md-6">
+    <h2>Shipping Address</h2>
+    <form asp-action="BuyingCart" asp-route-UserId="@Model.UserId">
+        <div class="form-group col-xs-12 col-md-6">
+            <label asp-for="Email">Email Address</label>
+            <input type="email" class="form-control" asp-for="Email" name="Email" placeholder="Email" value="@Model.Email" readonly>
+        </div>
+        <div class="form-group col-xs-12 col-md-6">
+            <label asp-for="FullName">Full Name</label>
+            <input type="text" class="form-control" asp-for="FullName" name="FullName" placeholder="Full Name" value="@Model.FullName">
+            <span asp-validation-for="FullName" class="text-danger" ></span>
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+            <label asp-for="ShippingAddress">Shipping Address</label>
+            <input type="text" class="form-control" asp-for="ShippingAddress" name="ShippingAddress" placeholder="Shipping Address" value="@Model.ShippingAddress">
+            <span asp-validation-for="ShippingAddress" class="text-danger" ></span>
+        </div>
+        <div class="form-group col-xs-12 col-md-6">
+            <label asp-for="Country">Country</label>
+            <input type="text" class="form-control" asp-for="Country" name="Country" placeholder="Country" value="@Model.Country">
+            <span asp-validation-for="Country" class="text-danger" ></span>
+        </div>
+        <div class="form-group col-xs-12 col-md-6">
+            <label asp-for="City">City</label>
+            <input type="text" class="form-control" asp-for="City" name="City" placeholder="City" value="@Model.City">
+            <span asp-validation-for="City" class="text-danger" ></span>
+        </div>
+        <div class="form-group col-xs-12 col-md-6">
+            <label asp-for="State">State</label>
+            <input type="text" class="form-control" asp-for="State" name="State" placeholder="State" value="@Model.State">
+        </div>
+        <div class="form-group col-xs-12 col-md-6">
+            <label asp-for="PostCode">Post Code</label>
+            <input type="text" class="form-control" asp-for="PostCode" name="PostCode" placeholder="PostCode" value="@Model.PostCode">
+            <span asp-validation-for="PostCode" class="text-danger" ></span>
+        </div>
+</div>
+<div class="col-xs-12 col-md-6">
+    <h2>Payment Informations</h2>
+    <div class="form-group col-xs-12">
+        <label asp-for="CardNumber">Card Number:</label>
+        <input type="text" class="form-control" asp-for="CardNumber" name="CardNumber" placeholder="CardNumber">
+    </div>
+    <div class="form-group col-xs-4">
+        <label asp-for="ExpMonth">ExpMonth:</label>
+        <input type="text" class="form-control" asp-for="ExpMonth" name="ExpMonth" placeholder="ExpMonth">
+    </div>
+    <div class="form-group col-xs-4">
+        <label asp-for="ExpYear">ExpYear:</label>
+        <input type="text" class="form-control" asp-for="ExpYear" name="ExpYear" placeholder="ExpYear">
+    </div>
+    <div class="form-group col-xs-4">
+        <label asp-for="SecurityCode">Security Code:</label>
+        <input type="text" class="form-control" asp-for="SecurityCode" name="SecurityCode" placeholder="SecurityCode">
+    </div>
+    <button type="submit" class="col-xs-12 col-md-5 col-md-offset-7 btn btn-warning">Continue</button>
+    </form>
+
+</div>
