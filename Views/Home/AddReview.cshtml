@@ -8,6 +8,7 @@
 <div>
     <form asp-controller="Home" asp-action="AddReview">
         <textarea asp-for="@Model.Comment" cols="30" rows="10"></textarea>
+        <input asp-for="@Model.Rating" type="text">
         <button type="submit" class="btn btn-warning">
         <span class="glyphicon glyphicon-ok"></span> Write a review</button>
     </form>
