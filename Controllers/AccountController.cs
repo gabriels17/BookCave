@@ -37,7 +37,7 @@ namespace BookCave.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel registerModel)
+        public async Task<IActionResult> Register(RegisterInputModel registerModel)
         {
             if(!ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace BookCave.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel loginModel)
+        public async Task<IActionResult> Login(LoginInputModel loginModel)
         {
             if(!ModelState.IsValid)
             {
@@ -136,12 +136,18 @@ namespace BookCave.Controllers
                 LastName = user.LastName, 
                 FavoriteBook = user.FavoriteBook,
                 Email = user.Email,
-                Image = user.Image
+                Image = user.Image,
+                FullName = user.FullName,
+                ShippingAddress = user.ShippingAddress,
+                City = user.City,
+                State = user.State,
+                Postcode = user.Postcode,
+                Country = user.Country
             };
 
             if (string.IsNullOrEmpty(profile.Image))
             {
-                profile.Image = "https://cdn.pixabay.com/photo/2013/07/12/19/15/gangster-154425_960_720.png";
+                profile.Image = "https://cdn.iconscout.com/public/images/icon/free/png-512/avatar-user-hacker-3830b32ad9e0802c-512x512.png";
             }
 
             return View(profile);
@@ -158,13 +164,14 @@ namespace BookCave.Controllers
                 FirstName = user.FirstName, 
                 LastName = user.LastName, 
                 FavoriteBook = user.FavoriteBook,
-                Image = user.Image
+                Image = user.Image,
+                FullName = user.FullName,
+                ShippingAddress = user.ShippingAddress,
+                City = user.City,
+                State = user.State,
+                Postcode = user.Postcode,
+                Country = user.Country
             };
-
-            if (string.IsNullOrEmpty(profile.Image))
-            {
-                profile.Image = "https://cdn.pixabay.com/photo/2013/07/12/19/15/gangster-154425_960_720.png";
-            }
 
             return View(profile);
         }
@@ -186,6 +193,12 @@ namespace BookCave.Controllers
             user.LastName = model.LastName;
             user.FavoriteBook = model.FavoriteBook;
             user.Image = model.Image;
+            user.FullName = model.FullName;
+            user.ShippingAddress = model.ShippingAddress;
+            user.City = model.City;
+            user.State = model.State;
+            user.Postcode = model.Postcode;
+            user.Country = model.Country;
 
             var result = await _userManager.UpdateAsync(user);
 

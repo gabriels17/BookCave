@@ -13,7 +13,7 @@ namespace BookCave.Services
         {
             _accountRepo = new AccountRepo();
         }
-        public void ProcessLogin(LoginViewModel Login)
+        public void ProcessLogin(LoginInputModel Login)
         {
             if(string.IsNullOrEmpty(Login.Email))
             {
@@ -30,17 +30,45 @@ namespace BookCave.Services
         {
             if(string.IsNullOrEmpty(profile.FirstName))
             {
-                throw new Exception("First name is missing!");
+                throw new Exception("First name is missing");
             }
 
             if(string.IsNullOrEmpty(profile.LastName))
             {
-                throw new Exception("Last name is missing!");
+                throw new Exception("Last name is missing");
+            }
+            if(string.IsNullOrEmpty(profile.FullName))
+            {
+                throw new Exception("Name is missing");
             }
 
+            if(string.IsNullOrEmpty(profile.ShippingAddress))
+            {
+                throw new Exception("Address is missing");
+            }
+
+            if(string.IsNullOrEmpty(profile.City))
+            {
+                throw new Exception("City is missing");
+            }
+
+            if(string.IsNullOrEmpty(profile.State))
+            {
+                throw new Exception("State is missing");
+            }
+
+            if(string.IsNullOrEmpty(profile.Postcode))
+            {
+                throw new Exception("Postcode is missing");
+            }
+
+            if(string.IsNullOrEmpty(profile.Country))
+            {
+                throw new Exception("Country is missing");
+            }
         }
 
-        public void ProcessRegister(RegisterViewModel Register)
+        public void ProcessRegister(RegisterInputModel Register)
         {
             if(string.IsNullOrEmpty(Register.Email))
             {

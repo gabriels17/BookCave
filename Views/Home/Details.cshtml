@@ -1,4 +1,4 @@
-@model BookCave.Models.ViewModels.BookDetailsViewModel
+@model BookCave.Models.ViewModels.DetailsViewModel
 
 @{
     ViewData["Title"] = "BookDetails";
@@ -6,28 +6,54 @@
 
 <fieldset>
     <div class="col-xs-4" id="imageDetails">
-        <img src="@Model.Image" alt="@Model.Id" class="img-thumbnail details-book-image" height="400px" width="300px">
+        <img src="@Model.Book.Image" alt="@Model.Book.Id" class="img-thumbnail details-book-image" height="400px" width="300px">
         <div class="stars-outer" id="rateStar">
             <div class="stars-inner">
-                <p class="ratings">@Model.Rating</p>
+                <p class="ratings">@Model.Book.Rating</p>
             </div>
         </div>
-        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-warning" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> @Model.Price$</a>
+        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Book.Id" class="btn btn-warning" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> @Model.Book.Price$</a>
         <br>
         <div id="adminButtons">
-            <a asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-warning">
+            <a asp-action="Edit" asp-route-id="@Model.Book.Id" type="button" class="btn btn-warning">
             <span class="glyphicon glyphicon-pencil"></span> Edit book</a>
-            <a class="btn btn-warning" id="delete">
-            <span class="glyphicon glyphicon-trash"></span> Delete book</a>  
+            <a asp-action="Delete" asp-route-id="@Model.Book.Id" class="btn btn-warning">
+            <span class="glyphicon glyphicon-trash"></span> Delete book</a>
         </div>
     </div>
     <div class="col-xs-8" id="bookInfo">
-        <h3 class="details-book-title">@Model.Title</h3>
-        <h4> By @Model.Author</h4>
-        <h5>Genre: @Model.Genre, Release date: @Model.ReleaseDate</h5>
+        <h3 class="details-book-title">@Model.Book.Title</h3>
+        <h4> By @Model.Book.Author</h4>
+        <h5>Genre: @Model.Book.Genre; Publication date: @Model.Book.ReleaseDate.ToString("dd/mm/yyyy/")</h5>
         <div class="panel panel-default">
-            <p id="detailsParagraph">@Model.Description</p>
+            <p id="detailsParagraph">@Model.Book.Description</p>
         </div>
     </div>
 </fieldset>
+<div class"col-xs-12">
+    <fieldset>
+        <legend>
+            Reviews
+        </legend>
+        @foreach(var review in Model.Reviews)
+        {
 
+            <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p Id="review-name">Name</p>
+                    <div class="stars-outer" id="rateStar">
+                        <div class="stars-inner">
+                            <p class="ratings">@review.Rating</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    @review.Comment
+                </div>
+            </div>
+            </div>
+        }
+    </fieldset>
+</div>

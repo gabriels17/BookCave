@@ -1,0 +1,34 @@
+@model BookCave.Models.InputModels.ReviewInputModel
+
+@{
+    ViewData["Title"] = "Add review";
+}
+
+<div>
+    <h2>Leave a review!</h2>
+    <h4>Tell us what you think!</h4>
+    <form class="form-horizontal" asp-controller="Home" asp-action="AddReview">
+        <textarea asp-for="Comment" cols="30" rows="10" autofocus="autofocus" placeholder="Your comment here..."></textarea>
+        <div class="form-group">
+        <!-- <input id="rating-input" asp-for="Rating" type="text"> -->
+        <ul class="rating">
+            <li>
+                <span class="ratingSelector">
+                <input type="radio" name="Rating" id="star1" value="1" class="radio"/>
+                <label class="full" for="star1"></label>
+                <input type="radio" name="Rating" id="star2" value="2" class="radio"/>
+                <label class="full" for="star2"></label>
+                <input type="radio" name="Rating" id="star3" value="3" class="radio"/>
+                <label class="full" for="star3"></label>
+                <input type="radio" name="Rating" id="star4" value="4" class="radio"/>
+                <label class="full" for="star4"></label>
+                <input type="radio" name="Rating" id="star5" value="5" class="radio"/>
+                <label class="full" for="star5"></label>
+                </span>
+            </li>
+        </ul>
+        </div>
+        <button type="submit" class="btn btn-warning">
+        <span class="glyphicon glyphicon-ok"></span> Write a review</button>
+    </form>
+</div>

@@ -45,6 +45,17 @@ namespace BookCave.Services
             var book = _bookRepo.GetBookById(id);
             return book; 
         }
+
+        public List<ReviewViewModel> GetReviews(int id)
+        {
+            var reviews = _bookRepo.GetReviews(id);
+            return(reviews);
+        }
+
+        public void AddReview(ReviewInputModel review)
+        {
+            _bookRepo.AddReview(review);
+        }
         public void AddBook(BookInputModel newBook)
         {
             _bookRepo.AddBook(newBook);
