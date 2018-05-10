@@ -4,33 +4,30 @@
     ViewData["Title"] = "BookDetails";
 }
 
-<div class="col-xs-12" id="bookDetails">
+<fieldset>
     <div class="col-xs-4" id="imageDetails">
-        <img src="@Model.Image" alt="Book Image" height="400px" width="300px">
-    </div>
-    <div class="col-xs-8" id="bookInfo">
-        <h3>@Model.Title</h3>
-        <h4>@Model.Author</h4>
-        <h5>Genre: @Model.Genre</h5>
-        <h5>Release date: @Model.ReleaseDate</h5>
-        <p id="detailsParagraph">@Model.Description</p>
-    </div>
-    <div class="col-xs-12" id="bookPricing">
-            <div class="stars-outer">
-                <div class="stars-inner">
-                    <p class="ratings">@Model.Rating</p>
-                </div>
+        <img src="@Model.Image" alt="Book Image" class="img-thumbnail" height="400px" width="300px">
+        <div class="stars-outer" id="rateStar">
+            <div class="stars-inner">
+                <p class="ratings">@Model.Rating</p>
             </div>
-            <p>@Model.Price $</p>
-    </div>
-        <div class="col-xs-4">
-            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-warning" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</a>
         </div>
-        <div class="col-xs-4 col-xs-offset-4 row">
+        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-warning" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> @Model.Price$</a>
+        <br>
+        <div id="adminButtons">
             <a asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-warning">
             <span class="glyphicon glyphicon-pencil"></span> Edit book</a>
             <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-warning">
-            <span class="glyphicon glyphicon-trash"></span> Delete book</a>
+            <span class="glyphicon glyphicon-trash"></span> Delete book</a>  
         </div>
-    <div class="col-xs-12" id="reviewSection"></div>
-</div>
+    </div>
+    <div class="col-xs-8" id="bookInfo">
+        <h3>@Model.Title</h3>
+        <h4> By @Model.Author</h4>
+        <h5>Genre: @Model.Genre, Release date: @Model.ReleaseDate</h5>
+        <div class="panel panel-default">
+            <p id="detailsParagraph">@Model.Description</p>
+        </div>
+    </div>
+</fieldset>
+

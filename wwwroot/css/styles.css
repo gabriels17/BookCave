@@ -183,3 +183,14 @@ a:hover
 {
     color: rgb(157, 157, 157);
 }
+
+#imageDetails
+{
+    margin-top: 15px;
+}
+
+#rateStar
+{
+    margin-bottom: 12px;
+}
+
