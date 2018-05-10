@@ -70,7 +70,27 @@ namespace BookCave.Services
 
         public void AddReview(ReviewInputModel review)
         {
+            var newRating = FindAverageRating(review);
+            _bookRepo.UpdateBookRating(review.BookId, newRating);
             _bookRepo.AddReview(review);
+        }
+
+        private double FindAverageRating(ReviewInputModel review)
+        {
+            var incomingRating = review.Rating;
+            var reviews = _bookRepo.GetReviews(review.BookId);
+
+            var sumOfRatings = 0.0;
+            foreach(var r in reviews)
+            {
+                sumOfRatings += r.Rating;
+            }
+
+            sumOfRatings += incomingRating;
+            var numberOfReviews = reviews.Count + 1;
+            var newRating = sumOfRatings / numberOfReviews;
+
+            return newRating;
         }
         public void AddBook(BookInputModel newBook)
         {
