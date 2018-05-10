@@ -133,22 +133,6 @@ namespace BookCave.Controllers
             return View(detail);
         }
 
-        private string GetUsernameByUserId(string userid)
-        {
-            var userstring = "Name not found";
-            var usernames = _userManager.Users;
-            foreach(var us in usernames)
-            {
-                if(us.Id == userid)
-                {
-                    userstring = us.FirstName;
-                    return(userstring);
-                }
-            }
-            return(userstring);
-        }
-
-
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Details(int BookId, DetailsInputViewModel model)
