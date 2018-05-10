@@ -25,7 +25,7 @@ namespace BookCave.Services
         public List<ReviewViewModel> GetReviews(string id)
         {
             var reviews = _bookRepo.GetReviewsByUserID(id);
-            
+
             return reviews;
         }
     }
