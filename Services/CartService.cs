@@ -34,5 +34,10 @@ namespace BookCave.Services
         {
              _cartRepo.RemoveFromCart(bookId, userId);
         }
+
+        public void CreateOrder(CartBoughtViewModel info)
+        {
+            _cartRepo.CreateOrder(info);
+        }
     }
 }

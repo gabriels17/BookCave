@@ -220,6 +220,11 @@ namespace BookCave.Controllers
                 return View(model);
             }
         }
+        public IActionResult Delete(int id)
+            {
+                _reviewService.DeleteReview(id);
+                return RedirectToAction("MyProfile");
+            }
 
         private async Task createRolesandUsers()
         {  

@@ -48,7 +48,7 @@
 </div>
 <div class="col-xs-12 col-md-6">
     <table class="table table-hover">
-        <tr>
+        <tr class="active">
             <th>Book Name</th>
             <th>Quantity</th>
             <th>Price</th>
@@ -61,12 +61,13 @@
                 <td>@((book.Price * book.Quantity).ToString())</td>
             </tr>
         }
-        <tr>
-            <td>Total Price</td>
+        <tr class="active">
+            <td>Total Price:</td>
+            <td></td>
             <td>@totalprice</td>
         </tr>
     </table>
-    <button type="warning" class="btn btn-warning">Go to checkout</button>
+    <a asp-controller="Cart" asp-action="CheckoutInformation" type="warning" class="btn btn-warning">Go to checkout</a>
 </div>
 
 
