@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BookCave.Models.ViewModels
+namespace BookCave.Models.InputModels
 {
-    public class LoginViewModel
+    public class LoginInputModel
     {
         [Required(ErrorMessage ="Email is required!")]
         [EmailAddress]

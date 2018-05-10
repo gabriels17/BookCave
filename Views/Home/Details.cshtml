@@ -32,14 +32,18 @@
         <div id="adminButtons">
             <a asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-warning">
             <span class="glyphicon glyphicon-pencil"></span> Edit book</a>
-            <a class="btn btn-warning" id="delete">
-            <span class="glyphicon glyphicon-trash"></span> Delete book</a>  
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-warning">
+            <span class="glyphicon glyphicon-trash"></span> Delete book</a>
+            <a asp-action="GetReview" asp-route-id="@Model.Id" class="btn btn-warning">
+            <span class="glyphicon glyphicon-eye-open"></span> See reviews</a>
+            <a asp-action="AddReview" asp-route-id="@Model.Id" class="btn btn-warning">
+            <span class="glyphicon glyphicon-star"></span> Write a review</a>
         </div>
     </div>
     <div class="col-xs-8" id="bookInfo">
         <h3 class="details-book-title">@Model.Title</h3>
         <h4> By @Model.Author</h4>
-        <h5>Genre: @Model.Genre, Release date: @Model.ReleaseDate</h5>
+        <h5>Genre: @Model.Genre; Publication date: @Model.ReleaseDate.ToString("dd/MM/yyyy")</h5>
         <div class="panel panel-default">
             <p id="detailsParagraph">@Model.Description</p>
         </div>

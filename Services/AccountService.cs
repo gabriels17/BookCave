@@ -13,7 +13,7 @@ namespace BookCave.Services
         {
             _accountRepo = new AccountRepo();
         }
-        public void ProcessLogin(LoginViewModel Login)
+        public void ProcessLogin(LoginInputModel Login)
         {
             if(string.IsNullOrEmpty(Login.Email))
             {
@@ -40,7 +40,7 @@ namespace BookCave.Services
 
         }
 
-        public void ProcessRegister(RegisterViewModel Register)
+        public void ProcessRegister(RegisterInputModel Register)
         {
             if(string.IsNullOrEmpty(Register.Email))
             {
