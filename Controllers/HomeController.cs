@@ -17,16 +17,19 @@ namespace BookCave.Controllers
     public class HomeController : Controller
     {
         private readonly IBookService _bookServiceError;
+
+        private readonly IReviewService _reviewService;
         private readonly UserManager<ApplicationUser> _userManager;
 
         private BookService _bookService;
 
-        public HomeController(IBookService bookService, UserManager<ApplicationUser> userManager)
+        public HomeController(IBookService bookService, UserManager<ApplicationUser> userManager, IReviewService reviewService)
         {
 
             _userManager = userManager;
             _bookServiceError = bookService;
             _bookService = new BookService();
+            _reviewService = reviewService;
         }
 
         public IActionResult Index()
@@ -138,6 +141,14 @@ namespace BookCave.Controllers
         [Authorize]
         public async Task<IActionResult> AddReview(ReviewInputModel review)
         {
+            if(!ModelState.IsValid)
+            {
+                ViewData["ErrorMessage"] = "Error";
+                return View();
+            }
+
+            _reviewService.ProcessReview(review);
+
             var user = await _userManager.GetUserAsync(User);
             review.UserId = user.Id;
             _bookService.AddReview(review);
