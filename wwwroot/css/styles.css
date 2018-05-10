@@ -240,10 +240,15 @@ a:hover
 {
     align-self: flex-end;
 }
-.add-quantity
+
+@media (min-width:979px)
 {
-    margin-bottom: 40%;
+    .add-quantity
+    {
+        margin-bottom: 40%;
+    }
 }
+
 .the-price
 {
     margin-bottom: 0px;
