@@ -242,7 +242,7 @@ namespace BookCave.Controllers
             if (!await _roleManager.RoleExistsAsync("Customer"))
             {
                 var role = new IdentityRole();
-                role.Name = "Employee";
+                role.Name = "Customer";
                 await _roleManager.CreateAsync(role);
             }
         }
