@@ -22,7 +22,6 @@ namespace BookCave.Controllers
         private readonly IAccountService _accountService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private ReviewService _reviewService;
 
         public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IAccountService accountService, RoleManager<IdentityRole> roleManager)
         {
@@ -32,7 +31,6 @@ namespace BookCave.Controllers
             _userManager = userManager;
             _accountService = accountService;
             _roleManager = roleManager;
-            _reviewService = new ReviewService();
         }
 
         [HttpGet]

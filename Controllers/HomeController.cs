@@ -192,7 +192,8 @@ namespace BookCave.Controllers
             {
                 if(_bookService.GetBookById(randomId) != null)
                 {
-                    return Details(randomId);
+                    var book = _bookService.GetBookById(randomId);
+                    return View("Details", book);
                 }
                 randomId = rnd.Next(allBooks.Count());
             }
