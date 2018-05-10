@@ -254,58 +254,40 @@ a:hover
     margin-bottom: 0px;
 }
 
-.rating input
-{
+.rating input {
     display: none;
 }
-
-.rating label:before
-{
+.rating label:before {
     margin: 5px;
     font-size: 1.25em;
     font-family: FontAwesome;
     display: inline-block;
     content:"\f005";
 }
-
-li
-{
-    list-style: none;
+li {
+    list-style:none;
 }
 
-.ratingSelector input + label
-{
+.ratingSelector input + label {
+    color: #FFD700;
+}
+.ratingSelector input:checked ~ input:not(:checked) ~ label {
     color: #ddd;
 }
-
-.ratingSelector input:checked ~ input:not(:checked) ~ label
-{
+.ratingSelector input:checked ~ input:not(:checked) + label:hover ~ label {
     color: #ddd;
 }
-
-.ratingSelector input:checked ~ input:not(:checked) + label:hover ~ label
-{
-    color: #ddd;
-}
-
 .ratingSelector:hover input + label,
-.ratingSelector:hover input:checked + label
-{
-    color: #FFD700;
+.ratingSelector:hover input:checked + label {
+    color: #FFED85;
 }
-
 .ratingSelector:hover input:checked ~ input:not(:checked) ~ label:hover,
-.ratingSelector:hover input:checked ~ input:not(:checked) + label
-{
+.ratingSelector:hover input:checked ~ input:not(:checked) + label {
     color: #FFD700;
 }
-
-.ratingSelector:hover input:checked ~ input:not(:checked) ~ label:hover ~ label
-{
+.ratingSelector:hover input:checked ~ input:not(:checked) ~ label:hover ~ label {
     color: #ddd !important;
 }
-
-.ratingSelector input + label:hover ~ label
-{
+.ratingSelector input + label:hover ~ label {
     color: #ddd !important;
 }
