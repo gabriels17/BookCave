@@ -114,13 +114,16 @@ namespace BookCave.Controllers
             }
             _bookServiceError.ProcessBook(newBook);
             _bookService.AddBook(newBook);
-                return RedirectToAction("Index");
-            
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult Details(int id)
         {
+            if(id == 0)
+            {
+                return View("Error");
+            }
             var idbook = _bookService.GetBookById(id);
             var reviews = _bookService.GetReviews(id);
             var detail = new DetailsInputViewModel();
@@ -171,7 +174,6 @@ namespace BookCave.Controllers
         [Authorize]
         public IActionResult Edit(int id)
         {
-            
             var bookToEdit = _bookService.GetBookById(id);
             ViewData["Name"] = bookToEdit.Title;
             return View(bookToEdit);
@@ -185,7 +187,7 @@ namespace BookCave.Controllers
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessage"] = "Error";
-                return View();
+                return View("Error");
             }
             _bookServiceError.ProcessBook(book);
             _bookService.UpdateBook(book);
@@ -201,23 +203,8 @@ namespace BookCave.Controllers
 
         public IActionResult GoToRandomBook()
         {
-            Random rnd = new Random();
-            var allBooks = _bookService.GetAllBooks();
-            int randomId = rnd.Next(_bookService.GetHighestBookId());
-            do
-            {
-                if(_bookService.GetBookById(randomId) != null)
-                {
-                    var book = _bookService.GetBookById(randomId);
-                    var newbook = new DetailsInputViewModel();
-                    newbook.Book = book;
-                    newbook.Reviews = _bookService.GetReviews(randomId);
-                    return View("Details", newbook);
-                }
-                randomId = rnd.Next(allBooks.Count());
-            }
-            while(_bookService.GetBookById(randomId) == null);
-            return View("Error");
+            var randomBook = _bookService.GoToRandomBook();
+            return View("Details", randomBook);
         }
     }
 }
