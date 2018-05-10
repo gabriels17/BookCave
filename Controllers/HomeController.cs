@@ -121,10 +121,10 @@ namespace BookCave.Controllers
         public IActionResult Details(int id)
         {
             var idbook = _bookService.GetBookById(id);
-            var reviews = _bookService.GetReviews(id);
+            var reviews = _bookService.GetReviews(id); 
 
             var username = _userManager.Users;
-            var modifiedReviews = _bookService.ChangeUserIdToName(reviews, username);
+            _bookService.ChangeUserIdToName(reviews, username);
         
             var detail = new DetailsViewModel();
             detail.Book = idbook;
