@@ -53,7 +53,7 @@ namespace BookCave.Services
             return(reviews);
         }
 
-        public List<ReviewViewModel> ChangeUserIdToName(List<ReviewViewModel> reviews, IQueryable<ApplicationUser> username)
+        public void ChangeUserIdToName(List<ReviewViewModel> reviews, IQueryable<ApplicationUser> username)
         {
             foreach(var r in reviews)
             {
@@ -65,7 +65,7 @@ namespace BookCave.Services
                     } 
                 }
             }
-            return(reviews);
+            // return(reviews);
         }
 
         public void AddReview(ReviewInputModel review)
