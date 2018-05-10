@@ -124,10 +124,13 @@ namespace BookCave.Controllers
             var idbook = _bookService.GetBookById(id);
             var reviews = _bookService.GetReviews(id);
             var detail = new DetailsInputViewModel();
+            var username = _userManager.Users;
+            _bookService.ChangeUserIdToName(reviews, username);
             detail.Book = idbook;
             detail.Reviews = reviews;
             return View(detail);
         }
+
 
         [HttpPost]
         [Authorize]
@@ -177,18 +180,6 @@ namespace BookCave.Controllers
         {
             _bookService.DeleteBook(id);
             return RedirectToAction("Index");
-        }
-
-        // [HttpPost]
-        // [Authorize]
-        // public void AddReview()
-        // {
-
-        // }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

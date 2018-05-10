@@ -57,14 +57,24 @@ namespace BookCave.Repositories
                          }).ToList());
             return cart;
         }
-        public void AddOrder()
-        {
-            return;
-        }
 
-        public void AddCart()
+        public void UpdateCart(int bookId, int quantity, string userId)
         {
-            return;
+            var checker = (from c in _db.Carts
+                            where c.BookId == bookId && c.UserId == userId
+                            select c).SingleOrDefault();
+
+                checker.Quantity = quantity;
+                _db.SaveChanges();
+        }
+        
+        public void RemoveFromCart(int bookId, string userId)
+        {
+            var checker = (from c in _db.Carts
+                            where c.BookId == bookId && c.UserId == userId
+                            select c).SingleOrDefault();
+                _db.Remove(checker);
+                _db.SaveChanges();
         }
     }
 }

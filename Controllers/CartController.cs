@@ -32,5 +32,42 @@ namespace BookCave.Controllers
 
             return View(thecart);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCart(int bookId, int quantity)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            _cartService.UpdateCart(bookId, quantity, userId);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveFromCart(int bookId)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            _cartService.RemoveFromCart(bookId, userId);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> CheckoutInformation()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            var info = new CheckoutViewModel {
+                Id = user.Id,
+                Email = user.Email,
+                FullName = user.FullName,
+                ShippingAddress = user.ShippingAddress,
+                City = user.City,
+                State = user.State,
+                Postcode = user.Postcode,
+                Country = user.Country
+            };
+
+            return View(info);
+        }
+
     }
 }

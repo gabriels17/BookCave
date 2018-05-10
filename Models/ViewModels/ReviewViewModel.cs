@@ -9,5 +9,6 @@ namespace BookCave.Models.ViewModels
         public string Comment { get; set; }
         public string UserId { get; set; }
         public int BookId { get; set; }
+        public string BookName { get; set; }
     }
 }
