@@ -1,15 +1,16 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace BookCave.Models.ViewModels
+namespace BookCave.Models.InputModels
 {
-    public class ProfileViewModel
+    public class ProfileInputModel
     {
         public string Id { get; set; }
+        [Required(ErrorMessage ="First name is required!")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage ="Last name is required!")]
         public string LastName { get; set; }
         public string FavoriteBook { get; set; }
-        public string Email { get; set; }
         public string Image { get; set; }
         public string FullName { get; set; }
         public string ShippingAddress { get; set; }

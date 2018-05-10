@@ -10,6 +10,7 @@ using BookCave.Models.ViewModels;
 using BookCave.Services;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Controllers
 {
@@ -50,7 +51,10 @@ namespace BookCave.Controllers
 
             var user = new ApplicationUser
             {
-                UserName = registerModel.Email, Email = registerModel.Email
+                FirstName = registerModel.FirstName,
+                LastName = registerModel.LastName,
+                UserName = registerModel.Email, 
+                Email = registerModel.Email
             };
 
             var result = await _userManager.CreateAsync(user, registerModel.Password);
@@ -94,7 +98,7 @@ namespace BookCave.Controllers
             }
             else
             {
-                ViewData["ErrorMessage"] = "Email or password is incorrect";
+                ViewData["ErrorMessage"] = "Email address or password is incorrect";
                 return View();
             }
         }
@@ -127,20 +131,54 @@ namespace BookCave.Controllers
             var user = await _userManager.GetUserAsync(User);
             var profile = new ProfileViewModel 
             {
+                Id = user.Id,
                 FirstName = user.FirstName, 
                 LastName = user.LastName, 
-                FavoriteBook = user.FavoriteBook, 
-                Email = user.Email, 
+                FavoriteBook = user.FavoriteBook,
+                Email = user.Email,
                 Image = user.Image
             };
+
+            if (string.IsNullOrEmpty(profile.Image))
+            {
+                profile.Image = "https://cdn.pixabay.com/photo/2013/07/12/19/15/gangster-154425_960_720.png";
+            }
+
+            return View(profile);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> EditProfile()
+        {
+            // Get User Data
+            var user = await _userManager.GetUserAsync(User);
+            var profile = new ProfileInputModel 
+            {
+                Id = user.Id,
+                FirstName = user.FirstName, 
+                LastName = user.LastName, 
+                FavoriteBook = user.FavoriteBook,
+                Image = user.Image
+            };
+
+            if (string.IsNullOrEmpty(profile.Image))
+            {
+                profile.Image = "https://cdn.pixabay.com/photo/2013/07/12/19/15/gangster-154425_960_720.png";
+            }
 
             return View(profile);
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> MyProfile(ProfileViewModel model)
+        public async Task<IActionResult> EditProfile(ProfileInputModel model)
         {
+            if(!ModelState.IsValid)
+            {
+                ViewData["ErrorMessages"] = "Error";
+                return View();
+            }
+            _accountService.ProcessProfile(model);
             var user = await _userManager.GetUserAsync(User);
             
             //Update Properties
@@ -149,14 +187,49 @@ namespace BookCave.Controllers
             user.FavoriteBook = model.FavoriteBook;
             user.Image = model.Image;
 
-            await _userManager.UpdateAsync(user);
+            var result = await _userManager.UpdateAsync(user);
 
-            return View(model);
+            if(result.Succeeded)
+            {
+                return RedirectToAction("MyProfile", "Account");
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "Failed to save changes, please try again";
+                return View(model);
+            }
         }
 
-        public void AddReview()
-        {
-            
-        }
+        // private async Task createRolesandUsers()
+        // {  
+        //     if (!await _roleManager.RoleExistsAsync("Admin"))
+        //     {
+        //         var role = new IdentityRole();
+        //         role.Name = "Admin";
+        //         await _roleManager.CreateAsync(role);
+
+        //         var user = new ApplicationUser();
+        //         user.UserName = "admin";
+        //         user.Email = "admin@bookcave.com";
+        //         string userPWD = "admin";
+
+        //         IdentityResult newUser = await _userManager.CreateAsync(user, userPWD);
+
+        //         //Add default User to Role Admin
+        //         if (newUser.Succeeded)
+        //         {
+        //             var result1 = await _userManager.AddToRoleAsync(user, "admin");
+        //         }
+        //     }
+
+        //     // Creating Customer role     
+        //     x = await _roleManager.RoleExistsAsync("Customer");
+        //     if (!x)
+        //     {
+        //         var role = new IdentityRole();
+        //         role.Name = "Employee";
+        //         await _roleManager.CreateAsync(role);
+        //     }
+        // }
     }
 }

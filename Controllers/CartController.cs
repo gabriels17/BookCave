@@ -24,14 +24,13 @@ namespace BookCave.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            var thecart = _cartService.GetCart(userId);
 
-        public void AddToCart()
-        {
-            //_cartService.AddToCart();
+            return View(thecart);
         }
     }
 }

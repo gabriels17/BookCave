@@ -53,6 +53,8 @@ namespace BookCave.Migrations
 
                     b.Property<int>("BookId");
 
+                    b.Property<int>("Quantity");
+
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
@@ -71,7 +73,7 @@ namespace BookCave.Migrations
 
                     b.Property<double>("Rating");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 

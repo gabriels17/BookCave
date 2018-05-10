@@ -2,6 +2,7 @@ using System;
 using BookCave.Models.ViewModels;
 using BookCave.Models;
 using BookCave.Repositories;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Services
 {
@@ -23,6 +24,20 @@ namespace BookCave.Services
             {
                 throw new Exception("Password is missing!");
             }
+        }
+
+        public void ProcessProfile(ProfileInputModel profile)
+        {
+            if(string.IsNullOrEmpty(profile.FirstName))
+            {
+                throw new Exception("First name is missing!");
+            }
+
+            if(string.IsNullOrEmpty(profile.LastName))
+            {
+                throw new Exception("Last name is missing!");
+            }
+
         }
 
         public void ProcessRegister(RegisterViewModel Register)
