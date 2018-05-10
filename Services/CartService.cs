@@ -24,5 +24,15 @@ namespace BookCave.Services
 
             return thecart;
         }
+
+        public void UpdateCart(int bookId, int quantity, string userId)
+        {
+            _cartRepo.UpdateCart(bookId, quantity, userId);
+        }
+
+        public void RemoveFromCart(int bookId, string userId)
+        {
+             _cartRepo.RemoveFromCart(bookId, userId);
+        }
     }
 }

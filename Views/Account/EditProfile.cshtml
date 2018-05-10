@@ -40,22 +40,27 @@
                         <div class="form-group col-md-8">
                             <label asp-for="FullName">Full name: </label>
                             <input type="text" class="form-control" asp-for="FullName" placeholder="Enter your full name..." value="@Model.FullName" />
+                            <span asp-validation-for="FullName" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-8">
                             <label asp-for="ShippingAddress">Shipping address: </label>
                             <input type="text" class="form-control" asp-for="ShippingAddress" placeholder="Enter your shipping address..." value="@Model.ShippingAddress" />
+                            <span asp-validation-for="ShippingAddress" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-8">
                             <label asp-for="City">City/Town: </label>
                             <input type="text" class="form-control" asp-for="City" placeholder="Enter your city/town..." value="@Model.City" />
+                            <span asp-validation-for="City" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-8">
                             <label asp-for="State">County/State: </label>
                             <input type="text" class="form-control" asp-for="State" placeholder="Enter your country/state..." value="@Model.State" />
+                            <span asp-validation-for="State" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-8">
                             <label asp-for="Postcode">Postcode: </label>
                             <input type="text" class="form-control" asp-for="Postcode" placeholder="Postcode" value="@Model.Postcode" />
+                            <span asp-validation-for="Postcode" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-8">
                             <label asp-for="Country">Country: </label>
@@ -69,6 +74,7 @@
                                 <option value="Scotland">Scotland</option>
                                 <option value="Greenland">Greenland</option>
                             </select>
+                            <span asp-validation-for="Country" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -78,5 +84,6 @@
     <div class="row col-md-3 col-md-offset-9">
         <a id="btn-Profile" class="btn btn-warning" asp-controller="Account" asp-action="MyProfile">Cancel</a>
         <input id="btn-Profile" type="submit" class="btn btn-warning" value="Save Changes" />
+        <div class="text-danger">@ViewData["ErrorMessage"]</div>
     </div>
 </form>

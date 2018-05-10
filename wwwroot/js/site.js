@@ -47,21 +47,3 @@ $("#delete").click(function() {
         }
         });
 });
-
-$(".add-quantity").click(function() {
-    var bookquantity = $(this).parent().find(".book-quantity");
-    var quantity = parseInt(bookquantity.val()) + 1;
-    bookquantity.val(quantity);
-});
-
-$(".subtract-quantity").click(function() {
-    var bookquantity = $(this).parent().find(".book-quantity");
-    var quantity = parseInt(bookquantity.val());
-    if(quantity > 1)
-    {
-        quantity--;
-    }
-    bookquantity.val(quantity);
-});
-
-document.getElementById('star1').checked = true;

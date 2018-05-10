@@ -16,7 +16,7 @@ namespace BookCave.Services
         }
         public void ProcessReview(ReviewInputModel review)
         {
-            if(review.Rating <= 0 || review.Rating > 5) 
+            if(review.Rating <= 0 || 5 < review.Rating) 
             {
                 throw new Exception("Rating is invalid!");
             }

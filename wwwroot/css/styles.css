@@ -271,7 +271,6 @@ a:hover
 }
 .cart-item
 {
-    background-color: grey;
     width: 100%;
     margin-bottom: 10px;
 }
@@ -297,7 +296,15 @@ a:hover
 {
     margin-bottom: 0px;
 }
+.book-quantity
+{
+    width: 50%;
+}
 
+#review-name
+{
+    display: inline;
+}
 .rating input {
     display: none;
 }
