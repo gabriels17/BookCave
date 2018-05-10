@@ -111,9 +111,11 @@ a:hover
 
 .img-resize-profile
 {
-  margin-top: 25px;
+  margin: auto;
   max-height: 250px;
   max-width: 250px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .book-title
@@ -194,3 +196,25 @@ a:hover
     margin-bottom: 12px;
 }
 
+#Profile
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    Border: solid;
+    background-color: #f1ddc1;
+}
+
+#tabs
+{
+    margin-top: 30px;
+}
+
+#ShippingPayment
+{
+    margin-top: 10px;
+}
+
+#btn-Profile
+{
+    margin-bottom: 10px;
+}

@@ -139,7 +139,7 @@ namespace BookCave.Controllers
                 Image = user.Image
             };
 
-            if (profile.Image == null)
+            if (string.IsNullOrEmpty(profile.Image))
             {
                 profile.Image = "https://cdn.pixabay.com/photo/2013/07/12/19/15/gangster-154425_960_720.png";
             }
@@ -161,7 +161,7 @@ namespace BookCave.Controllers
                 Image = user.Image
             };
 
-            if (profile.Image == null)
+            if (string.IsNullOrEmpty(profile.Image))
             {
                 profile.Image = "https://cdn.pixabay.com/photo/2013/07/12/19/15/gangster-154425_960_720.png";
             }
@@ -200,9 +200,36 @@ namespace BookCave.Controllers
             }
         }
 
-        public void AddReview()
-        {
-            
-        }
+        // private async Task createRolesandUsers()
+        // {  
+        //     if (!await _roleManager.RoleExistsAsync("Admin"))
+        //     {
+        //         var role = new IdentityRole();
+        //         role.Name = "Admin";
+        //         await _roleManager.CreateAsync(role);
+
+        //         var user = new ApplicationUser();
+        //         user.UserName = "admin";
+        //         user.Email = "admin@bookcave.com";
+        //         string userPWD = "admin";
+
+        //         IdentityResult newUser = await _userManager.CreateAsync(user, userPWD);
+
+        //         //Add default User to Role Admin
+        //         if (newUser.Succeeded)
+        //         {
+        //             var result1 = await _userManager.AddToRoleAsync(user, "admin");
+        //         }
+        //     }
+
+        //     // Creating Customer role     
+        //     x = await _roleManager.RoleExistsAsync("Customer");
+        //     if (!x)
+        //     {
+        //         var role = new IdentityRole();
+        //         role.Name = "Employee";
+        //         await _roleManager.CreateAsync(role);
+        //     }
+        // }
     }
 }
