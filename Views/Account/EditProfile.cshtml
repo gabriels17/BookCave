@@ -25,76 +25,51 @@
             <input type="text" class="form-control" asp-for="FavoriteBook" placeholder="Enter your favorite book..." value="@Model.FavoriteBook" />
         </div>
     </div>
-
-    <div id="tabs" class="container col-md-8 col-md-offset-1">
-        <ul class="nav nav-tabs">
-            <li class="acive">
-                <a href="#ShippingPayment" data-toggle="tab">Shipping and payment</a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active container" id="ShippingPayment">
-                <div id="Shipping" class="col-md-4">
-                    <div class="form-group col-md-12">
-                        <label asp-for="FullName">Full name: </label>
-                        <input type="text" class="form-control" asp-for="FullName" placeholder="Enter your full name..." value="@Model.FullName" />
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label asp-for="ShippingAddress">Shipping address: </label>
-                        <input type="text" class="form-control" asp-for="ShippingAddress" placeholder="Enter your shipping address..." value="@Model.ShippingAddress" />
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label asp-for="City">City/Town: </label>
-                        <input type="text" class="form-control" asp-for="City" placeholder="Enter your city/town..." value="@Model.City" />
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label asp-for="State">County/State: </label>
-                        <input type="text" class="form-control" asp-for="State" placeholder="Enter your country/state..." value="@Model.State" />
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label asp-for="Postcode">Postcode: </label>
-                        <input type="text" class="form-control" asp-for="Postcode" placeholder="Postcode" value="@Model.Postcode" />
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label asp-for="Country">Country: </label>
-                        <select name="Country" class="form-control" asp-for="Country" value="@Model.Country" >
-                            <option value="Iceland">Iceland</option>
-                            <option value="Norway">Norway</option>
-                            <option value="Spain">Spain</option>
-                            <option value="Germany">Germany</option>
-                            <option value="England">England</option>
-                            <option value="Ireland">Ireland</option>
-                            <option value="Scotland">Scotland</option>
-                            <option value="Greenland">Greenland</option>
-                        </select>
-
-                    </div>
-                </div>
-                <div id="Payment" class="col-md-4">
-                     <div class="form-group col-md-12">
-                        <label asp-for="NameOnCard">Name on card: </label>
-                        <input type="text" class="form-control" asp-for="NameOnCard" placeholder="Enter name on card..." value="@Model.NameOnCard" />
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label asp-for="CardType">Card type: </label>
-                        <select name="Card type" class="form-control" asp-for="CardType" value="@Model.CardType" >
-                            <option value="MasterCard">MasterCard</option>
-                            <option value="Visa">Visa</option>
-                            <option value="Maestro">Maestro</option>
-                            <option value="American Express">American Express</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label asp-for="CardNumber">Card number: </label>
-                        <input type="text" class="form-control" asp-for="CardNumber" placeholder="Enter Card number..." value="@Model.CardNumber" />
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label asp-for="SecurityCode">Security code: </label>
-                        <input type="text" class="form-control" asp-for="SecurityCode" placeholder="Enter your country/state..." value="@Model.SecurityCode" />
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label asp-for="ValidDate">Valid to: </label>
-                        <input type="date" class="form-control" asp-for="ValidDate" value="@Model.ValidDate" />
+    <div class="container col-md-7 col-md-offset-1">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li class="acive">
+                        <a href="EditShipping" data-toggle="tab">Edit Shipping info</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="EditShipping">
+                        <div class="form-group col-md-8">
+                            <label asp-for="FullName">Full name: </label>
+                            <input type="text" class="form-control" asp-for="FullName" placeholder="Enter your full name..." value="@Model.FullName" />
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label asp-for="ShippingAddress">Shipping address: </label>
+                            <input type="text" class="form-control" asp-for="ShippingAddress" placeholder="Enter your shipping address..." value="@Model.ShippingAddress" />
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label asp-for="City">City/Town: </label>
+                            <input type="text" class="form-control" asp-for="City" placeholder="Enter your city/town..." value="@Model.City" />
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label asp-for="State">County/State: </label>
+                            <input type="text" class="form-control" asp-for="State" placeholder="Enter your country/state..." value="@Model.State" />
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label asp-for="Postcode">Postcode: </label>
+                            <input type="text" class="form-control" asp-for="Postcode" placeholder="Postcode" value="@Model.Postcode" />
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label asp-for="Country">Country: </label>
+                            <select name="Country" class="form-control" asp-for="Country" value="@Model.Country" >
+                                <option value="Iceland">Iceland</option>
+                                <option value="Norway">Norway</option>
+                                <option value="Spain">Spain</option>
+                                <option value="Germany">Germany</option>
+                                <option value="England">England</option>
+                                <option value="Ireland">Ireland</option>
+                                <option value="Scotland">Scotland</option>
+                                <option value="Greenland">Greenland</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
