@@ -1,5 +1,4 @@
-using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace BookCave.Models.ViewModels
 {
@@ -17,5 +16,6 @@ namespace BookCave.Models.ViewModels
         public string State { get; set; }
         public string Postcode { get; set; }
         public string Country { get; set; }
+        public List<ReviewViewModel> Reviews { get; set; }
     }
 }

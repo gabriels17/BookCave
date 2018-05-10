@@ -18,6 +18,7 @@ namespace BookCave.Controllers
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private CartService _cartService;
+        private ReviewService _reviewService;
 
         private readonly IAccountService _accountService;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -26,7 +27,9 @@ namespace BookCave.Controllers
             _cartService = new CartService();
             _signInManager = signInManager;
             _userManager = userManager;
-            _accountService = accountService;
+            _accountService = new AccountService();
+            _reviewService = new ReviewService();
+
         }
 
         [HttpGet]
@@ -129,6 +132,7 @@ namespace BookCave.Controllers
         {
             // Get User Data
             var user = await _userManager.GetUserAsync(User);
+            var review = _reviewService.GetReviews(user.Id);
             var profile = new ProfileViewModel 
             {
                 Id = user.Id,
@@ -142,7 +146,8 @@ namespace BookCave.Controllers
                 City = user.City,
                 State = user.State,
                 Postcode = user.Postcode,
-                Country = user.Country
+                Country = user.Country,
+                Reviews = review
             };
 
             if (string.IsNullOrEmpty(profile.Image))
