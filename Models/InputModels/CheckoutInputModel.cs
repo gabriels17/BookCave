@@ -18,11 +18,13 @@ namespace BookCave.Models.InputModels
         public string PostCode { get; set; }
         [Required(ErrorMessage = "Country is required!")]
         public string Country { get; set; }
-
+        [Required(ErrorMessage = "Card number is required!")]
         public string CardNumber { get; set;}
+        [Range(1, 12, ErrorMessage = "Expire month is required!")]
         public string ExpMonth { get; set; }
-
+        [Range(2018, 3000, ErrorMessage = "Expire year is required!")]
         public string ExpYear { get; set; }
+        [Required(ErrorMessage = "Security code is required!")]
         
         public string SecurityCode { get; set; }
 
