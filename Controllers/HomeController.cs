@@ -139,7 +139,7 @@ namespace BookCave.Controllers
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessage"] = "Error";
-                return View();
+                return RedirectToAction("Details", "Home");
             }
             var review = model.Input;
             review.BookId = BookId;
@@ -147,7 +147,7 @@ namespace BookCave.Controllers
             var user = await _userManager.GetUserAsync(User);
             review.UserId = user.Id;
             _bookService.AddReview(review);
-            return RedirectToAction("Index");
+           return RedirectToAction("Details", "Home");
         }
 
         [HttpGet]

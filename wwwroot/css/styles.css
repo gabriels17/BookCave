@@ -360,3 +360,8 @@ li {
 .ratingSelector input + label:hover ~ label {
     color: #ddd !important;
 }
+
+#submit-review
+{
+    margin-top: 5px;
+}
