@@ -37,7 +37,7 @@ namespace BookCave.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel registerModel)
+        public async Task<IActionResult> Register(RegisterInputModel registerModel)
         {
             if(!ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace BookCave.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel loginModel)
+        public async Task<IActionResult> Login(LoginInputModel loginModel)
         {
             if(!ModelState.IsValid)
             {
