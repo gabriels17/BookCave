@@ -166,6 +166,13 @@ namespace BookCave.Repositories
                             UserId = r.UserId,
                             BookId = r.BookId
                         }).ToList();
+                        
+            foreach(var review in reviews)
+            {
+                var book = GetBookById(review.BookId);
+                review.BookName = book.Title;
+            }
+
             return reviews;
         }
 

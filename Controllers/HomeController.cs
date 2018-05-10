@@ -182,17 +182,5 @@ namespace BookCave.Controllers
             _bookService.DeleteBook(id);
             return RedirectToAction("Index");
         }
-
-        // [HttpPost]
-        // [Authorize]
-        // public void AddReview()
-        // {
-
-        // }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

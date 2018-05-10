@@ -30,17 +30,27 @@
         <div class="panel-body">
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="Reviews">
-                    <h3>Your reviews</h3>
-                    @foreach(var review in Model.Reviews)
-                    {
-                        <div class="container">
-                            <h2>Name</h2>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Rating: @review.Rating</div>
-                                <div class="panel-body">@review.Comment</div>
+                    <div class="col-xs-12" id="bookDetails">
+                        <h3 id="reviewTitle">Your reviews</h3>
+                        @foreach(var review in Model.Reviews)
+                        {
+                            <div class="container col-md-10">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <p id="bookname">@review.BookName</p>
+                                        <div class="stars-outer">
+                                            <div class="stars-inner">
+                                                <p class="ratings">@review.Rating</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p>@review.Comment</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="Shipping">
                     <p><b>Full name:</b> @Model.FullName</p>
