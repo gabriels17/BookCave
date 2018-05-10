@@ -177,9 +177,6 @@ a:hover
 {
     background-color: rgb(34, 34, 34);
     color: rgb(157, 157, 157);
-    width: 100%;
-    height: 100px;
-    width: 100%;
 }
 
 .footer a
@@ -207,6 +204,11 @@ a:hover
     border-style: solid;
     border-color: #ebccd1;
     background-color: #fff;
+}
+
+.container
+{
+    height: 100%;
 }
 
 .panel
@@ -359,4 +361,9 @@ li {
 }
 .ratingSelector input + label:hover ~ label {
     color: #ddd !important;
+}
+
+#submit-review
+{
+    margin-top: 5px;
 }

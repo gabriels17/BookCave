@@ -24,7 +24,7 @@
     <div class="col-xs-8" id="bookInfo">
         <h3 class="details-book-title">@Model.Book.Title</h3>
         <h4> By @Model.Book.Author</h4>
-        <h5>Genre: @Model.Book.Genre; Publication date: @Model.Book.ReleaseDate.ToString("dd/mm/yyyy/")</h5>
+        <h5>Genre: @Model.Book.Genre; Publication date: @Model.Book.ReleaseDate.ToString("dd/MM/yyyy")</h5>
         <div class="panel panel-default">
             <p id="detailsParagraph">@Model.Book.Description</p>
         </div>
@@ -35,29 +35,36 @@
         <legend>
             Reviews
         </legend>
-        <form class="form-horizontal" asp-controller="Home" asp-action="Details" asp-route-BookId="@Model.Book.Id">
-        <textarea asp-for="@Model.Input.Comment" cols="40" rows="5"  placeholder="Your comment here..."></textarea>
-        <input type="double" class="form-control" asp-for="@Model.Input.Rating" placeholder="Rating">
-        <span asp-validation-for="@Model.Input.Rating" class="text-danger" ></span>
-        <button type="submit" class="btn btn-warning">
-        <span class="glyphicon glyphicon-ok"></span> Write a review</button>
-    </form>
+        <div class="col-xs-3">
+            <form class="form-horizontal" asp-controller="Home" asp-action="Details" asp-route-BookId="@Model.Book.Id">
+                <textarea asp-for="@Model.Input.Comment" cols="40" rows="5"  placeholder="Share your thoughts...."></textarea>
+                <select class="form-control" asp-for="@Model.Input.Rating" >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button type="submit" class="btn btn-warning" id="submit-review">
+                <span class="glyphicon glyphicon-ok"></span> Leave a review</button>
+        </div>
+        </form>
         @foreach(var review in Model.Reviews)
         {
-
-            <div class="container">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <p Id="review-name">@review.UserId</p>
-                    <div class="stars-outer" id="rateStar">
-                        <div class="stars-inner">
-                            <p class="ratings">@review.Rating</p>
+            <div class="col-xs-10">
+                <div class="container">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p Id="review-name">@review.UserId</p>
+                        <div class="stars-outer" id="rateStar">
+                            <div class="stars-inner">
+                                <p class="ratings">@review.Rating</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="panel-body">
-                    @review.Comment
+                    <div class="panel-body">
+                        @review.Comment
+                    </div>
                 </div>
             </div>
             </div>

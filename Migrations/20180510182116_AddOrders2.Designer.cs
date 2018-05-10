@@ -11,9 +11,10 @@ using System;
 namespace BookCave.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20180510182116_AddOrders2")]
+    partial class AddOrders2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,8 +71,6 @@ namespace BookCave.Migrations
                     b.Property<string>("Address");
 
                     b.Property<int>("BookId");
-
-                    b.Property<string>("City");
 
                     b.Property<string>("Country");
 

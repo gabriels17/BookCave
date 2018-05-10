@@ -76,5 +76,53 @@ namespace BookCave.Repositories
                 _db.Remove(checker);
                 _db.SaveChanges();
         }
+
+        public void CreateOrder(CartBoughtViewModel info)
+        {
+            var theorderId = (from i in _db.Orders
+                                select i.OrderId).LastOrDefault();
+            if(theorderId == 0)
+            {
+                theorderId = 1;
+            }
+            else
+            {
+                theorderId++;
+            }
+            var cart = (from c in _db.Carts
+                        where c.UserId == info.UserId
+                        select c).ToList();
+            var theOrder = new List<Order>();
+            for(int i = 0; i < cart.Count(); i++)
+            {
+                theOrder.Add(new Order {
+                    OrderId = theorderId,
+                    BookId = cart[i].BookId,
+                    UserId = info.UserId,
+                    Price = (from c in _db.Books
+                            where c.Id == cart[i].BookId
+                            select c.Price).FirstOrDefault(),
+                    Quantity = cart[i].Quantity,
+                    FullName = info.FullName,
+                    Address = info.ShippingAddress,
+                    Country = info.Country,
+                    City = info.City,
+                    PostCode = info.PostCode,
+                    State = info.State
+                });
+            }
+            _db.AddRange(theOrder);
+            _db.SaveChanges();
+            clearCart(info.UserId);
+        }
+
+        private void clearCart(string UserId)
+        {
+            var TheCart = (from c in _db.Carts
+                            where c.UserId == UserId
+                            select c).ToList();
+            _db.RemoveRange(TheCart);
+            _db.SaveChanges();
+        }
     }
 }

@@ -9,6 +9,7 @@ using BookCave.Models.ViewModels;
 using BookCave.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Controllers
 {
@@ -51,22 +52,46 @@ namespace BookCave.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> CheckoutInformation()
+        public async Task<IActionResult> CheckoutInformation(CheckoutInputModel info)
         {
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
-            var info = new CheckoutViewModel {
-                Id = user.Id,
-                Email = user.Email,
-                FullName = user.FullName,
-                ShippingAddress = user.ShippingAddress,
-                City = user.City,
-                State = user.State,
-                Postcode = user.Postcode,
-                Country = user.Country
-            };
+            if(info.UserId != userId)
+            {
+                info.UserId = user.Id;
+                info.Email = user.Email;
+                info.FullName = user.FullName;
+                info.ShippingAddress = user.ShippingAddress;
+                info.City = user.City;
+                info.State = user.State;
+                info.PostCode = user.Postcode;
+                info.Country = user.Country;
+
+            }
 
             return View(info);
+        }
+
+        public IActionResult BuyingCart(CheckoutInputModel info)
+        {
+            var buyingcartinfo = new BuyCartViewModel {
+                TheCart = _cartService.GetCart(info.UserId),
+                Info = info
+            };
+            return View(buyingcartinfo);
+        }
+
+        [HttpPost]
+        public IActionResult CartBought(CartBoughtViewModel info)
+        {
+            _cartService.CreateOrder(info);
+            return RedirectToAction("ThankYou", new { email = info.Email });
+        }
+
+        public IActionResult ThankYou(string email)
+        {
+            ViewData["Email"] = email; 
+            return View();
         }
 
     }

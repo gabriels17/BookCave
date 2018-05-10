@@ -156,7 +156,7 @@ namespace BookCave.Controllers
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessage"] = "Error";
-                return View();
+                return RedirectToAction("Details", "Home");
             }
             var review = model.Input;
             review.BookId = BookId;
@@ -164,7 +164,7 @@ namespace BookCave.Controllers
             var user = await _userManager.GetUserAsync(User);
             review.UserId = user.Id;
             _bookService.AddReview(review);
-            return RedirectToAction("Index");
+           return RedirectToAction("Details", "Home");
         }
 
         [HttpGet]
@@ -203,13 +203,16 @@ namespace BookCave.Controllers
         {
             Random rnd = new Random();
             var allBooks = _bookService.GetAllBooks();
-            int randomId = rnd.Next(allBooks.Count());
+            int randomId = rnd.Next(_bookService.GetHighestBookId());
             do
             {
                 if(_bookService.GetBookById(randomId) != null)
                 {
                     var book = _bookService.GetBookById(randomId);
-                    return View("Details", book);
+                    var newbook = new DetailsInputViewModel();
+                    newbook.Book = book;
+                    newbook.Reviews = _bookService.GetReviews(randomId);
+                    return View("Details", newbook);
                 }
                 randomId = rnd.Next(allBooks.Count());
             }
