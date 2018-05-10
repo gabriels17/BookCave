@@ -10,7 +10,7 @@
 @foreach(var review in Model)
 {
     <div class="container">
-    <h2>Name</h2>
+    <h2>@review.UserId</h2>
     <div class="panel panel-default">
         <div class="panel-heading">Rating: @review.Rating</div>
         <div class="panel-body">@review.Comment</div>

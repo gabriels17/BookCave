@@ -126,8 +126,9 @@ namespace BookCave.Controllers
         public IActionResult GetReview(int id)
         {
             var reviews = _bookService.GetReviews(id);
-            return View(reviews);
-            
+            var username = _userManager.Users;
+            var modifiedReviews = _bookService.ChangeUserIdToName(reviews, username);
+            return View(modifiedReviews);
         }
 
         [HttpGet]
