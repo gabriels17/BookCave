@@ -2,44 +2,71 @@
 @{
     ViewData["Title"] = "Cart";
 }
+@{
+    double totalprice = 0;
+    foreach (var book in Model)
+    {
+        totalprice += (book.Price * book.Quantity);
+    }
+}
 
-<h2>So long and thanks for all the fish!</h2>
 <h3>Your cart</h3>
-<div class="col-xs-12 col-md-6">
+<div class="cart-background col-xs-12 col-md-6">
     <div class="vertical-menu">
-        @foreach(var book in Model)
-        {
-            <div class="cart-item col-xs-12">
-                <div class="col-md-3 col-xs-12">
-                <img class="cart-image" src="@book.Image" alt="@book.Id">
-                </div>
-                <div class="col-md-5 col-xs-12">
-                    <h4 class="book-title">@book.Title</h4>
-                    <h5>@book.Author</h5>
-                </div>
-                <div class="cart-price col-xs-12 col-md-4">
-                    <div class="cart-price-aligner">
-                        <input type="text" class="col-xs-12 form-control book-quantity" value="@book.Quantity" readonly>
-                        <button class="btn col-md-5 col-xs-6 add-quantity">+</button>
-                        <button class="btn col-md-5 col-md-offset-2 col-xs-6 subtract-quantity">-</button>
-                        <div class="input-group col-md-offset-4 col-md-8 col-xs-12">
-                            <input type="text" class="form-control the-price" value="@book.Price" readonly>
-                            <span class="input-group-addon">$</span>
+            @foreach(var book in Model)
+            {
+                <div class="cart-item col-xs-10">
+                    <div class="col-md-3 col-xs-12">
+                        <img class="cart-image" src="@book.Image" alt="@book.Id">
+                    </div>
+                    <div class="col-md-5 col-xs-12">
+                        <div class="col-xs-12">
+                            <h4 class="book-title">@book.Title</h4>
+                            <h5>@book.Author</h5>
+                        </div>
+                        <div class="col-xs-12">
+                            <form method="POST" asp-action="UpdateCart" asp-route-bookId="@book.Id">
+                                <input type="text" class="col-xs-6 form-control book-quantity" name="quantity" value="@book.Quantity">
+                                <button class="col-xs-6 btn btn-warning" type="">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="cart-price col-xs-12 col-md-4">
+                        <div class="cart-price-aligner">
+                            <div class="input-group col-md-offset-4 col-md-8 col-xs-12">
+                                <input type="text" class="form-control the-price" value="@((book.Price * book.Quantity).ToString())" readonly>
+                                <span class="input-group-addon">$</span>
+                            </div>
+                            <form method="POST" asp-action="RemoveFromCart" asp-route-bookId="@book.Id">
+                                <button class="col-xs-12 col-md-8 col-md-offset-4 btn btn-danger">Remove</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
     </div>
 </div>
 <div class="col-xs-12 col-md-6">
-    <div class="vertical-menu">
-        <a href="#" class="active">Home</a>
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-        <a href="#">Link 4</a>
-    </div>
+    <table class="table table-hover">
+        <tr>
+            <th>Book Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        @foreach(var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Quantity</td>
+                <td>@((book.Price * book.Quantity).ToString())</td>
+            </tr>
+        }
+        <tr>
+            <td>Total Price</td>
+            <td>@totalprice</td>
+        </tr>
+    </table>
+    <button type="warning" class="btn btn-warning">Go to checkout</button>
 </div>
 
 

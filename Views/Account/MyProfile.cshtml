@@ -5,46 +5,54 @@
 }
 
 <div id="Profile" class="container col-md-3">
-    <img class="thumbnail img-resize-profile" src="@Model.Image" alt="@Model.Id">
+    <img class="thumbnail img-resize-profile" src="@Model.Image" alt="@Model.FirstName">
     <p><b>First Name:</b> @Model.FirstName</p>
     <p><b>Last Name:</b> @Model.LastName</p>
     <p><b>Email:</b> @Model.Email</p>
     <p><b>Favorite Book:</b> @Model.FavoriteBook</p>
 </div>
 
-<div id="tabs" class="container col-md-8 col-md-offset-1">
-    <ul class="nav nav-tabs">
-        <li class="acive">
-            <a href="#Reviews" data-toggle="tab">Reviews</a>
-        </li>
-        <li>
-            <a href="#ShippingPayment" data-toggle="tab">Shipping and payment</a>
-        </li>
-        <li>
-            <a href="#OrderHistory" data-toggle="tab">Order History</a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane active" id="Reviews">
-            <h3>Here you can see the reviews that you have left</h3>
+<div class="container col-md-7 col-md-offset-1">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <ul class="nav nav-tabs">
+                <li class="acive">
+                    <a href="#Reviews" data-toggle="tab">My reviews</a>
+                </li>
+                <li>
+                    <a href="#Shipping" data-toggle="tab">Shipping info</a>
+                </li>
+                <li>
+                    <a href="#OrderHistory" data-toggle="tab">Order History</a>
+                </li>
+            </ul>
         </div>
-        <div class="tab-pane container" id="ShippingPayment">
-            <div id="Shipping" class="col-md-4">
-                <p><b>Full name:</b> @Model.FullName</p>
-                <p><b>Shipping address:</b> @Model.ShippingAddress</p>
-                <p><b>Country:</b> @Model.Country</p>
-                <p><b>City:</b> @Model.City</p>
-                <p><b>Postcode:</b> @Model.Postcode</p>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="Reviews">
+                    <h3>Your reviews</h3>
+                    @foreach(var review in Model.Reviews)
+                    {
+                        <div class="container">
+                            <h2>Name</h2>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Rating: @review.Rating</div>
+                                <div class="panel-body">@review.Comment</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="tab-pane fade" id="Shipping">
+                    <p><b>Full name:</b> @Model.FullName</p>
+                    <p><b>Shipping address:</b> @Model.ShippingAddress</p>
+                    <p><b>Country:</b> @Model.Country</p>
+                    <p><b>City:</b> @Model.City</p>
+                    <p><b>Postcode:</b> @Model.Postcode</p>
+                </div>
+                <div class="tab-pane fade" id="OrderHistory">
+                    <h3>Here you can view your order history</h3>
+                </div>
             </div>
-            <div id="Payment" class="col-md-4">
-                <p><b>Name on card</b> @Model.NameOnCard</p>
-                <p><b>Card type:</b> @Model.CardType</p>
-                <p><b>Card number:</b> @Model.CardNumber</p>
-                <p><b>Valid to</b> @Model.ValidDate</p>
-            </div>
-        </div>
-        <div class="tab-pane" id="OrderHistory">
-            <h3>Here you can view your order history</h3>
         </div>
     </div>
 </div>

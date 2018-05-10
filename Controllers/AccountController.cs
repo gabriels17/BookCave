@@ -18,15 +18,17 @@ namespace BookCave.Controllers
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private CartService _cartService;
-
         private readonly IAccountService _accountService;
         private readonly UserManager<ApplicationUser> _userManager;
-        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IAccountService accountService)
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IAccountService accountService, RoleManager<IdentityRole> roleManager)
         {
             _cartService = new CartService();
             _signInManager = signInManager;
             _userManager = userManager;
             _accountService = accountService;
+            _roleManager = roleManager;
         }
 
         [HttpGet]
@@ -116,6 +118,7 @@ namespace BookCave.Controllers
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> AddToCart(int ID)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -136,12 +139,18 @@ namespace BookCave.Controllers
                 LastName = user.LastName, 
                 FavoriteBook = user.FavoriteBook,
                 Email = user.Email,
-                Image = user.Image
+                Image = user.Image,
+                FullName = user.FullName,
+                ShippingAddress = user.ShippingAddress,
+                City = user.City,
+                State = user.State,
+                Postcode = user.Postcode,
+                Country = user.Country
             };
 
             if (string.IsNullOrEmpty(profile.Image))
             {
-                profile.Image = "https://cdn.pixabay.com/photo/2013/07/12/19/15/gangster-154425_960_720.png";
+                profile.Image = "https://cdn.iconscout.com/public/images/icon/free/png-512/avatar-user-hacker-3830b32ad9e0802c-512x512.png";
             }
 
             return View(profile);
@@ -158,13 +167,14 @@ namespace BookCave.Controllers
                 FirstName = user.FirstName, 
                 LastName = user.LastName, 
                 FavoriteBook = user.FavoriteBook,
-                Image = user.Image
+                Image = user.Image,
+                FullName = user.FullName,
+                ShippingAddress = user.ShippingAddress,
+                City = user.City,
+                State = user.State,
+                Postcode = user.Postcode,
+                Country = user.Country
             };
-
-            if (string.IsNullOrEmpty(profile.Image))
-            {
-                profile.Image = "https://cdn.pixabay.com/photo/2013/07/12/19/15/gangster-154425_960_720.png";
-            }
 
             return View(profile);
         }
@@ -186,6 +196,12 @@ namespace BookCave.Controllers
             user.LastName = model.LastName;
             user.FavoriteBook = model.FavoriteBook;
             user.Image = model.Image;
+            user.FullName = model.FullName;
+            user.ShippingAddress = model.ShippingAddress;
+            user.City = model.City;
+            user.State = model.State;
+            user.Postcode = model.Postcode;
+            user.Country = model.Country;
 
             var result = await _userManager.UpdateAsync(user);
 
@@ -200,36 +216,35 @@ namespace BookCave.Controllers
             }
         }
 
-        // private async Task createRolesandUsers()
-        // {  
-        //     if (!await _roleManager.RoleExistsAsync("Admin"))
-        //     {
-        //         var role = new IdentityRole();
-        //         role.Name = "Admin";
-        //         await _roleManager.CreateAsync(role);
+        private async Task createRolesandUsers()
+        {  
+            if (!await _roleManager.RoleExistsAsync("Admin"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Admin";
+                await _roleManager.CreateAsync(role);
 
-        //         var user = new ApplicationUser();
-        //         user.UserName = "admin";
-        //         user.Email = "admin@bookcave.com";
-        //         string userPWD = "admin";
+                var user = new ApplicationUser();
+                user.UserName = "admin";
+                user.Email = "admin@bookcave.com";
+                string userPWD = "admin";
 
-        //         IdentityResult newUser = await _userManager.CreateAsync(user, userPWD);
+                IdentityResult newUser = await _userManager.CreateAsync(user, userPWD);
 
-        //         //Add default User to Role Admin
-        //         if (newUser.Succeeded)
-        //         {
-        //             var result1 = await _userManager.AddToRoleAsync(user, "admin");
-        //         }
-        //     }
+                //Add default User to Role Admin
+                if (newUser.Succeeded)
+                {
+                    var result1 = await _userManager.AddToRoleAsync(user, "admin");
+                }
+            }
 
-        //     // Creating Customer role     
-        //     x = await _roleManager.RoleExistsAsync("Customer");
-        //     if (!x)
-        //     {
-        //         var role = new IdentityRole();
-        //         role.Name = "Employee";
-        //         await _roleManager.CreateAsync(role);
-        //     }
-        // }
+            // Creating Customer role     
+            if (!await _roleManager.RoleExistsAsync("Customer"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Customer";
+                await _roleManager.CreateAsync(role);
+            }
+        }
     }
 }

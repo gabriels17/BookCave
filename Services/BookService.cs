@@ -70,7 +70,6 @@ namespace BookCave.Services
 
         public void AddReview(ReviewInputModel review)
         {
-            review.BookId = review.Id;
             _bookRepo.AddReview(review);
         }
         public void AddBook(BookInputModel newBook)

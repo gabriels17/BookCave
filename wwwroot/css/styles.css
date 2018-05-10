@@ -88,42 +88,43 @@ a:hover
 
 .horizontalscroll
 {
-  display: flex;
-  align-items: stretch;
-  background-color: #fff;
-  min-width: 100%;
-  min-height: 300px;
-  overflow-x: auto;
+    display: flex;
+    align-items: stretch;
+    background-color: #fff;
+    min-width: 100%;
+    min-height: 300px;
+    overflow-x: auto;
 }
 
 .thumbnail 
 {
-  min-width: 200px;
-  height: 350px;
-  margin: 5px;
+    min-width: 200px;
+    height: 350px;
+    margin: 5px;
 }
 
 .img-resize
 {
-  max-height: 200px;
-  min-height: 200px;
+    max-height: 200px;
+    min-height: 200px;
 }
 
 .img-resize-profile
 {
-  margin: auto;
-  max-height: 250px;
-  max-width: 250px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    margin: auto;
+    border-radius: 50%;
+    max-height: 200px;
+    max-width: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .book-title
 {
-  height: 20px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .name-fix
@@ -200,18 +201,61 @@ a:hover
 {
     margin-top: 30px;
     margin-bottom: 30px;
-    Border: solid;
-    background-color: #f1ddc1;
+    outline-style: solid;
+    outline-width: 1px;
+    outline-color: #a94442;
+    border-style: solid;
+    border-color: #ebccd1;
+    background-color: #fff;
 }
 
-#tabs
+.panel
 {
     margin-top: 30px;
 }
 
-#ShippingPayment
+.panel-heading
 {
-    margin-top: 10px;
+    padding: 5px 5px 0 5px;
+}
+
+.tab-content
+{
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.nav-tabs
+{
+    border-bottom: none;
+}
+
+.nav-tabs > li > a,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus
+{
+    color: #a94442;
+}
+
+.nav-tabs > .open > a,
+.nav-tabs > .open > a:hover,
+.nav-tabs > .open > a:focus,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus
+{
+    color: #a94442;
+    background-color: #ebccd1;
+    border-color: transparent;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus
+{
+    color: #a94442;
+    background-color: #fff;
+    border-color: #ebccd1;
+    border-bottom-color: transparent;
 }
 
 #btn-Profile
@@ -227,7 +271,6 @@ a:hover
 }
 .cart-item
 {
-    background-color: grey;
     width: 100%;
     margin-bottom: 10px;
 }
@@ -253,7 +296,15 @@ a:hover
 {
     margin-bottom: 0px;
 }
+.book-quantity
+{
+    width: 50%;
+}
 
+#review-name
+{
+    display: inline;
+}
 .rating input {
     display: none;
 }
