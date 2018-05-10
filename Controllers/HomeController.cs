@@ -124,11 +124,28 @@ namespace BookCave.Controllers
             var idbook = _bookService.GetBookById(id);
             var reviews = _bookService.GetReviews(id);
             var detail = new DetailsInputViewModel();
+
             var username = _userManager.Users;
             _bookService.ChangeUserIdToName(reviews, username);
+
             detail.Book = idbook;
             detail.Reviews = reviews;
             return View(detail);
+        }
+
+        private string GetUsernameByUserId(string userid)
+        {
+            var userstring = "Name not found";
+            var usernames = _userManager.Users;
+            foreach(var us in usernames)
+            {
+                if(us.Id == userid)
+                {
+                    userstring = us.FirstName;
+                    return(userstring);
+                }
+            }
+            return(userstring);
         }
 
 
@@ -139,7 +156,7 @@ namespace BookCave.Controllers
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessage"] = "Error";
-                return View();
+                return RedirectToAction("Details", "Home");
             }
             var review = model.Input;
             review.BookId = BookId;
@@ -147,7 +164,7 @@ namespace BookCave.Controllers
             var user = await _userManager.GetUserAsync(User);
             review.UserId = user.Id;
             _bookService.AddReview(review);
-            return RedirectToAction("Index");
+           return RedirectToAction("Details", "Home");
         }
 
         [HttpGet]
