@@ -139,5 +139,33 @@ namespace BookCave.Repositories
 
             _db.SaveChanges();
         }
+
+        public List<ReviewViewModel> GetReviews(int id)
+        {
+            var reviews = (from r in _db.Reviews
+                        where r.BookId == id
+                        select new ReviewViewModel
+                        {
+                            Id = r.Id,
+                            Rating = r.Rating,
+                            Comment = r.Comment,
+                            UserId = r.UserId,
+                            BookId = r.BookId
+                        }).ToList();
+            return reviews;
+        }
+
+        public void AddReview(ReviewInputModel newreview)
+        {
+            var ReviewEntityModel = new Review()
+            {
+                Comment = newreview.Comment,
+                UserId = newreview.UserId,
+                Rating = newreview.Rating,
+                BookId = newreview.BookId
+            };
+            _db.Add(ReviewEntityModel);
+            _db.SaveChanges();
+        }
     }
 }
