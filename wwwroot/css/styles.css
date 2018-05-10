@@ -12,49 +12,7 @@ a
 a:hover
 {
     color: rgb(92, 92, 92);
-    text-decoration: none;
-}
-
-#bookDetails
-{
-    overflow: hidden;
-    background-color: rgb(255, 255, 255);
-    
-}
-
-#imageDetails
-{
-    float: left;
-}
-
-#bookInfo
-{
-    /* color: blue; */
-    margin-left: 330px;
-}
-
-#bookPricing
-{
-    clear: both;
-}
-
-#addToCartButton
-{
-    text-align: right;
-    clear: both;
-}
-
-#detailsParagraph
-{
-    margin-top: 50px;
-    margin-right: 200px;
-    /* color:  red; */
-}
-
-#reviewSection
-{
-    border-top: solid;
-    height: 600px;
+    text-decoration: underline;
 }
 
 .stars-outer
@@ -102,6 +60,7 @@ a:hover
     border-style: solid;
     border-color: black;
 }
+
 ::-webkit-scrollbar 
 {
     width: 8px;
@@ -115,7 +74,8 @@ a:hover
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb
+{
     background: #F0AD4E; 
     border-radius: 5px;
 }
@@ -147,6 +107,18 @@ a:hover
 {
   max-height: 200px;
   min-height: 200px;
+<<<<<<< HEAD
+=======
+}
+
+.img-resize-profile
+{
+  margin: auto;
+  max-height: 250px;
+  max-width: 250px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+>>>>>>> 26419bc1d9ea0652755ceb5f29d5856958b1bbf3
 }
 
 .book-title
@@ -156,10 +128,12 @@ a:hover
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .name-fix
 {
     margin-bottom: 0px;
 }
+
 .filter-search
 {
     height: 200px;
@@ -170,12 +144,16 @@ a:hover
     box-shadow: 6px 6px 1px 1px grey;
     border: 1px solid black;
 }
-@media (min-width:979px) {
-    .filter-search {
+
+@media (min-width:979px)
+{
+    .filter-search
+    {
       position:fixed;
       width: 250px;
     }
   }
+
 .searcher
 {
     padding: 10px;
@@ -183,7 +161,7 @@ a:hover
 
 .info-dropdown-content
 {
-    display: none;
+    visibility: hidden;
     position: relative;
     background-color: #f9f9f9;
     border-radius: 25px;
@@ -194,13 +172,54 @@ a:hover
 
 #info-dropdown:hover .info-dropdown-content
 {
-    display: block;
+    visibility:  visible;
 }
 
-.edit-button
+.footer
 {
-    margin-right: 2px;
-    float: right;
+    background-color: rgb(34, 34, 34);
+    color: rgb(157, 157, 157);
+    width: 100%;
+    height: 100px;
+    width: 100%;
+}
+
+.footer a
+{
+    color: rgb(157, 157, 157);
+}
+
+#imageDetails
+{
+    margin-top: 15px;
+}
+
+#rateStar
+{
+    margin-bottom: 12px;
+}
+
+#Profile
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    Border: solid;
+    background-color: #f1ddc1;
+}
+
+#tabs
+{
+    margin-top: 30px;
+}
+
+#ShippingPayment
+{
+    margin-top: 10px;
+}
+
+#btn-Profile
+{
+    margin-bottom: 10px;
 }
 
 .cart-image
