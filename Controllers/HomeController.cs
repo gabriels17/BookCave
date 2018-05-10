@@ -122,11 +122,16 @@ namespace BookCave.Controllers
         {
             var idbook = _bookService.GetBookById(id);
             var reviews = _bookService.GetReviews(id);
+
+            var username = _userManager.Users;
+            var modifiedReviews = _bookService.ChangeUserIdToName(reviews, username);
+        
             var detail = new DetailsViewModel();
             detail.Book = idbook;
             detail.Reviews = reviews;
             return View(detail);
         }
+
 
         [HttpPost]
         [Authorize]
