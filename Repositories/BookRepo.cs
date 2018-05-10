@@ -121,6 +121,14 @@ namespace BookCave.Repositories
             _db.Remove(book);
             _db.SaveChanges();
         }
+        public void DeleteReview(int id)
+        {
+            var review = (from r in _db.Reviews
+                        where id == r.Id
+                        select r).SingleOrDefault();
+            _db.Remove(review);
+            _db.SaveChanges();
+        }
 
         public void UpdateBook(BookInputModel updatedBook)
         {

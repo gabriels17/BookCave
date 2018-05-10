@@ -28,5 +28,10 @@ namespace BookCave.Services
 
             return reviews;
         }
+        public void DeleteReview(int id)
+        {
+            _bookRepo.DeleteReview(id);
+        }
+
     }
 }
