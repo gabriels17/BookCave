@@ -227,7 +227,6 @@ a:hover
 }
 .cart-item
 {
-    background-color: grey;
     width: 100%;
     margin-bottom: 10px;
 }
@@ -252,4 +251,8 @@ a:hover
 .the-price
 {
     margin-bottom: 0px;
+}
+.book-quantity
+{
+    width: 50%;
 }

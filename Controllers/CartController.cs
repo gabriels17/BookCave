@@ -32,5 +32,24 @@ namespace BookCave.Controllers
 
             return View(thecart);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCart(int bookId, int quantity)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            _cartService.UpdateCart(bookId, quantity, userId);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveFromCart(int bookId)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            _cartService.RemoveFromCart(bookId, userId);
+            return RedirectToAction("Index");
+        }
+
     }
 }
