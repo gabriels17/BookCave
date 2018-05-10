@@ -182,5 +182,22 @@ namespace BookCave.Controllers
             _bookService.DeleteBook(id);
             return RedirectToAction("Index");
         }
+
+        public IActionResult GoToRandomBook()
+        {
+            Random rnd = new Random();
+            var allBooks = _bookService.GetAllBooks();
+            int randomId = rnd.Next(allBooks.Count());
+            do
+            {
+                if(_bookService.GetBookById(randomId) != null)
+                {
+                    return Details(randomId);
+                }
+                randomId = rnd.Next(allBooks.Count());
+            }
+            while(_bookService.GetBookById(randomId) == null);
+            return View("Error");
+        }
     }
 }
