@@ -51,6 +51,8 @@
     <textarea class="form-control" rows="5" asp-for="Description"></textarea>
     <span asp-validation-for="Description" class="text-danger"></span>
   </div>
-  <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-ok"></span> Save changes</button>
-  <div class="text-danger">@ViewData["ErrorMessage"]</div>
+  <div>
+    <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-ok"></span> Save changes</button>
+    <div class="text-danger">@ViewData["ErrorMessage"]</div>
+  </div>
 </form>

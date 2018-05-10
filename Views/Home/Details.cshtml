@@ -24,7 +24,7 @@
     <div class="col-xs-8" id="bookInfo">
         <h3>@Model.Title</h3>
         <h4> By @Model.Author</h4>
-        <h5>Genre: @Model.Genre, Release date: @Model.ReleaseDate</h5>
+        <h5>Genre: @Model.Genre; Publication date: @Model.ReleaseDate.ToString("dd/MM/yyyy")</h5>
         <div class="panel panel-default">
             <p id="detailsParagraph">@Model.Description</p>
         </div>

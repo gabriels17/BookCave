@@ -51,6 +51,8 @@
     <textarea class="form-control" rows="5" asp-for="Description" placeholder="Description"></textarea>
     <span asp-validation-for="Description" class="text-danger" ></span>
   </div>
-  <button type="submit" class="btn btn-warning">Submit Book!</button>
-  <div class="text-danger">@ViewData["ErrorMessage"]</div>
-  </form>
+  <div>
+    <button type="submit" class="btn btn-warning">Submit Book!</button>
+    <div class="text-danger">@ViewData["ErrorMessage"]</div>
+  </div>
+</form>
