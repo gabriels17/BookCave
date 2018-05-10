@@ -36,11 +36,11 @@ $("#delete").click(function() {
         })
         .then((willDelete) => {
         if (willDelete) {
-            swal("Poof! Your " + deletebooktitle +  " has been deleted!", {
+            swal("Poof! " + deletebooktitle +  " has been deleted!", {
             icon: "success",
             }).then(() => {
                 var url = "/Home/Delete/" + deletebookId; 
-                window.location.href = url; 
+                window.location.href = url;
             });
         } else {
             swal(booktitle + " is safe!");
