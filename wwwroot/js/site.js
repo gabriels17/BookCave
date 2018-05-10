@@ -63,3 +63,5 @@ $(".subtract-quantity").click(function() {
     }
     bookquantity.val(quantity);
 });
+
+document.getElementById('star1').checked = true;

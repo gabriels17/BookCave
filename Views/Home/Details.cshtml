@@ -7,11 +7,26 @@
 <fieldset>
     <div class="col-xs-4" id="imageDetails">
         <img src="@Model.Image" alt="@Model.Id" class="img-thumbnail details-book-image" height="400px" width="300px">
-        <div class="stars-outer" id="rateStar">
+        <!-- <div class="stars-outer" id="rateStar">
             <div class="stars-inner">
                 <p class="ratings">@Model.Rating</p>
             </div>
-        </div>
+        </div> -->
+        <ul class="rating">
+        <li> <span class="ratingSelector">
+        <input type="radio" name="ratings[1]" id="star1" value="1" class="radio"/>
+        <label class="full" for="star1"></label>
+        <input type="radio" name="ratings[1]" id="star2" value="2" class="radio"/>
+        <label class="full" for="star2"></label>
+        <input type="radio" name="ratings[1]" id="star3" value="3" class="radio"/>
+        <label class="full" for="star3"></label>
+        <input type="radio" name="ratings[1]" id="star4" value="4" class="radio"/>
+        <label class="full" for="star4"></label>
+        <input type="radio" name="ratings[1]" id="star5" value="5" class="radio"/>
+        <label class="full" for="star5"></label>
+        </span>
+        </li>
+        </ul>
         <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-warning" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> @Model.Price$</a>
         <br>
         <div id="adminButtons">
