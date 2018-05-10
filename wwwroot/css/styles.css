@@ -218,3 +218,38 @@ a:hover
 {
     margin-bottom: 10px;
 }
+
+.cart-image
+{
+    max-width: 100px;
+    min-height: 150px;
+    max-height: 150px;
+}
+.cart-item
+{
+    background-color: grey;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.cart-price
+{
+    display: flex;
+
+}
+.cart-price-aligner
+{
+    align-self: flex-end;
+}
+
+@media (min-width:979px)
+{
+    .add-quantity
+    {
+        margin-bottom: 40%;
+    }
+}
+
+.the-price
+{
+    margin-bottom: 0px;
+}

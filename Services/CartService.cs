@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
 
@@ -15,6 +16,13 @@ namespace BookCave.Services
         public void AddToCart(string UserId, int BookId)
         {
             _cartRepo.AddToCart(UserId, BookId);
-       }
+        }
+
+        public List<CartViewModel> GetCart(string userId)
+        {   
+            var thecart = _cartRepo.GetCart(userId);
+
+            return thecart;
+        }
     }
 }

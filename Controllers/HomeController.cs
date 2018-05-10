@@ -141,7 +141,6 @@ namespace BookCave.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
         [Authorize]
         public IActionResult Delete(int id)
         {
