@@ -203,13 +203,16 @@ namespace BookCave.Controllers
         {
             Random rnd = new Random();
             var allBooks = _bookService.GetAllBooks();
-            int randomId = rnd.Next(allBooks.Count());
+            int randomId = rnd.Next(_bookService.GetHighestBookId());
             do
             {
                 if(_bookService.GetBookById(randomId) != null)
                 {
                     var book = _bookService.GetBookById(randomId);
-                    return View("Details", book);
+                    var newbook = new DetailsInputViewModel();
+                    newbook.Book = book;
+                    newbook.Reviews = _bookService.GetReviews(randomId);
+                    return View("Details", newbook);
                 }
                 randomId = rnd.Next(allBooks.Count());
             }

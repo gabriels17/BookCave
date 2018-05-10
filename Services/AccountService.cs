@@ -8,11 +8,6 @@ namespace BookCave.Services
 {
     public class AccountService : IAccountService
     {
-        private AccountRepo _accountRepo;
-        public AccountService()
-        {
-            _accountRepo = new AccountRepo();
-        }
         public void ProcessLogin(LoginInputModel Login)
         {
             if(string.IsNullOrEmpty(Login.Email))

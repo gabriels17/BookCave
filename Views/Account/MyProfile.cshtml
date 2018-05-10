@@ -43,6 +43,7 @@
                                                 <p class="ratings">@review.Rating</p>
                                             </div>
                                         </div>
+                                        <a asp-action="Delete" asp-route-id="@review.Id"><span class="glyphicon glyphicon-trash"></span></a>
                                     </div>
                                     <div class="panel-body">
                                         <p>@review.Comment</p>
@@ -58,6 +59,7 @@
                         <p><b>Full name:</b> @Model.FullName</p>
                         <p><b>Shipping address:</b> @Model.ShippingAddress</p>
                         <p><b>Country:</b> @Model.Country</p>
+                        <p><b>County/State:</b> @Model.State</p>
                         <p><b>City:</b> @Model.City</p>
                         <p><b>Postcode:</b> @Model.Postcode</p>
                     </div>

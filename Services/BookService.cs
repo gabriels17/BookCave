@@ -205,5 +205,9 @@ namespace BookCave.Services
                 throw new Exception("Description is missing!");
             }
         }
+        public int GetHighestBookId()
+        {
+            return _bookRepo.GetHighestBookId();
+        }
     }
 }
