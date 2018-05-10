@@ -131,20 +131,20 @@ namespace BookCave.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Details(ReviewInputModel review)
+        public async Task<IActionResult> Details(int BookId, DetailsInputViewModel model)
         {
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessage"] = "Error";
                 return View();
             }
-
+            var review = model.Input;
+            review.BookId = BookId;
             _reviewService.ProcessReview(review);
-
             var user = await _userManager.GetUserAsync(User);
             review.UserId = user.Id;
             _bookService.AddReview(review);
-            return View();
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

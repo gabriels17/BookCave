@@ -35,7 +35,13 @@
         <legend>
             Reviews
         </legend>
-        
+        <form class="form-horizontal" asp-controller="Home" asp-action="Details" asp-route-BookId="@Model.Book.Id">
+        <textarea asp-for="@Model.Input.Comment" cols="40" rows="5"  placeholder="Your comment here..."></textarea>
+        <input type="double" class="form-control" asp-for="@Model.Input.Rating" placeholder="Rating">
+        <span asp-validation-for="@Model.Input.Rating" class="text-danger" ></span>
+        <button type="submit" class="btn btn-warning">
+        <span class="glyphicon glyphicon-ok"></span> Write a review</button>
+    </form>
         @foreach(var review in Model.Reviews)
         {
 
