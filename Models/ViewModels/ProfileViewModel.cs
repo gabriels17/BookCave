@@ -17,10 +17,5 @@ namespace BookCave.Models.ViewModels
         public string State { get; set; }
         public string Postcode { get; set; }
         public string Country { get; set; }
-        public string NameOnCard { get; set; }
-        public string CardType { get; set; }
-        public string CardNumber { get; set; }
-        public DateTime ValidDate { get; set; }
-        public string SecurityCode { get; set; }
     }
 }
