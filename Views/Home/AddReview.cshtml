@@ -6,8 +6,10 @@
 }
 
 <div>
+    <h2>Leave a review!</h2>
+    <h4>Tell us what you think!</h4>
     <form asp-controller="Home" asp-action="AddReview">
-        <textarea asp-for="@Model.Comment" cols="30" rows="10"></textarea>
+        <textarea asp-for="@Model.Comment" cols="30" rows="10" autofocus="autofocus" placeholder="Your comment here..."></textarea>
         <ul class="rating">
             <li>
                 <span class="ratingSelector">
