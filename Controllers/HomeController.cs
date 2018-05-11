@@ -181,7 +181,7 @@ namespace BookCave.Controllers
             }
             _bookServiceError.ProcessBook(book);
             _bookService.UpdateBook(book);
-
+            _bookService.UpdateBookRating(book.Id);
             return RedirectToAction("Index");
         }
 
