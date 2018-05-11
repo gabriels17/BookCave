@@ -49,56 +49,59 @@ namespace BookCave.Services
 
         public void ProcessCart(CheckoutInputModel cart)
         {
-         
-        if(string.IsNullOrEmpty(cart.Email))
-        {
-            throw new Exception("Email is missing");
-        }
+            if(string.IsNullOrEmpty(cart.Email))
+            {
+                throw new Exception("Email is missing");
+            }
 
-        if(string.IsNullOrEmpty(cart.FullName))
-        {
-            throw new Exception("Full name is missing");
-        }
+            if(string.IsNullOrEmpty(cart.FullName))
+            {
+                throw new Exception("Full name is missing");
+            }
 
-        if(string.IsNullOrEmpty(cart.ShippingAddress))
-        {
-            throw new Exception("Address is missing");
-        }
+            if(string.IsNullOrEmpty(cart.ShippingAddress))
+            {
+                throw new Exception("Address is missing");
+            }
 
-        if(string.IsNullOrEmpty(cart.City))
-        {
-            throw new Exception("City is missing");
-        }
+            if(string.IsNullOrEmpty(cart.City))
+            {
+                throw new Exception("City is missing");
+            }
 
-        if(string.IsNullOrEmpty(cart.PostCode))
-        {
-            throw new Exception("Postcode is missing");
-        }
+            if(string.IsNullOrEmpty(cart.PostCode))
+            {
+                throw new Exception("Postcode is missing");
+            }
 
-        if(string.IsNullOrEmpty(cart.Country))
-        {
-            throw new Exception("Country is missing");
-        }
+            if(string.IsNullOrEmpty(cart.Country))
+            {
+                throw new Exception("Country is missing");
+            }
 
-       if(string.IsNullOrEmpty(cart.CardNumber))
-       {
-           throw new Exception("Card number is missing");
-       }
+            if(string.IsNullOrEmpty(cart.CardNumber))
+            {
+                throw new Exception("Card number is missing");
+            }
 
-        if(string.IsNullOrEmpty(cart.ExpMonth))
-        {
-            throw new Exception("Expire month is missing");
-        }
+            if(string.IsNullOrEmpty(cart.ExpMonth))
+            {
+                throw new Exception("Expire month is missing");
+            }
 
-        if(string.IsNullOrEmpty(cart.ExpYear))
-        {
-            throw new Exception("Expire year is missing");
-        }
+            if(string.IsNullOrEmpty(cart.ExpYear))
+            {
+                throw new Exception("Expire year is missing");
+            }
 
-        if(string.IsNullOrEmpty(cart.SecurityCode))
-        {
-            throw new Exception("Security code is missing");
+            if(string.IsNullOrEmpty(cart.SecurityCode))
+            {
+                throw new Exception("Security code is missing");
+            }
         }
+        public void AddToWhishlist(string UserId, int BookId)
+        {
+            _cartRepo.AddToWhishlist(UserId, BookId);
         }
     }
 }

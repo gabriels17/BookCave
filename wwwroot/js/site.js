@@ -29,12 +29,26 @@ $(".details-book-to-cart").click(function() {
     var bookId = $(".details-book-image").attr("alt");
     swal({
         title: booktitle,
-        text: "has been added to the cart \n",
+        text: "has been added to the cart",
         icon: "success",
         buttons: "Okay",
       }).then((value) => {
         var url = "/Account/AddToCart/" + bookId; 
-        window.location.href = url; 
+        window.location.href = url;
+      });
+})
+
+$(".details-book-to-whishlist").click(function() {
+    var booktitle = $(".details-book-title").text();
+    var bookId = $(".details-book-image").attr("alt");
+    swal({
+        title: booktitle,
+        text: "has been added to your whishlist!",
+        icon: "success",
+        buttons: "Okay",
+      }).then((value) => {
+        var url = "/Account/AddToWhishlist/" + bookId; 
+        window.location.href = url;
       });
 })
 

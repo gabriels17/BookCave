@@ -14,5 +14,6 @@ namespace BookCave.Models
         public string State { get; set; }
         public string Postcode { get; set; }
         public string Country { get; set; }
+        public string UserRole { get; set; }
     }
 }
