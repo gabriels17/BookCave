@@ -250,17 +250,17 @@ namespace BookCave.Services
 
         public DetailsInputViewModel GoToRandomBook(IQueryable<ApplicationUser> username)
         {
-            Random rnd = new Random();
-            var allBooks = GetAllBooks();
-            int randomId = rnd.Next(GetHighestBookId());
-            while(GetBookById(randomId) == null)
-            {
-                randomId = rnd.Next(GetHighestBookId());
-            }
-            var newbook = new DetailsInputViewModel();
-            newbook.Book = GetBookById(randomId);
-            newbook.Reviews = GetReviews(randomId);
-            ChangeUserIdToName(newbook.Reviews, username);
+            Random rnd = new Random();                      //Create a new instance of the random class
+            var allBooks = GetAllBooks();                   //Retrieve all books from the database
+            int randomId = rnd.Next(GetHighestBookId());    //Get a (pseudo)random Id in the range of Id's
+            while(GetBookById(randomId) == null)            
+            {                                               //Some Id's that are fetched don't belong to any book
+                randomId = rnd.Next(GetHighestBookId());    //so a new Id has to be fetched until it is valid
+            }                                               //to avoid a NullReferenceException
+            var newbook = new DetailsInputViewModel();      
+            newbook.Book = GetBookById(randomId);           //newbook is of type DetailsInputViewModel which will initally be empty
+            newbook.Reviews = GetReviews(randomId);         //so we mmust populate it manually with the book and it's reviews
+            ChangeUserIdToName(newbook.Reviews, username);  //Display the username instead of the userId on the reviews
             return newbook;
         }
     }

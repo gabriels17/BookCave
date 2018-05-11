@@ -16,6 +16,7 @@ namespace BookCave.Controllers
 {
     public class AccountController : Controller
     {
+        // Initialize all private variables, services and managers needed
         private readonly SignInManager<ApplicationUser> _signInManager;
         private CartService _cartService;
         private ReviewService _reviewService;
@@ -24,6 +25,7 @@ namespace BookCave.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
+        // The constructor
         public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IAccountService accountService, RoleManager<IdentityRole> roleManager)
         {
             _cartService = new CartService();
@@ -58,7 +60,6 @@ namespace BookCave.Controllers
             var roleExist = await _roleManager.RoleExistsAsync("Admin");
             if (!roleExist)
             {
-                //create the roles and seed them to the database: Question 1
                 roleResult = await _roleManager.CreateAsync(new IdentityRole("Admin"));
             }*/
 
@@ -99,7 +100,7 @@ namespace BookCave.Controllers
         {
             if(!ModelState.IsValid)
             {
-                ViewData["ErrorMessages"] = "Error";
+                ViewData["ErrorMessage"] = "Error";
 
                 return View();
             }
@@ -178,6 +179,7 @@ namespace BookCave.Controllers
 
             return View(profile);
         }
+
         [Authorize]
         public IActionResult DeleteWishlist(int id)
         {
@@ -216,7 +218,7 @@ namespace BookCave.Controllers
         {
             if(!ModelState.IsValid)
             {
-                ViewData["ErrorMessages"] = "Error";
+                ViewData["ErrorMessage"] = "Error";
 
                 return View();
             }
