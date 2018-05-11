@@ -171,7 +171,7 @@ namespace BookCave.Controllers
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessage"] = "Error";
-                return View("Error");
+                return View();
             }
             _bookServiceError.ProcessBook(book);
             _bookService.UpdateBook(book);
