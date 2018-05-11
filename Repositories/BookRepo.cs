@@ -160,6 +160,21 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
+        public ReviewViewModel GetSingleReview(int reviewId)
+        {
+            var review = (from r in _db.Reviews
+                          where reviewId == r.Id
+                          select new ReviewViewModel
+                          {
+                              Id = r.Id,
+                              Rating = r.Rating,
+                              Comment = r.Comment,
+                              UserId = r.UserId,
+                              BookId = r.BookId
+                          }).SingleOrDefault();
+            return review;
+        }
+
         public List<ReviewViewModel> GetReviews(int id)
         {
             var reviews = (from r in _db.Reviews

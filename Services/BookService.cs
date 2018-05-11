@@ -66,37 +66,33 @@ namespace BookCave.Services
                     } 
                 }
             }
-            // return(reviews);
         }
 
         public void AddReview(ReviewInputModel review)
         {
-            var newRating = FindAverageRating(review);
-            _bookRepo.UpdateBookRating(review.BookId, newRating);
             _bookRepo.AddReview(review);
+            UpdateBookRating(review.BookId);
         }
 
-        private double FindAverageRating(ReviewInputModel review)
+        public void UpdateBookRating(int BookId)
         {
-            var incomingRating = review.Rating;
-            var reviews = _bookRepo.GetReviews(review.BookId);
+            var reviews = _bookRepo.GetReviews(BookId);
 
             var sumOfRatings = 0.0;
             foreach(var r in reviews)
             {
                 sumOfRatings += r.Rating;
             }
-
-            sumOfRatings += incomingRating;
-            var numberOfReviews = reviews.Count + 1;
+            var numberOfReviews = reviews.Count;
             var newRating = sumOfRatings / numberOfReviews;
-
-            return newRating;
+            _bookRepo.UpdateBookRating(BookId, newRating);
         }
+
         public void AddBook(BookInputModel newBook)
         {
             _bookRepo.AddBook(newBook);
         }
+
         public List<BookListViewModel> Filter(string str,List<BookListViewModel> Books)
         {
             var result = (from a in Books  
@@ -231,7 +227,7 @@ namespace BookCave.Services
             return _bookRepo.GetHighestBookId();
         }
 
-        public DetailsInputViewModel GoToRandomBook()
+        public DetailsInputViewModel GoToRandomBook(IQueryable<ApplicationUser> username)
         {
             Random rnd = new Random();
             var allBooks = GetAllBooks();
@@ -243,6 +239,7 @@ namespace BookCave.Services
             var newbook = new DetailsInputViewModel();
             newbook.Book = GetBookById(randomId);
             newbook.Reviews = GetReviews(randomId);
+            ChangeUserIdToName(newbook.Reviews, username);
             return newbook;
         }
     }
