@@ -110,10 +110,12 @@ namespace BookCave.Controllers
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessage"] = "Error";
+
                 return View();
             }
             _bookServiceError.ProcessBook(newBook);
             _bookService.AddBook(newBook);
+
             return RedirectToAction("Index");
         }
 
@@ -133,6 +135,7 @@ namespace BookCave.Controllers
 
             detail.Book = idbook;
             detail.Reviews = reviews;
+
             return View(detail);
         }
 
@@ -151,6 +154,7 @@ namespace BookCave.Controllers
             var user = await _userManager.GetUserAsync(User);
             review.UserId = user.Id;
             _bookService.AddReview(review);
+
            return RedirectToAction("Details", "Home");
         }
 
@@ -160,6 +164,7 @@ namespace BookCave.Controllers
         {
             var bookToEdit = _bookService.GetBookById(id);
             ViewData["Name"] = bookToEdit.Title;
+
             return View(bookToEdit);
         }
 
@@ -171,10 +176,12 @@ namespace BookCave.Controllers
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessage"] = "Error";
+
                 return View();
             }
             _bookServiceError.ProcessBook(book);
             _bookService.UpdateBook(book);
+
             return RedirectToAction("Index");
         }
 
@@ -182,6 +189,7 @@ namespace BookCave.Controllers
         public IActionResult DeleteBook(int id)
         {
             _bookService.DeleteBook(id);
+
             return RedirectToAction("Index");
         }
 
@@ -189,6 +197,7 @@ namespace BookCave.Controllers
         {
             var username = _userManager.Users;
             var randomBook = _bookService.GoToRandomBook(username);
+            
             return View("Details", randomBook);
         }
     }

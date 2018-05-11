@@ -77,9 +77,3 @@ $("#delete").click(function() {
         }
     });
 });
-
-// $(".surprise").click(function() {
-//     for(var i = 0; i < Number.MAX_SAFE_INTEGER; i++) {
-//         window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-//     }
-// });

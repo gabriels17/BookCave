@@ -3,9 +3,8 @@
     ViewData["Title"] = "Cart";
 }
 <form asp-action="BuyingCart" asp-route-UserId="@Model.UserId">
-<div class="col-xs-12 col-md-6">
-    <h2>Shipping Address</h2>
-    
+    <div class="col-xs-12 col-md-6">
+        <h2>Shipping Address</h2>
         <div class="form-group col-xs-12 col-md-6">
             <label asp-for="Email">Email Address</label>
             <input type="email" class="form-control" asp-for="Email" name="Email" placeholder="Email" value="@Model.Email" readonly>
@@ -41,32 +40,30 @@
             <input type="text" class="form-control" asp-for="PostCode" name="PostCode" placeholder="PostCode" value="@Model.PostCode">
             <span asp-validation-for="PostCode" class="text-danger" ></span>
         </div>
-</div>
-<div class="col-xs-12 col-md-6">
-    <h2>Payment Informations</h2>
-    <div class="form-group col-xs-12">
-        <label asp-for="CardNumber">Card Number:</label>
-        <input type="text" class="form-control" asp-for="CardNumber" name="CardNumber" placeholder="CardNumber">
-        <span asp-validation-for="CardNumber" class="text-danger" ></span>
     </div>
-    <div class="form-group col-xs-4">
-        <label asp-for="ExpMonth">ExpMonth:</label>
-        <input type="text" class="form-control" asp-for="ExpMonth" name="ExpMonth" placeholder="ExpMonth">
-        <span asp-validation-for="ExpMonth" class="text-danger" ></span>
+    <div class="col-xs-12 col-md-6">
+        <h2>Payment Informations</h2>
+        <div class="form-group col-xs-12">
+            <label asp-for="CardNumber">Card Number:</label>
+            <input type="text" class="form-control" asp-for="CardNumber" name="CardNumber" placeholder="CardNumber">
+            <span asp-validation-for="CardNumber" class="text-danger" ></span>
+        </div>
+        <div class="form-group col-xs-4">
+            <label asp-for="ExpMonth">ExpMonth:</label>
+            <input type="text" class="form-control" asp-for="ExpMonth" name="ExpMonth" placeholder="ExpMonth">
+            <span asp-validation-for="ExpMonth" class="text-danger" ></span>
+        </div>
+        <div class="form-group col-xs-4">
+            <label asp-for="ExpYear">ExpYear:</label>
+            <input type="text" class="form-control" asp-for="ExpYear" name="ExpYear" placeholder="ExpYear">
+            <span asp-validation-for="ExpYear" class="text-danger" ></span>
+        </div>
+        <div class="form-group col-xs-4">
+            <label asp-for="SecurityCode">Security Code:</label>
+            <input type="text" class="form-control" asp-for="SecurityCode" name="SecurityCode" placeholder="SecurityCode">
+            <span asp-validation-for="SecurityCode" class="text-danger" ></span>
+        </div>
+        <button type="submit" class="col-xs-12 col-md-5 col-md-offset-7 btn btn-warning">Continue</button>
+        <div class="text-danger col-xs-12 col-md-5 col-md-offset-7">@ViewData["ErrorMessage"]</div>
     </div>
-    <div class="form-group col-xs-4">
-        <label asp-for="ExpYear">ExpYear:</label>
-        <input type="text" class="form-control" asp-for="ExpYear" name="ExpYear" placeholder="ExpYear">
-        <span asp-validation-for="ExpYear" class="text-danger" ></span>
-    </div>
-    <div class="form-group col-xs-4">
-        <label asp-for="SecurityCode">Security Code:</label>
-        <input type="text" class="form-control" asp-for="SecurityCode" name="SecurityCode" placeholder="SecurityCode">
-        <span asp-validation-for="SecurityCode" class="text-danger" ></span>
-    </div>
-    <button type="submit" class="col-xs-12 col-md-5 col-md-offset-7 btn btn-warning">Continue</button>
-    <div class="text-danger col-xs-12 col-md-5 col-md-offset-7">@ViewData["ErrorMessage"]</div>
-    
-
-</div>
 </form>

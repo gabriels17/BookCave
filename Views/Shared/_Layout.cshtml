@@ -26,35 +26,35 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a src="~/Book Library-32.png" class="navbar-brand" href="/Home/Index">BookCave</a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a src="~/Book Library-32.png" class="navbar-brand" href="/Home/Index">BookCave</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left" asp-controller="Home" asp-action="Browse">
-                <a class="btn btn-warning" asp-controller="Home" asp-action="Browse">Browse</a>
-                <div class="form-group">
-                    <div class="col-xs-12 col-lg-6"><input type="text" class="form-control" placeholder="Search" Name="search"></div>
-                </div>
-                <button type="submit" class="btn btn-warning">Search</button>
-                @if(User.IsInRole("Admin"))
-                {
-                    <a asp-controller="Home" asp-action="AddBook" class="btn btn-warning">Add book!</a>
-                }
-                <a asp-controller="Home" asp-action="GoToRandomBook" class="btn btn-warning">Random book!</a>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                <a asp-controller="Cart" asp-action="Index"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart</a>
-                </li>
-                @await Html.PartialAsync("_LoginPartial")
-            </ul>
+                <form class="navbar-form navbar-left" asp-controller="Home" asp-action="Browse">
+                    <a class="btn btn-warning" asp-controller="Home" asp-action="Browse">Browse</a>
+                    <div class="form-group">
+                        <div class="col-xs-12 col-lg-6"><input type="text" class="form-control" placeholder="Search" Name="search"></div>
+                    </div>
+                    <button type="submit" class="btn btn-warning">Search</button>
+                    @if(User.IsInRole("Admin"))
+                    {
+                        <a asp-controller="Home" asp-action="AddBook" class="btn btn-warning">Add book!</a>
+                    }
+                    <a asp-controller="Home" asp-action="GoToRandomBook" class="btn btn-warning">Random book!</a>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a asp-controller="Cart" asp-action="Index"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart</a>
+                    </li>
+                    @await Html.PartialAsync("_LoginPartial")
+                </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>

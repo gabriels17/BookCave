@@ -45,15 +45,16 @@ namespace BookCave.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterInputModel registerModel)
         {
-            if(!ModelState.IsValid)
+            if(!ModelState.IsValid) //Checks if input is valid
             {
                 ViewData["ErrorMessage"] = "Error";
+
                 return View();
             }
 
-            _accountService.ProcessRegister(registerModel);
+            _accountService.ProcessRegister(registerModel); //Checks if input is valid
 
-            /*IdentityResult roleResult;
+            /*IdentityResult roleResult;    //This is commented out because it´s used to create a role which we only needed once to create Admin                                    
             var roleExist = await _roleManager.RoleExistsAsync("Admin");
             if (!roleExist)
             {
@@ -73,7 +74,7 @@ namespace BookCave.Controllers
 
             if(result.Succeeded)
             {
-                //await _userManager.AddToRoleAsync(user, "Admin");
+                //await _userManager.AddToRoleAsync(user, "Admin"); //This is commented out because it is used to make the new user admin right away
                 await _userManager.AddClaimAsync(user, new Claim("Name", $"{registerModel.FirstName} {registerModel.LastName}"));
                 await _signInManager.SignInAsync(user, false);
 
@@ -82,6 +83,7 @@ namespace BookCave.Controllers
             else
             {
                 ViewData["ErrorMessage"] = "The information you entered was not valid, please try again";
+
                 return View();
             }
         }
@@ -99,6 +101,7 @@ namespace BookCave.Controllers
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessages"] = "Error";
+
                 return View();
             }
 
@@ -112,6 +115,7 @@ namespace BookCave.Controllers
             else
             {
                 ViewData["ErrorMessage"] = "Email address or password is incorrect";
+
                 return View();
             }
         }
@@ -121,6 +125,7 @@ namespace BookCave.Controllers
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
+
             return RedirectToAction("Login", "Account");
         }
 
@@ -135,6 +140,7 @@ namespace BookCave.Controllers
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
             _cartService.AddToCart(userId, ID);
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -144,6 +150,7 @@ namespace BookCave.Controllers
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
             _cartService.AddToWishlist(userId, ID);
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -152,7 +159,6 @@ namespace BookCave.Controllers
         {
             // Get User Data
             var user = await _userManager.GetUserAsync(User);
-
             var reviews = _reviewService.GetReviews(user.Id);
             var orderhistory = _cartService.GetOrderHistory(user.Id);
             var wishlistId = _cartService.GetWishlistId(user.Id);
@@ -177,7 +183,7 @@ namespace BookCave.Controllers
                 Wishlist = wishlist
             };
 
-            if (string.IsNullOrEmpty(profile.Image))
+            if (string.IsNullOrEmpty(profile.Image)) //for default profile image when we need one
             {
                 profile.Image = "https://cdn.iconscout.com/public/images/icon/free/png-512/avatar-user-hacker-3830b32ad9e0802c-512x512.png";
             }
@@ -188,6 +194,7 @@ namespace BookCave.Controllers
         public IActionResult DeleteWishlist(int id)
         {
             _cartService.DeleteWishlist(id);
+
             return RedirectToAction("MyProfile");
         }
 
@@ -222,6 +229,7 @@ namespace BookCave.Controllers
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessages"] = "Error";
+
                 return View();
             }
             _accountService.ProcessProfile(model);
@@ -248,6 +256,7 @@ namespace BookCave.Controllers
             else
             {
                 ViewData["ErrorMessage"] = "Failed to save changes, please try again";
+
                 return View(model);
             }
         }
@@ -255,38 +264,8 @@ namespace BookCave.Controllers
         public IActionResult DeleteReview(int id)
         {
             _reviewService.DeleteReview(id);
+            
             return RedirectToAction("MyProfile");
-        }
-        
-        private async Task createRolesandUsers()
-        {  
-            if (!await _roleManager.RoleExistsAsync("Admin"))
-            {
-                var role = new IdentityRole();
-                role.Name = "Admin";
-                await _roleManager.CreateAsync(role);
-
-                var user = new ApplicationUser();
-                user.UserName = "admin";
-                user.Email = "admin@bookcave.com";
-                string userPWD = "admin";
-
-                IdentityResult newUser = await _userManager.CreateAsync(user, userPWD);
-
-                //Add default User to Role Admin
-                if (newUser.Succeeded)
-                {
-                    var result1 = await _userManager.AddToRoleAsync(user, "Admin");
-                }
-            }
-
-            // Creating Customer role     
-            if (!await _roleManager.RoleExistsAsync("Customer"))
-            {
-                var role = new IdentityRole();
-                role.Name = "Customer";
-                await _roleManager.CreateAsync(role);
-            }
         }
     }
 }

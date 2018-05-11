@@ -6,50 +6,50 @@
 
 <h3>New Releases</h3>
 <section class="horizontalscroll">
- @foreach(var book in Model.NewReleases)
-  {
+    @foreach(var book in Model.NewReleases)
+    {
         <div class="thumbnail">
-          <a asp-controller="Home" asp-action="Details" asp-route-id="@book.Id"><img class="img-resize" src="@book.Image" alt="@book.Id"></a>
-          <div class="caption">
-            <a asp-controller="Home" asp-action="Details" asp-route-id="@book.Id"><h4 class="book-title">@book.Title</h4></a>
-            <h5>@book.Author</h5>
-          </div>
-          <div class="rating-price col-xs-5">
-            <div class="stars-outer">
-              <div class="stars-inner">
-                <p class="ratings">@book.Rating</p>
-              </div>
+            <a asp-controller="Home" asp-action="Details" asp-route-id="@book.Id"><img class="img-resize" src="@book.Image" alt="@book.Id"></a>
+            <div class="caption">
+                <a asp-controller="Home" asp-action="Details" asp-route-id="@book.Id"><h4 class="book-title">@book.Title</h4></a>
+                <h5>@book.Author</h5>
             </div>
-            <p>@book.Price $</p>
-          </div>
-          <div class="rating-price col-xs-5">
-            <a class="btn btn-warning book-to-cart" role="button">Add to cart</a>
-          </div>
+            <div class="rating-price col-xs-5">
+                <div class="stars-outer">
+                    <div class="stars-inner">
+                        <p class="ratings">@book.Rating</p>
+                    </div>
+                </div>
+                <p>@book.Price $</p>
+            </div>
+            <div class="rating-price col-xs-5">
+                <a class="btn btn-warning book-to-cart" role="button">Add to cart</a>
+            </div>
         </div>
-  }
+    }
 </section>
 
 <h3>Top Rated</h3>
 <section class="horizontalscroll">
- @foreach(var book in Model.TopRated)
-  {
+    @foreach(var book in Model.TopRated)
+    {
         <div class="thumbnail">
-          <a asp-action="Details" asp-route-id="@book.Id"><img class="img-resize" src="@book.Image" alt="@book.Id"></a>
-          <div class="caption">
-            <a asp-action="Details" asp-route-id="@book.Id"><h4 class="book-title">@book.Title</h4></a>
-            <h5>@book.Author</h5>
-          </div>
-          <div class="rating-price col-xs-5">
-            <div class="stars-outer">
-              <div class="stars-inner">
-                <p class="ratings">@book.Rating</p>
-              </div>
+            <a asp-action="Details" asp-route-id="@book.Id"><img class="img-resize" src="@book.Image" alt="@book.Id"></a>
+            <div class="caption">
+                <a asp-action="Details" asp-route-id="@book.Id"><h4 class="book-title">@book.Title</h4></a>
+                <h5>@book.Author</h5>
             </div>
-            <p>@book.Price $</p>
-          </div>
-          <div class="rating-price col-xs-5">
-            <a class="btn btn-warning book-to-cart" role="button">Add to cart</a>
-          </div>
+            <div class="rating-price col-xs-5">
+                <div class="stars-outer">
+                    <div class="stars-inner">
+                        <p class="ratings">@book.Rating</p>
+                    </div>
+                </div>
+                <p>@book.Price $</p>
+            </div>
+            <div class="rating-price col-xs-5">
+                <a class="btn btn-warning book-to-cart" role="button">Add to cart</a>
+            </div>
         </div>
-  }
+    }
 </section>

@@ -18,7 +18,6 @@ namespace BookCave.Controllers
     {
         private CartService _cartService;
         private readonly ICartService _cartServiceError;
-
         private readonly UserManager<ApplicationUser> _userManager;
 
         public CartController(UserManager<ApplicationUser> userManager, ICartService cartServiceError)
@@ -43,6 +42,7 @@ namespace BookCave.Controllers
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
             _cartService.UpdateCart(bookId, quantity, userId);
+
             return RedirectToAction("Index");
         }
 
@@ -52,6 +52,7 @@ namespace BookCave.Controllers
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
             _cartService.RemoveFromCart(bookId, userId);
+            
             return RedirectToAction("Index");
         }
 
@@ -82,15 +83,16 @@ namespace BookCave.Controllers
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessage"] = "Error";
+
                 return RedirectToAction("CheckoutInformation", "Cart", new {error = true});
             }
             
-            _cartServiceError.ProcessCart(info);
-
+            _cartServiceError.ProcessCart(info); 
             var buyingcartinfo = new BuyCartViewModel {
                 TheCart = _cartService.GetCart(info.UserId),
                 Info = info
             };
+
             return View(buyingcartinfo);
         }
 
@@ -98,12 +100,14 @@ namespace BookCave.Controllers
         public IActionResult CartBought(CartBoughtViewModel info)
         {
             _cartService.CreateOrder(info);
+
             return RedirectToAction("ThankYou", new { email = info.Email });
         }
 
         public IActionResult ThankYou(string email)
         {
-            ViewData["Email"] = email; 
+            ViewData["Email"] = email;
+            
             return View();
         }
 

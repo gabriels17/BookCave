@@ -62,8 +62,7 @@ namespace BookCave.Repositories
                                 {
                                     Id = w.Id,
                                     BookId = w.BookId
-                                })
-                                .ToList();
+                                }).ToList();
             
             return WishlistId;
         }
