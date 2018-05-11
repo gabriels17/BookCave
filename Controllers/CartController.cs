@@ -87,7 +87,7 @@ namespace BookCave.Controllers
                 return RedirectToAction("CheckoutInformation", "Cart", new {error = true});
             }
             
-            _cartServiceError.ProcessCart(info); 
+            _cartServiceError.ProcessCart(info);  //Error handling
             var buyingcartinfo = new BuyCartViewModel {
                 TheCart = _cartService.GetCart(info.UserId),
                 Info = info

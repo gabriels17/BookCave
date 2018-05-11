@@ -45,14 +45,14 @@ namespace BookCave.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterInputModel registerModel)
         {
-            if(!ModelState.IsValid) //Checks if input is valid
+            if(!ModelState.IsValid) 
             {
                 ViewData["ErrorMessage"] = "Error";
 
                 return View();
             }
 
-            _accountService.ProcessRegister(registerModel); //Checks if input is valid
+            _accountService.ProcessRegister(registerModel); //Error handling
 
             /*IdentityResult roleResult;    //This is commented out because it´s used to create a role which we only needed once to create Admin                                    
             var roleExist = await _roleManager.RoleExistsAsync("Admin");
@@ -83,7 +83,6 @@ namespace BookCave.Controllers
             else
             {
                 ViewData["ErrorMessage"] = "The information you entered was not valid, please try again";
-
                 return View();
             }
         }
@@ -105,7 +104,7 @@ namespace BookCave.Controllers
                 return View();
             }
 
-            _accountService.ProcessLogin(loginModel);
+            _accountService.ProcessLogin(loginModel); //Error handling
 
             var result = await _signInManager.PasswordSignInAsync(loginModel.Email, loginModel.Password, loginModel.RememberMe, false);
             if(result.Succeeded)
@@ -232,7 +231,8 @@ namespace BookCave.Controllers
 
                 return View();
             }
-            _accountService.ProcessProfile(model);
+            _accountService.ProcessProfile(model); //Error handling
+
             var user = await _userManager.GetUserAsync(User);
             
             //Update Properties
