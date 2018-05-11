@@ -53,7 +53,13 @@ namespace BookCave.Controllers
 
             _accountService.ProcessRegister(registerModel);
 
-
+            /*IdentityResult roleResult;
+            var roleExist = await _roleManager.RoleExistsAsync("Admin");
+            if (!roleExist)
+            {
+                //create the roles and seed them to the database: Question 1
+                roleResult = await _roleManager.CreateAsync(new IdentityRole("Admin"));
+            }*/
 
             var user = new ApplicationUser
             {
@@ -67,6 +73,7 @@ namespace BookCave.Controllers
 
             if(result.Succeeded)
             {
+                //await _userManager.AddToRoleAsync(user, "Admin");
                 await _userManager.AddClaimAsync(user, new Claim("Name", $"{registerModel.FirstName} {registerModel.LastName}"));
                 await _signInManager.SignInAsync(user, false);
 
