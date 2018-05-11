@@ -18,15 +18,13 @@ namespace BookCave.Controllers
     public class HomeController : Controller
     {
         private readonly IBookService _bookServiceError;
-
         private readonly IReviewService _reviewService;
         private readonly UserManager<ApplicationUser> _userManager;
-
         private BookService _bookService;
 
+        //The constructor
         public HomeController(IBookService bookService, UserManager<ApplicationUser> userManager, IReviewService reviewService)
         {
-
             _userManager = userManager;
             _bookServiceError = bookService;
             _bookService = new BookService();
@@ -58,12 +56,12 @@ namespace BookCave.Controllers
 
             if(!String.IsNullOrEmpty(search))
             {
-                books = _bookService.Search(search,books);
+                books = _bookService.Search(search, books);
             }
 
             if(!String.IsNullOrEmpty(genre))
             {
-                books =_bookService.Filter(genre,books);
+                books =_bookService.Filter(genre, books);
             }
 
             switch (sortOrder)
@@ -128,15 +126,15 @@ namespace BookCave.Controllers
             }
             var idbook = _bookService.GetBookById(id);
             var reviews = _bookService.GetReviews(id);
-            var detail = new DetailsInputViewModel();
+            var details = new DetailsInputViewModel();
 
             var username = _userManager.Users;
-            _bookService.ChangeUserIdToName(reviews, username);
+            _bookService.ChangeUserIdToName(reviews, username); //Get username to show with the reviews
 
-            detail.Book = idbook;
-            detail.Reviews = reviews;
+            details.Book = idbook;
+            details.Reviews = reviews;
 
-            return View(detail);
+            return View(details);
         }
 
         [HttpPost]
@@ -150,7 +148,7 @@ namespace BookCave.Controllers
             }
             var review = model.Input;
             review.BookId = BookId;
-            _reviewService.ProcessReview(review);
+            _reviewService.ProcessReview(review); //Error handling
             var user = await _userManager.GetUserAsync(User);
             review.UserId = user.Id;
             _bookService.AddReview(review);
@@ -160,7 +158,7 @@ namespace BookCave.Controllers
 
         [HttpGet]
         [Authorize(Roles="Admin")]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int id) //Edit book view
         {
             var bookToEdit = _bookService.GetBookById(id);
             ViewData["Name"] = bookToEdit.Title;
@@ -170,7 +168,7 @@ namespace BookCave.Controllers
 
         [HttpPost]
         [Authorize(Roles="Admin")]
-        public IActionResult Edit(BookInputModel book)
+        public IActionResult Edit(BookInputModel book) //Edit the book
         {
             ViewData["Name"] = book.Title;
             if(!ModelState.IsValid)
@@ -179,7 +177,7 @@ namespace BookCave.Controllers
 
                 return View();
             }
-            _bookServiceError.ProcessBook(book);
+            _bookServiceError.ProcessBook(book); //Error handling
             _bookService.UpdateBook(book);
             _bookService.UpdateBookRating(book.Id);
             return RedirectToAction("Index");
