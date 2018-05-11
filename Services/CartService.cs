@@ -46,6 +46,11 @@ namespace BookCave.Services
             var orderhistory = _cartRepo.GetOrders(id);
             return orderhistory;
         }
+        public List<int> GetWhishlistId(string id)
+        {
+            var whishlist = _cartRepo.GetWhishlistByUserId(id);
+            return whishlist;
+        }
 
         public void ProcessCart(CheckoutInputModel cart)
         {

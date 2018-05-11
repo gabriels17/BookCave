@@ -4,7 +4,8 @@
     ViewData["Title"] = "Profile";
 }
 
-<div id="Profile" class="container col-md-3">
+
+<div class="col-md-3 panel panel-danger">
     <img class="thumbnail img-resize-profile" src="@Model.Image" alt="@Model.FirstName">
     <p><b>First Name:</b> @Model.FirstName</p>
     <p><b>Last Name:</b> @Model.LastName</p>
@@ -16,7 +17,7 @@
     <div class="panel panel-danger">
         <div class="panel-heading">
             <ul class="nav nav-tabs">
-                <li class="acive">
+                <li class="active">
                     <a href="#Reviews" data-toggle="tab">My reviews</a>
                 </li>
                 <li>
@@ -25,8 +26,12 @@
                 <li>
                     <a href="#OrderHistory" data-toggle="tab">Order History</a>
                 </li>
+                <li>
+                    <a href="#Wishlist" data-toggle="tab">Wishlist</a>
+                </li>
             </ul>
         </div>
+
         <div class="panel-body">
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="Reviews">
@@ -35,9 +40,9 @@
                         @foreach(var review in Model.Reviews)
                         {
                             <div class="container col-md-10">
-                                <div class="panel panel-default">
+                                <div class="panel panel-default panel-in-tab">
                                     <div class="panel-heading">
-                                        <p id="bookname">@review.BookName</p>
+                                        <p class="heading-title">@review.BookName</p>
                                         <div class="stars-outer">
                                             <div class="stars-inner">
                                                 <p class="ratings">@review.Rating</p>
@@ -53,6 +58,7 @@
                         }
                     </div>
                 </div>
+
                 <div class="tab-pane fade" id="Shipping">
                     <h3 class="tab-title">Your shipping info</h3>
                     <div class="container col-md-10" id="ShippingInfo">
@@ -64,26 +70,49 @@
                         <p><b>Postcode:</b> @Model.Postcode</p>
                     </div>
                 </div>
+
                 <div class="tab-pane fade" id="OrderHistory">
                     <h3 class="tab-title">Your order history</h3>
                     @foreach(var order in Model.OrderHistory)
-                        {
-                            <div class="container col-md-10">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <img class="thumbnail img-resize col-md-3" src="@order.Image" alt="@order.Title">
-                                        <div class="col-md-2">
-                                            <h3>@order.Title</h3>
-                                            <p>@order.Author</p>
-                                            <p>@order.Price</p>
-                                        </div>
-                                        <div class="col-md-2 col-md-offset-1">
-                                            <h3>@order.Quantity X</h3>
-                                        </div>
+                    {
+                        <div class="container col-md-10">
+                            <div class="panel panel-default panel-in-tab">
+                                <div class="panel-body" id="OrderHistory">
+                                    <img class="img-thumbnail img-resize-orderhistory col-md-4" src="@order.Image" alt="@order.Title">
+                                    <div class="col-md-6">
+                                        <p class="heading-title"><b>@order.Title</b></p>
+                                        <p class="heading-title">@order.Author</p>
+                                        <p class="heading-title">@order.Price $</p>
+                                    </div>
+                                    <div class="col-md-1 col-md-offset-1 panel-right-corner">
+                                        <p class="">@order.Quantity </p>
                                     </div>
                                 </div>
                             </div>
-                        }
+                        </div>
+                    }
+                </div>
+
+                <div class="tab-pane fade" id="Wishlist">
+                    <h3 class="tab-title">Your wishlist</h3>
+                    @foreach(var book in Model.Wishlist)
+                    {
+                        <div class="container col-md-10">
+                            <div class="panel panel-default panel-in-tab">
+                                <div class="panel-body" id="OrderHistory">
+                                    <img class="img-thumbnail img-resize-orderhistory col-md-4" src="@book.Image" alt="@book.Title">
+                                    <div class="col-md-6">
+                                        <p class="heading-title"><b>@book.Title</b></p>
+                                        <p class="heading-title">@book.Author</p>
+                                        <p class="heading-title">@book.Price $</p>
+                                    </div>
+                                    <div class="col-md-1 col-md-offset-1 panel-right-corner">
+                                        <a><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

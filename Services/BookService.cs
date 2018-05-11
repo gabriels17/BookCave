@@ -53,6 +53,16 @@ namespace BookCave.Services
             var reviews = _bookRepo.GetReviews(id);
             return(reviews);
         }
+        public List<WishlistViewModel> GetWishlist(List<int> WishlistId)
+        {
+            var Wishlist = new List<WishlistViewModel>();
+            foreach(var id in WishlistId)
+            {
+                var book = _bookRepo.GetWishlistById(id);
+                Wishlist.Add(book);
+            }
+            return Wishlist;
+        }
 
         public void ChangeUserIdToName(List<ReviewViewModel> reviews, IQueryable<ApplicationUser> username)
         {
