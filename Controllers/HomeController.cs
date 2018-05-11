@@ -108,10 +108,10 @@ namespace BookCave.Controllers
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessage"] = "Error";
-
                 return View();
             }
-            _bookServiceError.ProcessBook(newBook);
+            _bookServiceError.ProcessBook(newBook); //Error handling
+
             _bookService.AddBook(newBook);
 
             return RedirectToAction("Index");
@@ -129,6 +129,7 @@ namespace BookCave.Controllers
             var details = new DetailsInputViewModel();
 
             var username = _userManager.Users;
+
             _bookService.ChangeUserIdToName(reviews, username); //Get username to show with the reviews
 
             details.Book = idbook;
@@ -148,6 +149,7 @@ namespace BookCave.Controllers
             }
             var review = model.Input;
             review.BookId = BookId;
+
             _reviewService.ProcessReview(review); //Error handling
             var user = await _userManager.GetUserAsync(User);
             review.UserId = user.Id;
