@@ -149,6 +149,17 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
+        public void UpdateBookRating(int bookid, double newrating)
+        {
+            var book = (from b in _db.Books
+                        where b.Id == bookid
+                        select b).SingleOrDefault();
+
+            book.Rating = newrating;
+
+            _db.SaveChanges();
+        }
+
         public List<ReviewViewModel> GetReviews(int id)
         {
             var reviews = (from r in _db.Reviews

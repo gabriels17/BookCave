@@ -63,6 +63,7 @@
     <div class="col-xs-12 col-md-6">
         <label asp-for="Info.PostCode">Post Code</label>
         <input type="text" asp-for="Info.PostCode" class="form-control" name="PostCode" value="@Model.Info.PostCode" readonly>
+        <span asp-validation-for="Info.PostCode" class="text-danger"></span>
     </div>
 </div>
 <div class="col-xs-12 col-md-4">
@@ -70,18 +71,22 @@
     <div class="col-xs-12">
         <label asp-for="Info.CardNumber">Card Number</label>
         <input type="text" asp-for="Info.CardNumber" class="form-control" name="CardNumber" value="@Model.Info.CardNumber" readonly>
+
     </div>
     <div class="col-xs-5">
         <label asp-for="Info.ExpMonth">Exp Month</label>
         <input type="text" asp-for="Info.ExpMonth" class="form-control" name="ExpMonth" value="@Model.Info.ExpMonth" readonly>
+
     </div>
     <div class="col-xs-6 col-xs-5">
         <label asp-for="Info.ExpYear">Exp Year</label>
         <input type="text" asp-for="Info.ExpYear" class="form-control" name="ExpYear" value="@Model.Info.ExpYear" readonly>
+
     </div>
     <div class="col-xs-6 col-xs-5">
         <label asp-for="Info.SecurityCode">Code</label>
         <input type="text" asp-for="Info.SecurityCode" class="form-control" name="SecurityCode" value="@Model.Info.SecurityCode" readonly>
+
     </div>
     <div class="col-xs-12">
         <div class="col-md-offset-6 col-xs-3">
@@ -89,6 +94,7 @@
         </div>
         <div class="col-xs-3">
             <button type="submit" id="BoughtCart" class="btn btn-warning">Buy</button>
+            <div class="text-danger">@ViewData["ErrorMessage"]</div>
         </div>
     </div>
     </form>
