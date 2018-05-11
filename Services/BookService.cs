@@ -35,10 +35,13 @@ namespace BookCave.Services
             var byname  = (from a in books
                         where a.Title.ToLower().Contains(str.ToLower())
                         select a);
+
             var byauthor = (from a in books
                         where a.Author.ToLower().Contains(str.ToLower())
                         select a);
-            var result = byname.Concat(byauthor).ToList();      
+
+            var result = byname.Concat(byauthor).ToList();  // Combine Lists   
+              
             return result;
         }
 
