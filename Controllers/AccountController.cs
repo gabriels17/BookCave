@@ -221,7 +221,7 @@ namespace BookCave.Controllers
             }
         }
 
-        public IActionResult Delete(int id)
+        public IActionResult DeleteReview(int id)
         {
             _reviewService.DeleteReview(id);
             return RedirectToAction("MyProfile");

@@ -187,7 +187,8 @@ namespace BookCave.Controllers
 
         public IActionResult GoToRandomBook()
         {
-            var randomBook = _bookService.GoToRandomBook();
+            var username = _userManager.Users;
+            var randomBook = _bookService.GoToRandomBook(username);
             return View("Details", randomBook);
         }
     }
