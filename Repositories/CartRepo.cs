@@ -54,6 +54,14 @@ namespace BookCave.Repositories
                 _db.SaveChanges();
             }
         }
+        public List<int> GetWhishlistByUserId(string id)
+        {
+            var WhishlistId = (from w in _db.Whishlists
+                                where w.UserId == id
+                                select w.BookId).ToList();
+            
+            return WhishlistId;
+        }
 
         public  List<CartViewModel> GetCart (string TheUserId)
         {

@@ -94,6 +94,24 @@
 
                 <div class="tab-pane fade" id="Whishlist">
                     <h3 class="tab-title">Your whishlist</h3>
+                    @foreach(var book in Model.Whishlist)
+                    {
+                        <div class="container col-md-10">
+                            <div class="panel panel-default panel-in-tab">
+                                <div class="panel-body" id="OrderHistory">
+                                    <img class="img-thumbnail img-resize-orderhistory col-md-4" src="@book.Image" alt="@book.Title">
+                                    <div class="col-md-6">
+                                        <p class="heading-title"><b>@book.Title</b></p>
+                                        <p class="heading-title">@book.Author</p>
+                                        <p class="heading-title">@book.Price $</p>
+                                    </div>
+                                    <div class="col-md-1 col-md-offset-1 panel-right-corner">
+                                        <a><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
