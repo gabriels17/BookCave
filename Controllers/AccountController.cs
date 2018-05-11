@@ -220,13 +220,8 @@ namespace BookCave.Controllers
 
                 return View();
             }
-<<<<<<< HEAD
-            _accountService.ProcessProfile(model);
-            
-=======
             _accountService.ProcessProfile(model); //Error handling
 
->>>>>>> 1b45ab3c51234775e89330976c5a09394de679ee
             var user = await _userManager.GetUserAsync(User);
             
             //Update Properties
