@@ -5,23 +5,24 @@
 }
 
 <fieldset>
-    <div class="col-xs-4" id="imageDetails">
+    <div class="col-md-4 col-xs-12" id="imageDetails">
         <img src="@Model.Book.Image" alt="@Model.Book.Id" class="img-thumbnail details-book-image" height="400px" width="300px">
-        <div class="stars-outer" id="rateStar">
-            <div class="stars-inner">
+        <div class="stars-outer col-xs-4" id="rateStar">
+            <div class="stars-inner col-xs-4">
                 <p class="ratings">@Model.Book.Rating</p>
             </div>
         </div>
-        <a class="btn btn-warning details-book-to-cart" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> @Model.Book.Price$</a>
+        <a class="btn btn-warning details-book-to-cart col-xs-4" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> @Model.Book.Price$</a>
+        <a class="btn btn-warning details-book-to-whishlist col-xs-2"><span class="glyphicon glyphicon-heart"></span></a>
         <br>
         <div id="adminButtons">
-            <a asp-action="Edit" asp-route-id="@Model.Book.Id" type="button" class="btn btn-warning">
+            <a asp-action="Edit" asp-route-id="@Model.Book.Id" type="button" class="btn btn-warning col-xs-6 col-md-4">
             <span class="glyphicon glyphicon-pencil"></span> Edit book</a>
-            <a asp-action="Delete" asp-route-id="@Model.Book.Id" class="btn btn-warning">
+            <a asp-action="Delete" asp-route-id="@Model.Book.Id" class="btn btn-warning col-xs-6 col-md-4">
             <span class="glyphicon glyphicon-trash"></span> Delete book</a>
         </div>
     </div>
-    <div class="col-xs-8" id="bookInfo">
+    <div class="col-md-8 col-xs-12" id="bookInfo">
         <h3 class="details-book-title">@Model.Book.Title</h3>
         <h4> By @Model.Book.Author</h4>
         <h5>Genre: @Model.Book.Genre; Publication date: @Model.Book.ReleaseDate.ToString("dd/MM/yyyy")</h5>

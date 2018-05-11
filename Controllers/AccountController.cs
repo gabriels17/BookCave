@@ -130,6 +130,15 @@ namespace BookCave.Controllers
         }
 
         [Authorize]
+        public async Task<IActionResult> AddToWhishlist(int ID)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            _cartService.AddToWhishlist(userId, ID);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
         public async Task<IActionResult> MyProfile()
         {
             // Get User Data
