@@ -68,6 +68,11 @@ namespace BookCave.Services
             }
         }
 
+        public void GetRandomBook()
+        {
+            
+        }
+
         public void AddReview(ReviewInputModel review)
         {
             _bookRepo.AddReview(review);
