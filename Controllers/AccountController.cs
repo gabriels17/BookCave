@@ -19,6 +19,7 @@ namespace BookCave.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private CartService _cartService;
         private ReviewService _reviewService;
+        private BookService _bookService;
         private readonly IAccountService _accountService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -27,6 +28,7 @@ namespace BookCave.Controllers
         {
             _cartService = new CartService();
             _reviewService = new ReviewService();
+            _bookService = new BookService();
             _signInManager = signInManager;
             _userManager = userManager;
             _accountService = accountService;
@@ -130,12 +132,25 @@ namespace BookCave.Controllers
         }
 
         [Authorize]
+        public async Task<IActionResult> AddToWhishlist(int ID)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            _cartService.AddToWhishlist(userId, ID);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
         public async Task<IActionResult> MyProfile()
         {
             // Get User Data
             var user = await _userManager.GetUserAsync(User);
+
             var reviews = _reviewService.GetReviews(user.Id);
             var orderhistory = _cartService.GetOrderHistory(user.Id);
+            var whishlistId = _cartService.GetWhishlistId(user.Id);
+            var whislist = _bookService.GetWhishlist(whishlistId);
+
             var profile = new ProfileViewModel 
             {
                 Id = user.Id,
@@ -151,7 +166,8 @@ namespace BookCave.Controllers
                 Postcode = user.Postcode,
                 Country = user.Country,
                 Reviews = reviews,
-                OrderHistory = orderhistory
+                OrderHistory = orderhistory,
+                Whishlist = whislist
             };
 
             if (string.IsNullOrEmpty(profile.Image))

@@ -38,6 +38,30 @@ namespace BookCave.Repositories
             }
             _db.SaveChanges();
         }
+        public void AddToWhishlist(string TheUserId, int TheBookId)
+        {
+            var checker = (from c in _db.Whishlists
+                            where c.BookId == TheBookId && c.UserId == TheUserId
+                            select c).SingleOrDefault();
+            if(checker == null)
+            {
+                var WhishlistEntityModel = new Whishlist()
+                {
+                    BookId = TheBookId,
+                    UserId = TheUserId,
+                };
+                _db.Add(WhishlistEntityModel);
+                _db.SaveChanges();
+            }
+        }
+        public List<int> GetWhishlistByUserId(string id)
+        {
+            var WhishlistId = (from w in _db.Whishlists
+                                where w.UserId == id
+                                select w.BookId).ToList();
+            
+            return WhishlistId;
+        }
 
         public  List<CartViewModel> GetCart (string TheUserId)
         {
@@ -112,6 +136,7 @@ namespace BookCave.Repositories
         {
             var orders = ( from order in _db.Orders
                             where order.UserId == id
+                            orderby order.Id descending
                             select new OrderHistoryViewModels 
                             {
                                 UserID = order.UserId,
