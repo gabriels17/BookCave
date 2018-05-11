@@ -89,12 +89,6 @@ namespace BookCave.Repositories
 
             return books;
         }
-        
-        /*public Book GetBook()
-        {
-            return Book();
-        }
-        */
 
         public void AddBook(BookInputModel newBook)
         {
@@ -109,16 +103,23 @@ namespace BookCave.Repositories
                 Rating = newBook.Rating,
                 Description = newBook.Description
             };
-            _db.AddRange(BookEntityModel);
+            
+            _db.Add(BookEntityModel);
             _db.SaveChanges();
         }
 
         public void DeleteBook(int id)
         {
+            var reviews = (from r in _db.Reviews
+                          where r.BookId == id
+                          select r).ToList();
+            _db.Remove(reviews);
+
             var book = (from b in _db.Books
                         where id == b.Id
                         select b).SingleOrDefault();
             _db.Remove(book);
+
             _db.SaveChanges();
         }
         public void DeleteReview(int id)
@@ -144,6 +145,17 @@ namespace BookCave.Repositories
             book.Price = updatedBook.Price;
             book.ReleaseDate = updatedBook.ReleaseDate;
             book.Description = updatedBook.Description;
+
+            _db.SaveChanges();
+        }
+
+        public void UpdateBookRating(int bookid, double newrating)
+        {
+            var book = (from b in _db.Books
+                        where b.Id == bookid
+                        select b).SingleOrDefault();
+
+            book.Rating = newrating;
 
             _db.SaveChanges();
         }
@@ -195,6 +207,14 @@ namespace BookCave.Repositories
             };
             _db.Add(ReviewEntityModel);
             _db.SaveChanges();
+        }
+
+        public int GetHighestBookId()
+        {
+            var allBooks = GetAllBooks();
+            var book = (from a in allBooks
+                      select a).LastOrDefault();
+            return book.Id;
         }
     }
 }

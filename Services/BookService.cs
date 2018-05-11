@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BookCave.Models;
 using BookCave.Models.InputModels;
+using BookCave.Models.InputViewModels;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
 
@@ -70,7 +71,27 @@ namespace BookCave.Services
 
         public void AddReview(ReviewInputModel review)
         {
+            var newRating = FindAverageRating(review);
+            _bookRepo.UpdateBookRating(review.BookId, newRating);
             _bookRepo.AddReview(review);
+        }
+
+        private double FindAverageRating(ReviewInputModel review)
+        {
+            var incomingRating = review.Rating;
+            var reviews = _bookRepo.GetReviews(review.BookId);
+
+            var sumOfRatings = 0.0;
+            foreach(var r in reviews)
+            {
+                sumOfRatings += r.Rating;
+            }
+
+            sumOfRatings += incomingRating;
+            var numberOfReviews = reviews.Count + 1;
+            var newRating = sumOfRatings / numberOfReviews;
+
+            return newRating;
         }
         public void AddBook(BookInputModel newBook)
         {
@@ -204,6 +225,25 @@ namespace BookCave.Services
             {
                 throw new Exception("Description is missing!");
             }
+        }
+        public int GetHighestBookId()
+        {
+            return _bookRepo.GetHighestBookId();
+        }
+
+        public DetailsInputViewModel GoToRandomBook()
+        {
+            Random rnd = new Random();
+            var allBooks = GetAllBooks();
+            int randomId = rnd.Next(GetHighestBookId());
+            while(GetBookById(randomId) == null)
+            {
+                randomId = rnd.Next(GetHighestBookId());
+            }
+            var newbook = new DetailsInputViewModel();
+            newbook.Book = GetBookById(randomId);
+            newbook.Reviews = GetReviews(randomId);
+            return newbook;
         }
     }
 }

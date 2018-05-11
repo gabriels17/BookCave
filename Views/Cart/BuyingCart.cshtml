@@ -88,12 +88,14 @@
         <input type="text" asp-for="Info.SecurityCode" class="form-control" name="SecurityCode" value="@Model.Info.SecurityCode" readonly>
 
     </div>
-    <div class="col-xs-6">
-        <a asp-action="Index" class="btn btn-warning">Change</a>
-    </div>
-    <div class="col-xs-6">
-        <button type="submit" class="btn btn-warning">Buy</button>
-        <div class="text-danger">@ViewData["ErrorMessage"]</div>
+    <div class="col-xs-12">
+        <div class="col-md-offset-6 col-xs-3">
+            <a asp-action="Index" class="btn btn-warning">Change</a>
+        </div>
+        <div class="col-xs-3">
+            <button type="submit" id="BoughtCart" class="btn btn-warning">Buy</button>
+            <div class="text-danger">@ViewData["ErrorMessage"]</div>
+        </div>
     </div>
     </form>
 </div>

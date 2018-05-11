@@ -101,7 +101,13 @@ namespace BookCave.Controllers
         public IActionResult CartBought(CartBoughtViewModel info)
         {
             _cartService.CreateOrder(info);
-            return RedirectToAction("Index");
+            return RedirectToAction("ThankYou", new { email = info.Email });
+        }
+
+        public IActionResult ThankYou(string email)
+        {
+            ViewData["Email"] = email; 
+            return View();
         }
 
     }
