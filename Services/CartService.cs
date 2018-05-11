@@ -41,6 +41,11 @@ namespace BookCave.Services
         {
             _cartRepo.CreateOrder(info);
         }
+        public List<OrderHistoryViewModels> GetOrderHistory(string id)
+        {
+            var orderhistory = _cartRepo.GetOrders(id);
+            return orderhistory;
+        }
 
         public void ProcessCart(CheckoutInputModel cart)
         {
