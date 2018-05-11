@@ -82,15 +82,22 @@ namespace BookCave.Services
         public void UpdateBookRating(int BookId)
         {
             var reviews = _bookRepo.GetReviews(BookId);
-
-            var sumOfRatings = 0.0;
-            foreach(var r in reviews)
+            if(reviews.Count == 0)
             {
-                sumOfRatings += r.Rating;
+                _bookRepo.UpdateBookRating(BookId, 0.0);
             }
-            var numberOfReviews = reviews.Count;
-            var newRating = sumOfRatings / numberOfReviews;
-            _bookRepo.UpdateBookRating(BookId, newRating);
+            else
+            {
+                var sumOfRatings = 0.0;
+                foreach(var r in reviews)
+                {
+                    sumOfRatings += r.Rating;
+                }
+                var numberOfReviews = reviews.Count;
+                var newRating = sumOfRatings / numberOfReviews;
+                _bookRepo.UpdateBookRating(BookId, newRating);
+            }
+
         }
 
         public void AddBook(BookInputModel newBook)
