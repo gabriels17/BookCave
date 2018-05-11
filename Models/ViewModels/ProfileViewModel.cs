@@ -17,5 +17,6 @@ namespace BookCave.Models.ViewModels
         public string Postcode { get; set; }
         public string Country { get; set; }
         public List<ReviewViewModel> Reviews { get; set; }
+        public List<OrderHistoryViewModels> OrderHistory { get; set; }
     }
 }

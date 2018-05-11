@@ -66,6 +66,24 @@
                 </div>
                 <div class="tab-pane fade" id="OrderHistory">
                     <h3 class="tab-title">Your order history</h3>
+                    @foreach(var order in Model.OrderHistory)
+                        {
+                            <div class="container col-md-10">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <img class="thumbnail img-resize col-md-3" src="@order.Image" alt="@order.Title">
+                                        <div class="col-md-2">
+                                            <h3>@order.Title</h3>
+                                            <p>@order.Author</p>
+                                            <p>@order.Price</p>
+                                        </div>
+                                        <div class="col-md-2 col-md-offset-1">
+                                            <h3>@order.Quantity X</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                 </div>
             </div>
         </div>

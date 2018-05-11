@@ -179,7 +179,7 @@ namespace BookCave.Controllers
         }
 
         [Authorize]
-        public IActionResult Delete(int id)
+        public IActionResult DeleteBook(int id)
         {
             _bookService.DeleteBook(id);
             return RedirectToAction("Index");

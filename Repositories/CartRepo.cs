@@ -124,6 +124,21 @@ namespace BookCave.Repositories
             _db.SaveChanges();
             clearCart(info.UserId);
         }
+        public List<OrderHistoryViewModels> GetOrders(string id)
+        {
+            var orders = ( from order in _db.Orders
+                            where order.UserId == id
+                            select new OrderHistoryViewModels 
+                            {
+                                UserID = order.UserId,
+                                Title = order.Title,
+                                Author = order.Author,
+                                Image = order.Image,
+                                Price = order.Price,
+                                Quantity = order.Quantity
+                                }).ToList();
+            return orders;
+        }
 
         private void clearCart(string UserId)
         {

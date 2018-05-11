@@ -144,6 +144,7 @@ namespace BookCave.Controllers
             // Get User Data
             var user = await _userManager.GetUserAsync(User);
             var reviews = _reviewService.GetReviews(user.Id);
+            var orderhistory = _cartService.GetOrderHistory(user.Id);
             var profile = new ProfileViewModel 
             {
                 Id = user.Id,
@@ -158,7 +159,8 @@ namespace BookCave.Controllers
                 State = user.State,
                 Postcode = user.Postcode,
                 Country = user.Country,
-                Reviews = reviews
+                Reviews = reviews,
+                OrderHistory = orderhistory
             };
 
             if (string.IsNullOrEmpty(profile.Image))
