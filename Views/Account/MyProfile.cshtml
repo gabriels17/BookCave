@@ -107,7 +107,7 @@
                                         <p class="heading-title">@book.Price $</p>
                                     </div>
                                     <div class="col-md-1 col-md-offset-1 panel-right-corner">
-                                        <a><span class="glyphicon glyphicon-trash"></span></a>
+                                        <a asp-action="DeleteWishlist" asp-route-id="@book.Id"><span class="glyphicon glyphicon-trash"></span></a>
                                     </div>
                                 </div>
                             </div>

@@ -155,7 +155,7 @@ namespace BookCave.Controllers
 
             var reviews = _reviewService.GetReviews(user.Id);
             var orderhistory = _cartService.GetOrderHistory(user.Id);
-            var wishlistId = _cartService.GetWhishlistId(user.Id);
+            var wishlistId = _cartService.GetWishlistId(user.Id);
             var wishlist = _bookService.GetWishlist(wishlistId);
 
             var profile = new ProfileViewModel 
@@ -183,6 +183,12 @@ namespace BookCave.Controllers
             }
 
             return View(profile);
+        }
+        [Authorize]
+        public IActionResult DeleteWishlist(int id)
+        {
+            _cartService.DeleteWishlist(id);
+            return RedirectToAction("MyProfile");
         }
 
         [Authorize]
