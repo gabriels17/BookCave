@@ -133,17 +133,6 @@ namespace BookCave.Controllers
         {
             return View();
         }
-
-        [Authorize]
-        public async Task<IActionResult> AddToCart(int ID)
-        {
-            var user = await _userManager.GetUserAsync(User);
-            var userId = user.Id;
-            _cartService.AddToCart(userId, ID);
-
-            return RedirectToAction("Index", "Home");
-        }
-
         [Authorize]
         public async Task<IActionResult> AddToWishlist(int ID)
         {
@@ -233,6 +222,7 @@ namespace BookCave.Controllers
                 return View();
             }
             _accountService.ProcessProfile(model);
+            
             var user = await _userManager.GetUserAsync(User);
             
             //Update Properties

@@ -115,18 +115,18 @@ namespace BookCave.Repositories
 
         public void CreateOrder(CartBoughtViewModel info)
         {
-            var cart = (from c in _db.Carts
+            var cart = (from c in _db.Carts                     //First we get the users cart
                         where c.UserId == info.UserId
                         select c).ToList();
-            var theOrder = new List<Order>();
+            var theOrder = new List<Order>();                  //Create a List of Orders
             for(int i = 0; i < cart.Count(); i++)
             {
-                var thebook = (from b in _db.Books
+                var thebook = (from b in _db.Books              //For each cart item which is a book Id and quantity i get the info about the book
                                 where b.Id == cart[i].BookId
                                 select b).FirstOrDefault();
-                theOrder.Add(new Order {
-                    UserId = info.UserId,
-                    Title = thebook.Title,
+                theOrder.Add(new Order {                        //The reasons why Order is so large is to know where to ship and also to store the information about the book
+                    UserId = info.UserId,                       //So you would always be able to see order history even though we would delete the book
+                    Title = thebook.Title,                      //Instead of just linking bookId which would be null if we would delete the book from the database
                     Author = thebook.Author,
                     Image = thebook.Image,
                     Price = thebook.Price,
