@@ -7,9 +7,11 @@
 <fieldset>
     <div class="col-md-4 col-xs-12" id="imageDetails">
         <img src="@Model.Book.Image" alt="@Model.Book.Id" class="img-thumbnail details-book-image" height="400px" width="300px">
-        <div class="stars-outer col-xs-4" id="rateStar">
-            <div class="stars-inner col-xs-4">
-                <p class="ratings">@Model.Book.Rating</p>
+        <div class="col-xs-12">
+            <div class="stars-outer" id="rateStar">
+                <div class="stars-inner">
+                    <p class="ratings">@Model.Book.Rating</p>
+                </div>
             </div>
         </div>
         <a class="btn btn-warning details-book-to-cart col-xs-4" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> @Model.Book.Price$</a>
