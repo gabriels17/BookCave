@@ -240,9 +240,14 @@ a:hover
     padding: 5px 5px 0 5px;
 }
 
+.panel-default > .panel-heading-custom
+{
+    background-color: #F0AD4E;
+}
+
 .tab-content
 {
-    max-height: 250px;
+    max-height: 300px;
     overflow-y: auto;
 }
 
@@ -255,7 +260,7 @@ a:hover
 .nav-tabs > li > a:hover,
 .nav-tabs > li > a:focus
 {
-    color: #a94442;
+    color: #fff;
 }
 
 .nav-tabs > .open > a,
@@ -264,8 +269,8 @@ a:hover
 .nav-tabs > li > a:hover,
 .nav-tabs > li > a:focus
 {
-    color: #a94442;
-    background-color: #ebccd1;
+    color: #fff;
+    background-color: #ffce6c;
     border-color: transparent;
 }
 
@@ -273,7 +278,7 @@ a:hover
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus
 {
-    color: #a94442;
+    color: grey;
     background-color: #fff;
     border-color: #ebccd1;
     border-bottom-color: transparent;
@@ -283,6 +288,7 @@ a:hover
 {
     margin: 0;
     color: #a94442;
+    border-bottom-color: #a94442;
     border-bottom-style: solid;
     border-width: 2px;
 }
