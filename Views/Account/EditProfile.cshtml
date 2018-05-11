@@ -5,7 +5,7 @@
 }
 
 <form asp-action="EditProfile" asp-controller="Account" class="form-horizontal" method="POST">
-    <div id="Profile" class="container col-md-3">
+    <div class="col-md-3 panel panel-default">
         <div class="form-group col-md-12">
             <label asp-for="Image">Image source: </label>
             <input type="text" class="form-control" asp-for="Image" placeholder="Enter image source..." value="@Model.Image" />
@@ -30,8 +30,8 @@
         </div>
     </div>
     <div class="container col-md-7 col-md-offset-1">
-        <div class="panel panel-danger">
-            <div class="panel-heading">
+        <div class="panel panel-default">
+            <div class="panel-heading panel-heading-custom">
                 <ul class="nav nav-tabs">
                     <li class="active">
                         <a href="EditShipping" data-toggle="tab">Edit Shipping info</a>
