@@ -30,6 +30,7 @@ namespace BookCave
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IBookService, BookService>();
             services.AddTransient<IReviewService, ReviewService>();
+            services.AddTransient<ICartService, CartService>();
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<AuthenticationDbContext>()
                 .AddDefaultTokenProviders();
