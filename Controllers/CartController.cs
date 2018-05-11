@@ -52,22 +52,20 @@ namespace BookCave.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> CheckoutInformation(CheckoutInputModel info)
+        public async Task<IActionResult> CheckoutInformation()
         {
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
-            if(info.UserId != userId)
-            {
-                info.UserId = user.Id;
-                info.Email = user.Email;
-                info.FullName = user.FullName;
-                info.ShippingAddress = user.ShippingAddress;
-                info.City = user.City;
-                info.State = user.State;
-                info.PostCode = user.Postcode;
-                info.Country = user.Country;
-
-            }
+            var info = new CheckoutInputModel {
+                UserId = user.Id,
+                Email = user.Email,
+                FullName = user.FullName,
+                ShippingAddress = user.ShippingAddress,
+                City = user.City,
+                State = user.State,
+                PostCode = user.Postcode,
+                Country = user.Country,
+            };
 
             return View(info);
         }
