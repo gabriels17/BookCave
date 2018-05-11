@@ -113,7 +113,10 @@ namespace BookCave.Repositories
             var reviews = (from r in _db.Reviews
                           where r.BookId == id
                           select r).ToList();
-            _db.Remove(reviews);
+            foreach(var review in reviews)
+            {
+                _db.Remove(review);
+            }
 
             var book = (from b in _db.Books
                         where id == b.Id
