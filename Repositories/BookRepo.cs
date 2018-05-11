@@ -164,6 +164,7 @@ namespace BookCave.Repositories
         {
             var reviews = (from r in _db.Reviews
                         where r.BookId == id
+                        orderby r.Id descending
                         select new ReviewViewModel
                         {
                             Id = r.Id,
@@ -178,6 +179,7 @@ namespace BookCave.Repositories
         {
             var reviews = (from r in _db.Reviews
                         where r.UserId == id
+                        orderby r.Id descending
                         select new ReviewViewModel
                         {
                             Id = r.Id,
