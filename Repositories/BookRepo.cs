@@ -53,11 +53,11 @@ namespace BookCave.Repositories
                          }).SingleOrDefault();
             return(book);
         }
-        public WhishlistViewModel GetWhishlistById(int id)
+        public WishlistViewModel GetWishlistById(int id)
         {
             var book = (from b in _db.Books
                         where b.Id == id
-                        select new WhishlistViewModel
+                        select new WishlistViewModel
                         {
                             BookId = b.Id,
                             Title = b.Title,

@@ -54,13 +54,26 @@ namespace BookCave.Repositories
                 _db.SaveChanges();
             }
         }
-        public List<int> GetWhishlistByUserId(string id)
+        public List<WishlistViewModel> GetWishlistByUserId(string id)
         {
-            var WhishlistId = (from w in _db.Whishlists
+            var WishlistId = (from w in _db.Whishlists
                                 where w.UserId == id
-                                select w.BookId).ToList();
+                                select new WishlistViewModel
+                                {
+                                    Id = w.Id,
+                                    BookId = w.BookId
+                                })
+                                .ToList();
             
-            return WhishlistId;
+            return WishlistId;
+        }
+        public void DeleteWishlist(int id)
+        {
+            var wishlist = (from wish in _db.Whishlists
+                        where id == wish.Id
+                        select wish).SingleOrDefault();
+            _db.Remove(wishlist);
+            _db.SaveChanges();
         }
 
         public  List<CartViewModel> GetCart (string TheUserId)

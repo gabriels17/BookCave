@@ -18,6 +18,6 @@ namespace BookCave.Models.ViewModels
         public string Country { get; set; }
         public List<ReviewViewModel> Reviews { get; set; }
         public List<OrderHistoryViewModels> OrderHistory { get; set; }
-        public List<WhishlistViewModel> Whishlist { get; set; }
+        public List<WishlistViewModel> Wishlist { get; set; }
     }
 }
