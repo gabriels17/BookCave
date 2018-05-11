@@ -112,6 +112,7 @@ namespace BookCave.Repositories
         {
             var orders = ( from order in _db.Orders
                             where order.UserId == id
+                            orderby order.Id descending
                             select new OrderHistoryViewModels 
                             {
                                 UserID = order.UserId,
