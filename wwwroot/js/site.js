@@ -4,11 +4,11 @@ const starTotal = 5;
 var allStars = $('.stars-outer .stars-inner .ratings');
 
 $.each(allStars, function (key, value) {
-    var starValue = $(value).text();
-    starValue = starValue.replace(",", ".");
-    var starWidth = parseFloat(starValue) * 20;
-    $('.stars-inner')[key].style.width = starWidth + "%";
-});
+    var starValue = $(value).text();                                        //Get the rating
+    starValue = starValue.replace(",", ".");                                //Replace the "," with a "." to make it a number in JavaScript
+    var starWidth = parseFloat(starValue) * 20;                             //Calculate the rating as a percentage of 100
+    $('.stars-inner')[key].style.width = starWidth + "%";                   //The rating calculated is applied to the yellow stars' width element
+});                                                                         //which fills up the empty white stars with yellow stars to represent ratings visually
 
 $(".thumbnail").delegate(".book-to-cart", 'click', function(){
     var booktitle = $(this).parent().parent().find(".book-title").text();   //This get's the books title
