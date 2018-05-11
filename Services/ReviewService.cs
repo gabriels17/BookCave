@@ -8,11 +8,13 @@ namespace BookCave.Services
 {
     public class ReviewService : IReviewService
     {
+        private BookService _bookService;
         private BookRepo _bookRepo;
 
         public ReviewService()
         {
             _bookRepo = new BookRepo();
+            _bookService = new BookService();
         }
         public void ProcessReview(ReviewInputModel review)
         {
@@ -22,15 +24,19 @@ namespace BookCave.Services
             }
             
         }
+        
         public List<ReviewViewModel> GetReviews(string id)
         {
             var reviews = _bookRepo.GetReviewsByUserID(id);
 
             return reviews;
         }
-        public void DeleteReview(int id)
+
+        public void DeleteReview(int reviewId)
         {
-            _bookRepo.DeleteReview(id);
+            var review = _bookRepo.GetSingleReview(reviewId);
+            _bookRepo.DeleteReview(reviewId);
+            _bookService.UpdateBookRating(review.BookId);
         }
 
     }

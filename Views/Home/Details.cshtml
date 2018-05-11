@@ -12,12 +12,12 @@
                 <p class="ratings">@Model.Book.Rating</p>
             </div>
         </div>
-        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Book.Id" class="btn btn-warning" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> @Model.Book.Price$</a>
+        <a class="btn btn-warning details-book-to-cart" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> @Model.Book.Price$</a>
         <br>
         <div id="adminButtons">
             <a asp-action="Edit" asp-route-id="@Model.Book.Id" type="button" class="btn btn-warning">
             <span class="glyphicon glyphicon-pencil"></span> Edit book</a>
-            <a asp-action="Delete" asp-route-id="@Model.Book.Id" class="btn btn-warning">
+            <a asp-action="DeleteBook" asp-route-id="@Model.Book.Id" class="btn btn-warning">
             <span class="glyphicon glyphicon-trash"></span> Delete book</a>
         </div>
     </div>

@@ -179,7 +179,7 @@ namespace BookCave.Controllers
         }
 
         [Authorize]
-        public IActionResult Delete(int id)
+        public IActionResult DeleteBook(int id)
         {
             _bookService.DeleteBook(id);
             return RedirectToAction("Index");
@@ -187,7 +187,8 @@ namespace BookCave.Controllers
 
         public IActionResult GoToRandomBook()
         {
-            var randomBook = _bookService.GoToRandomBook();
+            var username = _userManager.Users;
+            var randomBook = _bookService.GoToRandomBook(username);
             return View("Details", randomBook);
         }
     }

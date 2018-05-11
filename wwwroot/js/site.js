@@ -24,6 +24,20 @@ $(".thumbnail").delegate(".book-to-cart", 'click', function(){
       });
 });
 
+$(".details-book-to-cart").click(function() {
+    var booktitle = $(".details-book-title").text();
+    var bookId = $(".details-book-image").attr("alt");
+    swal({
+        title: booktitle,
+        text: "has been added to the cart \n",
+        icon: "success",
+        buttons: "Okay",
+      }).then((value) => {
+        var url = "/Account/AddToCart/" + bookId; 
+        window.location.href = url; 
+      });
+})
+
 $("#delete").click(function() {
     var deletebooktitle = $(this).parent().parent().parent().find(".details-book-title").text();
     var deletebookId = $(this).parent().parent().parent().find(".details-book-image").attr("alt");
