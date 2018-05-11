@@ -43,7 +43,10 @@
                     <div class="col-xs-12 col-lg-6"><input type="text" class="form-control" placeholder="Search" Name="search"></div>
                 </div>
                 <button type="submit" class="btn btn-warning">Search</button>
-                <a asp-controller="Home" asp-action="AddBook" class="btn btn-warning">Add book</a>
+                @if(User.IsInRole("Admin"))
+                {
+                    <a asp-controller="Home" asp-action="AddBook" class="btn btn-warning">Add book!</a>
+                }
                 <a asp-controller="Home" asp-action="GoToRandomBook" class="btn btn-warning">Random book!</a>
             </form>
             <ul class="nav navbar-nav navbar-right">

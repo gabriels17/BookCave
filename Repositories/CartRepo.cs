@@ -38,19 +38,19 @@ namespace BookCave.Repositories
             }
             _db.SaveChanges();
         }
-        public void AddToWhishlist(string TheUserId, int TheBookId)
+        public void AddToWishlist(string TheUserId, int TheBookId)
         {
             var checker = (from c in _db.Whishlists
                             where c.BookId == TheBookId && c.UserId == TheUserId
                             select c).SingleOrDefault();
             if(checker == null)
             {
-                var WhishlistEntityModel = new Whishlist()
+                var WishlistEntityModel = new Whishlist()
                 {
                     BookId = TheBookId,
                     UserId = TheUserId,
                 };
-                _db.Add(WhishlistEntityModel);
+                _db.Add(WishlistEntityModel);
                 _db.SaveChanges();
             }
         }
