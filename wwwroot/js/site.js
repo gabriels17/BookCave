@@ -54,7 +54,9 @@ $(".details-book-to-whishlist").click(function() {
 
 $("#delete").click(function() {
     var deletebooktitle = $(this).parent().parent().parent().find(".details-book-title").text();
-    var deletebookId = $(this).parent().parent().parent().find(".details-book-image").attr("alt");
+    var deletebookId = $(this).parent().parent().find(".details-book-image").attr("alt");
+    console.log(deletebooktitle);
+    console.log(deletebookId);
     swal({
         title: "Are you sure?",
         text: "Once deleted, you will not be able to recover " + deletebooktitle,
@@ -67,7 +69,7 @@ $("#delete").click(function() {
             swal("Poof! " + deletebooktitle +  " has been deleted!", {
             icon: "success",
             }).then(() => {
-                var url = "/Home/Delete/" + deletebookId; 
+                var url = "/Home/DeleteBook/" + deletebookId; 
                 window.location.href = url;
             });
         } else {

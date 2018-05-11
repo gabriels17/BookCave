@@ -345,6 +345,11 @@ a:hover
     display: inline;
 }
 
+.rating-price
+{
+    padding-right: 0px;
+}
+
 .rating input 
 {
     display: none;
