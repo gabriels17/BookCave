@@ -15,12 +15,15 @@
         <a class="btn btn-warning details-book-to-cart col-xs-4" id="addToCartButton" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> @Model.Book.Price$</a>
         <a class="btn btn-warning details-book-to-whishlist col-xs-2"><span class="glyphicon glyphicon-heart"></span></a>
         <br>
-        <div id="adminButtons">
-            <a asp-action="Edit" asp-route-id="@Model.Book.Id" type="button" class="btn btn-warning col-xs-6 col-md-4">
-            <span class="glyphicon glyphicon-pencil"></span> Edit book</a>
-            <a asp-action="Delete" asp-route-id="@Model.Book.Id" class="btn btn-warning col-xs-6 col-md-4">
-            <span class="glyphicon glyphicon-trash"></span> Delete book</a>
-        </div>
+        @if(User.IsInRole("Admin"))
+        {
+            <div id="adminButtons">
+                <a asp-action="Edit" asp-route-id="@Model.Book.Id" type="button" class="btn btn-warning col-xs-6 col-md-4">
+                <span class="glyphicon glyphicon-pencil"></span> Edit book</a>
+                <a asp-action="Delete" asp-route-id="@Model.Book.Id" class="btn btn-warning col-xs-6 col-md-4">
+                <span class="glyphicon glyphicon-trash"></span> Delete book</a>
+            </div>
+        }
     </div>
     <div class="col-md-8 col-xs-12" id="bookInfo">
         <h3 class="details-book-title">@Model.Book.Title</h3>

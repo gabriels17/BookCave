@@ -96,14 +96,14 @@ namespace BookCave.Controllers
             return View(books);
         }
 
-        [Authorize]
+        [Authorize(Roles="Admin")]
         [HttpGet]
         public IActionResult AddBook()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles="Admin")]
         [HttpPost]
         public IActionResult AddBook(BookInputModel newBook)
         {
@@ -155,7 +155,7 @@ namespace BookCave.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles="Admin")]
         public IActionResult Edit(int id)
         {
             var bookToEdit = _bookService.GetBookById(id);
@@ -164,7 +164,7 @@ namespace BookCave.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles="Admin")]
         public IActionResult Edit(BookInputModel book)
         {
             ViewData["Name"] = book.Title;
@@ -178,7 +178,7 @@ namespace BookCave.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize]
+        [Authorize(Roles="Admin")]
         public IActionResult DeleteBook(int id)
         {
             _bookService.DeleteBook(id);

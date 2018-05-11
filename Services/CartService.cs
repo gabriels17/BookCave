@@ -99,9 +99,9 @@ namespace BookCave.Services
                 throw new Exception("Security code is missing");
             }
         }
-        public void AddToWhishlist(string UserId, int BookId)
+        public void AddToWishlist(string UserId, int BookId)
         {
-            _cartRepo.AddToWhishlist(UserId, BookId);
+            _cartRepo.AddToWishlist(UserId, BookId);
         }
     }
 }

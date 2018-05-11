@@ -43,11 +43,11 @@ $(".details-book-to-whishlist").click(function() {
     var bookId = $(".details-book-image").attr("alt");
     swal({
         title: booktitle,
-        text: "has been added to your whishlist!",
+        text: "has been added to your wishlist!",
         icon: "success",
         buttons: "Okay",
       }).then((value) => {
-        var url = "/Account/AddToWhishlist/" + bookId; 
+        var url = "/Account/AddToWishlist/" + bookId; 
         window.location.href = url;
       });
 })

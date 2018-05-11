@@ -130,11 +130,11 @@ namespace BookCave.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> AddToWhishlist(int ID)
+        public async Task<IActionResult> AddToWishlist(int ID)
         {
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
-            _cartService.AddToWhishlist(userId, ID);
+            _cartService.AddToWishlist(userId, ID);
             return RedirectToAction("Index", "Home");
         }
 
