@@ -47,11 +47,6 @@ namespace BookCave.Services
                 throw new Exception("City is missing");
             }
 
-            if(string.IsNullOrEmpty(profile.State))
-            {
-                throw new Exception("State is missing");
-            }
-
             if(string.IsNullOrEmpty(profile.Postcode))
             {
                 throw new Exception("Postcode is missing");
