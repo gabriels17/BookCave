@@ -198,7 +198,7 @@ namespace BookCave.Controllers
             var username = _userManager.Users;
             var randomBook = _bookService.GoToRandomBook(username);
             
-            return View("Details", randomBook);
+            return RedirectToAction("Details", new { id = randomBook.Book.Id });
         }
     }
 }
