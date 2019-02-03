@@ -40,12 +40,12 @@ namespace BookCave.Repositories
         }
         public void AddToWishlist(string TheUserId, int TheBookId)
         {
-            var checker = (from c in _db.Whishlists
+            var checker = (from c in _db.Wishlists
                             where c.BookId == TheBookId && c.UserId == TheUserId
                             select c).SingleOrDefault();
             if(checker == null)
             {
-                var WishlistEntityModel = new Whishlist()
+                var WishlistEntityModel = new Wishlist()
                 {
                     BookId = TheBookId,
                     UserId = TheUserId,
@@ -56,7 +56,7 @@ namespace BookCave.Repositories
         }
         public List<WishlistViewModel> GetWishlistByUserId(string id)
         {
-            var WishlistId = (from w in _db.Whishlists
+            var WishlistId = (from w in _db.Wishlists
                                 where w.UserId == id
                                 select new WishlistViewModel
                                 {
@@ -68,7 +68,7 @@ namespace BookCave.Repositories
         }
         public void DeleteWishlist(int id)
         {
-            var wishlist = (from wish in _db.Whishlists
+            var wishlist = (from wish in _db.Wishlists
                         where id == wish.Id
                         select wish).SingleOrDefault();
             _db.Remove(wishlist);
