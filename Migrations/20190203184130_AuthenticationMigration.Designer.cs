@@ -8,17 +8,17 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace BookCave.Migrations.AuthenticationDb
+namespace BookCave.Migrations
 {
     [DbContext(typeof(AuthenticationDbContext))]
-    [Migration("20180504153708_Authentication")]
-    partial class Authentication
+    [Migration("20190203184130_AuthenticationMigration")]
+    partial class AuthenticationMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
+                .HasAnnotation("ProductVersion", "2.0.3-rtm-10026")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("BookCave.Models.ApplicationUser", b =>
@@ -28,13 +28,27 @@ namespace BookCave.Migrations.AuthenticationDb
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<string>("City");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
+
+                    b.Property<string>("Country");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("FavoriteBook");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("FullName");
+
+                    b.Property<string>("Image");
+
+                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -52,7 +66,13 @@ namespace BookCave.Migrations.AuthenticationDb
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<string>("Postcode");
+
                     b.Property<string>("SecurityStamp");
+
+                    b.Property<string>("ShippingAddress");
+
+                    b.Property<string>("State");
 
                     b.Property<bool>("TwoFactorEnabled");
 

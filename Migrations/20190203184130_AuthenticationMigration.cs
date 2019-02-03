@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace BookCave.Migrations.AuthenticationDb
+namespace BookCave.Migrations
 {
-    public partial class Authentication : Migration
+    public partial class AuthenticationMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,9 +29,16 @@ namespace BookCave.Migrations.AuthenticationDb
                 {
                     Id = table.Column<string>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
+                    City = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
+                    FavoriteBook = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    FullName = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
@@ -39,7 +46,10 @@ namespace BookCave.Migrations.AuthenticationDb
                     PasswordHash = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    Postcode = table.Column<string>(nullable: true),
                     SecurityStamp = table.Column<string>(nullable: true),
+                    ShippingAddress = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     UserName = table.Column<string>(maxLength: 256, nullable: true)
                 },

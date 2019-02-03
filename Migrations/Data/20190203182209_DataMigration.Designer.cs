@@ -8,17 +8,17 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace BookCave.Migrations
+namespace BookCave.Migrations.Data
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20180511113402_AddWhishlist")]
-    partial class AddWhishlist
+    [Migration("20190203182209_DataMigration")]
+    partial class DataMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
+                .HasAnnotation("ProductVersion", "2.0.3-rtm-10026")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("BookCave.Data.EntityModels.Book", b =>
@@ -113,6 +113,20 @@ namespace BookCave.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("BookCave.Data.EntityModels.Wishlist", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BookId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Wishlists");
                 });
 #pragma warning restore 612, 618
         }
