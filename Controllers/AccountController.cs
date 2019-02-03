@@ -56,12 +56,12 @@ namespace BookCave.Controllers
 
             _accountService.ProcessRegister(registerModel); //Error handling
 
-            /*IdentityResult roleResult;    //This is commented out because it´s used to create a role which we only needed once to create Admin                                    
-            var roleExist = await _roleManager.RoleExistsAsync("Admin");
-            if (!roleExist)
-            {
-                roleResult = await _roleManager.CreateAsync(new IdentityRole("Admin"));
-            }*/
+            // IdentityResult roleResult;    //This is commented out because it´s used to create a role which we only needed once to create Admin                                    
+            // var roleExist = await _roleManager.RoleExistsAsync("Admin");
+            // if (!roleExist)
+            // {
+            //     roleResult = await _roleManager.CreateAsync(new IdentityRole("Admin"));
+            // }
 
             var user = new ApplicationUser
             {
@@ -75,7 +75,7 @@ namespace BookCave.Controllers
 
             if(result.Succeeded)
             {
-                //await _userManager.AddToRoleAsync(user, "Admin"); //This is commented out because it is used to make the new user admin right away
+                // await _userManager.AddToRoleAsync(user, "Admin"); //This is commented out because it is used to make the new user admin right away
                 await _userManager.AddClaimAsync(user, new Claim("Name", $"{registerModel.FirstName} {registerModel.LastName}"));
                 await _signInManager.SignInAsync(user, false);
 
