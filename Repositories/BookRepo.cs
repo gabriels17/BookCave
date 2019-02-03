@@ -130,7 +130,7 @@ namespace BookCave.Repositories
 
              _db.RemoveRange(reviews); //If the book has any reviews, they need to be deleted too
 
-            var wishlists = (from w in _db.Whishlists
+            var wishlists = (from w in _db.Wishlists
                             where w.BookId == id
                             select w).ToList();
 
