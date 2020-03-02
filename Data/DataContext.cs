@@ -5,7 +5,7 @@ namespace BookCave.Data
 {
     public class DataContext : DbContext
     {
-        private const string ConnectionString = "Server=tcp:group17.database.windows.net,1433;Initial Catalog=BookCave;Persist Security Info=False;User ID=group17;Password=Admin170;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private const string ConnectionString = "Host=localhost;Port=5432;Username=postgres;Password=Banani567;Database=BookCave";
 
         public DbSet<Book> Books { get; set; }
 
@@ -19,8 +19,7 @@ namespace BookCave.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder
-                .UseSqlServer(ConnectionString);
+            optionsBuilder.UseNpgsql(ConnectionString);
         }
     }
 }
