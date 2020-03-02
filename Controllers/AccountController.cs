@@ -174,7 +174,7 @@ namespace BookCave.Controllers
 
             if (string.IsNullOrEmpty(profile.Image)) //for default profile image when we need one
             {
-                profile.Image = "https://cdn.iconscout.com/public/images/icon/free/png-512/avatar-user-hacker-3830b32ad9e0802c-512x512.png";
+                profile.Image = "http://localhost:5000/images/avatar.png";
             }
 
             return View(profile);
